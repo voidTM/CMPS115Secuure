@@ -1,14 +1,14 @@
 #!/bin/python3
 
-import Tkinter
-import tkMessageBox
+import tkinter
+from tkinter import messagebox
 
-top = Tkinter.Tk()
+top = tkinter.Tk()
 
 def helloCallBack():
    tkMessageBox.showinfo( "Hello Python", "Hello World")
 
-B = Tkinter.Button(top, text ="Hello", command = helloCallBack)
+B = tkinter.Button(top, text ="Hello", command = helloCallBack)
 
 B.pack()
 top.mainloop()
