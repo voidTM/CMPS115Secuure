@@ -5,9 +5,15 @@
     $password = "";
     $dbname = secuure;
     $usertable = data;
-    $acc = account;
-    $ws = website;
-    $pwd = password;
+    $acc = $argv[1];
+    $ws = $argv[2];
+    $pwd = $argv[3];
+
+    //php insert_mysql.php <account> <website> <password>
+
+    if($argc != 4){
+        exit("Usage: php insert_mysql.php <account> <website> <password>" . "\r\n");
+    }
 
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
