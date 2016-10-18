@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     Button bLogout;
-    String username;
+    String name;
+    String accountEntry;
     TextView userWelcome;
     //UserLocalStore userLocalStore;
 
@@ -24,10 +26,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         bLogout.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);
         User usr = Global.getUser();
-        username = usr.getName();
+        UserTable userT = Global.getUserT();
+        name = usr.getName();
 
-        userWelcome.setText("Welcome " + username);
+        userWelcome.setText("Welcome " + name);
         //userLocalStore = new UserLocalStore(this);
+
+        LinearLayout lView = (LinearLayout)findViewById(R.id.lLogin);
+        TextView entry = new TextView(this);
+        String password = usr.getPassword();
+        String username = usr.getUsername();
+        accountEntry = "Username: " + username + " Password: " + password;
+        entry.setText(accountEntry);
+        lView.addView(entry);
+
+        // populate with a list;
+        //for(User someone : userT)
     }
 
 /*    @Override

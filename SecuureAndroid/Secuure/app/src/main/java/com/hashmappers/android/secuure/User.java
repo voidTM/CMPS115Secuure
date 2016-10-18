@@ -41,6 +41,7 @@ public class User {
         return username;
     }
     public String getName(){return name;}
+    public String getPassword(){return password;}
 
     public Boolean checkPassword(String pass){
         if (password ==  pass)

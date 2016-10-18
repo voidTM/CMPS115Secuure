@@ -32,7 +32,7 @@
     <Button
         android:id="@+id/bLogin"
         android:text="Login"
-        android:layout_width="361dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
