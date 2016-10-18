@@ -2,6 +2,7 @@
 #developed by Isaak Cherdak
 
 import tkinter
+import storage
 from tkinter import messagebox
 
 fscreen_en = False
