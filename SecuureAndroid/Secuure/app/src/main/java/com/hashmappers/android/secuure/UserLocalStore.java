@@ -7,6 +7,7 @@ import android.content.Context;
  * Created by Jamie on 10/16/2016.
  */
 
+// Storing data into a file must be done in activity.
 // This class stores user data on the phone
 public class UserLocalStore {
 

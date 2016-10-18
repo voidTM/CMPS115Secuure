@@ -7,20 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     Button bLogout;
+    String username;
+    TextView userWelcome;
     //UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         bLogout = (Button) findViewById(R.id.bLogout);
         bLogout.setOnClickListener(this);
+        userWelcome = (TextView) findViewById(R.id.textUserID);
+        User usr = Global.getUser();
+        username = usr.getName();
 
+        userWelcome.setText("Welcome " + username);
         //userLocalStore = new UserLocalStore(this);
     }
 

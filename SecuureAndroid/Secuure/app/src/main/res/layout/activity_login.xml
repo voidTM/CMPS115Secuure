@@ -10,7 +10,8 @@
         android:text="Hello User"
         android:layout_gravity="bottom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textUserID" />
 
     <Button
         android:id="@+id/bLogout"

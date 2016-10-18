@@ -33,7 +33,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 String name = etName.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                User registeredData = new User(name, username, password);
+                //User registeredData = new User(name, username, password);
+                User userID = Global.getUser();
+
+                // Add to user table
+                userID.setUser(name, username, password);
+                // Store the data onto file
                 startActivity(new Intent(this, Login.class));
                 break;
         }
