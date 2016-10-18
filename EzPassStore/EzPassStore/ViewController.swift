@@ -12,11 +12,13 @@ import UIKit
 var user = "";
 var pass = "";
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.usernameText.delegate = self
+        self.passwordText.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +26,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //hide keyboard when user touch outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    //hide keyboard when user press return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameText.resignFirstResponder()
+        passwordText.resignFirstResponder()
+        return true
+    }
+    
+    //segue from viewcontroller to mainint view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMainIntViewController" {
             let MainInterfaceViewController = segue.destination as! MainInterfaceViewController
@@ -32,7 +46,7 @@ class ViewController: UIViewController {
         }
     }
 
-    
+    //conditionals to making the segue
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if(identifier == "showSignupViewController") {
           return true
@@ -51,10 +65,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
 
+    //sign up button
     @IBAction func signupButton(_ sender: AnyObject) {
             //warningLabel.text = "Signing up ... "
     }
     
+    //login button, sets username and password accordingly
     @IBAction func loginButton(_ sender: AnyObject) {
         if(!(usernameText.text?.isEmpty)! && !(passwordText.text?.isEmpty)!) {
             user = usernameText.text!;

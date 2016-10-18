@@ -16,6 +16,7 @@
 		9187C05A1DAACB2400B1079B /* EzPassStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0591DAACB2400B1079B /* EzPassStoreUITests.swift */; };
 		9187C0681DB2B9D500B1079B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0671DB2B9D500B1079B /* SignupViewController.swift */; };
 		9187C06A1DB2BA9200B1079B /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */; };
+		9187C06C1DB6E08B00B1079B /* EmailVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		9187C05B1DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9187C0671DB2B9D500B1079B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
+		9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVerifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				9187C0391DAACB2400B1079B /* AppDelegate.swift */,
 				9187C03B1DAACB2400B1079B /* ViewController.swift */,
 				9187C03D1DAACB2400B1079B /* Main.storyboard */,
+				9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */,
 				9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */,
 				9187C0671DB2B9D500B1079B /* SignupViewController.swift */,
 				9187C0401DAACB2400B1079B /* Assets.xcassets */,
@@ -199,6 +202,7 @@
 				TargetAttributes = {
 					9187C0351DAACB2400B1079B = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = W868B75DBC;
 						ProvisioningStyle = Automatic;
 					};
 					9187C0491DAACB2400B1079B = {
@@ -268,6 +272,7 @@
 				9187C0681DB2B9D500B1079B /* SignupViewController.swift in Sources */,
 				9187C03C1DAACB2400B1079B /* ViewController.swift in Sources */,
 				9187C03A1DAACB2400B1079B /* AppDelegate.swift in Sources */,
+				9187C06C1DB6E08B00B1079B /* EmailVerifyViewController.swift in Sources */,
 				9187C06A1DB2BA9200B1079B /* MainInterfaceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,11 +425,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W868B75DBC;
 				INFOPLIST_FILE = EzPassStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HashMappers.EzPassStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -432,11 +439,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W868B75DBC;
 				INFOPLIST_FILE = EzPassStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HashMappers.EzPassStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -513,6 +522,7 @@
 				9187C0601DAACB2400B1079B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9187C0611DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStoreTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +531,7 @@
 				9187C0631DAACB2400B1079B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9187C0641DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStoreUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +540,7 @@
 				9187C0661DAACB2400B1079B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

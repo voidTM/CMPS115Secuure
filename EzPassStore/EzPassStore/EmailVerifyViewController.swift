@@ -1,29 +1,32 @@
 //
-//  MainInterfaceViewController.swift
+//  EmailVerifyViewController.swift
 //  EzPassStore
 //
-//  Created by Alexander Ou on 10/15/16.
+//  Created by Alexander Ou on 10/18/16.
 //  Copyright © 2016 HashMappers. All rights reserved.
 //
 
 import UIKit
 
-class MainInterfaceViewController: UIViewController {
+class EmailVerifyViewController: UIViewController {
 
-    //data passing from viewcontroller to mainintview
-    @IBOutlet weak var loginUserLabel: UILabel!
-    var username:String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set loginuserlabel from username passed in from viewcontroller
-        loginUserLabel.text = "Welcome " + username + ", this is your Secuure Account."
+
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //segue from email verification view to login view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showViewController" {
+            _ = segue.destination as! ViewController
+            
+        }
     }
     
 
