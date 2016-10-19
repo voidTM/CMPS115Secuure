@@ -2,12 +2,12 @@
 #developed by Isaak Cherdak
 
 import tkinter
-import storage
+from storage import *
 from tkinter import messagebox
 
 fscreen_en = False
 
-userAccounts = {} # temporary users until backend is sorted out
+userAccounts = {}# temporary users until backend is sorted out
 userAccounts["Admin"] = "Password"
 
 def mapKeyToFunc(event):
@@ -22,15 +22,18 @@ def mapKeyToFunc(event):
 def login(): # hit enter or login button
     global userentry
     global passentry
-    userstr = userentry.get()
-    if (userstr == ""):
+    user_str = userentry.get()
+    if (user_str == ""):
         userstr = "<EMPTY>"
-    passstr = passentry.get()
-    if (passstr == ""):
+    pass_str = passentry.get()
+    if (pass_str == ""):
         passstr = "<EMPTY>"
-    messagebox.showinfo("account_info", "Your username is %s\n" %
-            (userstr) + "Your password is %s\nHave a nice day\n"
-            % (passstr))
+    #Call to login function in storage.py
+    verLogin(user_str, pass_str, userAccounts)
+
+    # messagebox.showinfo("account_info", "Your username is %s\n" %
+    #         (user_str) + "Your password is %s\nHave a nice day\n"
+    #         % (pass_str))
 
 def toggle_fscreen(event):
     global fscreen_en

@@ -1,5 +1,7 @@
 import hashlib
 import getpass
+import tkinter
+from tkinter import messagebox
 
 accounts = {}
 passList = {}
@@ -19,20 +21,33 @@ def createUser():
     passList[user] = {}
 
 #verifies login given user and pass of user
-def verLogin():
-    user = input("Please enter your username\n")
-    password = input("Please enter your password\n")
+def verLogin(user, password, accounts):
+    # user = input("Please enter your username\n")
+    # password = input("Please enter your password\n")
+    # i = 3
+    # while i != 0:
+    #     if password != accounts[user]:
+    #         i -= 1
+    #         print ("Incorrect login, please try again (you have", i, " attempts left)\n")
+    #         password = input("Please enter your password:\n")
+    #         continue
+    #     return user
+    # if i == 0:
+    #     print ("You've exceeded your login attemps, goodbye.")
+    #     exit()
     i = 3
     while i != 0:
-        if password != accounts[user]:
+        if accounts[user] == password:
+            messagebox.showinfo("You have successfully logged in!", "Your username is %s\n" %
+                                (user) + "Your password is %s\nHave a nice day\n"
+                                % (password))
+            return True
+        else:
             i -= 1
-            print ("Incorrect login, please try again (you have", i, " attempts left)\n")
-            password = input("Please enter your password:\n")
-            continue
-        return user
-    if i == 0:
-        print ("You've exceeded your login attemps, goodbye.")
-        exit()
+        #    messagebox.showinfo("Incorrect login, please try again. You have %d" %i + " tries left\n" )
+
+    messagebox.showinfo("Too many incorrect login attempts. Goodbye.")
+    return False
 
 def enterPass(user):
     use = input("What would you like to use the following password for?\n")
