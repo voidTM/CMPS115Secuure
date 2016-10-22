@@ -5,7 +5,6 @@ package com.hashmappers.android.secuure;
  * Should only need to be initialized once
  */
 
-import android.content.Context;
 
 import java.util.HashMap;
 
