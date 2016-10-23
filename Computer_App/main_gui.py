@@ -29,11 +29,17 @@ def login(): # hit enter or login button
     if (pass_str == ""):
         passstr = "<EMPTY>"
     #Call to login function in storage.py
-    verLogin(user_str, pass_str, userAccounts)
+    login_valid = verLogin(user_str, pass_str, userAccounts)
 
-    # messagebox.showinfo("account_info", "Your username is %s\n" %
-    #         (user_str) + "Your password is %s\nHave a nice day\n"
-    #         % (pass_str))
+    info_str = "Your username is %s\n" % \
+        (user_str) + "Your password is %s\n" % (pass_str)
+        
+    if (login_valid):
+        info_str += "This is a valid combination"
+    else:
+        info_str += "This is not a valid combination"
+
+    messagebox.showinfo("Account information", info_str)
 
 def toggle_fscreen(event):
     global fscreen_en
