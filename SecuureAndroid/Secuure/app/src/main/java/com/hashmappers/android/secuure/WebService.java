@@ -33,6 +33,7 @@ public class WebService {
         ;
 
         service = rest.create(WebInterface.class);
+
         return service;
     }
 }
