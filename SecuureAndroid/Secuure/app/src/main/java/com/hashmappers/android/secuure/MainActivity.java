@@ -5,9 +5,15 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -16,8 +22,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
-    Button bLogin, bNewAccount;
+    Button bLogin, bSignUp;
     EditText etUsername, etPassword;
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    private RelativeLayout relativeLayout;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -38,10 +47,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         bLogin = (Button) findViewById(R.id.bLogin);
-        bNewAccount = (Button) findViewById(R.id.bNewAccount);
+        bSignUp = (Button) findViewById(R.id.bSignUp);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative);
 
         bLogin.setOnClickListener(this);
-        bNewAccount.setOnClickListener(this);
+        bSignUp.setOnClickListener(this);
 
         // userLocalStore = new UserLocalStore(this);
 
@@ -57,12 +67,37 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogin:
-/*                User user = new User(null, null);
+             // Converts username and password to string
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+
+                // Get the instance of the LayoutInflator
+                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupfaillogin, null);
+
+                if ((!username.isEmpty() && username.length() > 0) && (!password.isEmpty() && password.length() > 0)) {
+                    Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
+                    pass.show();
+                    startActivity(new Intent(this, Login.class));
+                } else {
+                    // Display the popup window in the center of screen if you fail to log in correctly
+                    popupWindow = new PopupWindow(container, 500, 220, true);
+                    popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
+                    // To exit the popup window, hit the 'OK' button
+                    Button buttonOk = (Button) container.findViewById(R.id.buttonOk);
+                    buttonOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            popupWindow.dismiss();
+                        }
+                    });
+                }
+
+              /*  User user = new User(null, null);
                 userLocalStore.storedUserData(user);
                 userLocalStore.setUserLoggedIn(true);*/
-                startActivity(new Intent(this, Login.class));
                 break;
-            case R.id.bNewAccount:
+            case R.id.bSignUp:
                 startActivity(new Intent(this, Register.class));
                 break;
         }

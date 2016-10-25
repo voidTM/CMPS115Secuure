@@ -2,28 +2,43 @@
 package com.hashmappers.android.secuure;
 
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
+    FloatingActionButton addAccounts;
     Button bLogout;
+    ListView list;
+
     String name;
     String accountEntry;
     TextView userWelcome;
     //UserLocalStore userLocalStore;
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    private CoordinatorLayout lView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bLogout = (Button) findViewById(R.id.bLogout);
+        addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
         bLogout.setOnClickListener(this);
+        addAccounts.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);
         User usr = Global.getUser();
         UserTable userT = Global.getUserT();
@@ -32,7 +47,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         userWelcome.setText("Welcome " + name);
         //userLocalStore = new UserLocalStore(this);
 
-        LinearLayout lView = (LinearLayout)findViewById(R.id.lLogin);
+        lView = (CoordinatorLayout) findViewById(R.id.lLogin);
         TextView entry = new TextView(this);
         String password = usr.getPassword();
         String username = usr.getUsername();
@@ -61,8 +76,35 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.bLogout:
 /*                userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);*/
-                startActivity(new Intent(this, Logout.class));
+                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popuplogout, null);
+
+                // Pressing the log out button, a popup window asks if you want to log out
+                popupWindow = new PopupWindow(container, 600, 300, true);
+                popupWindow.showAtLocation(lView, Gravity.CENTER, 0, 0);
+
+                // If you do not want to sign out just close the popup
+                Button bNo = (Button) container.findViewById(R.id.bNo);
+                bNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+                // If you do want to sign out, this should take you back to the log in screen
+                Button bYes = (Button) container.findViewById(R.id.bYes);
+                bYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Login.this, MainActivity.class));
+                    }
+                });
                 break;
+            case R.id.addAccounts:
+                startActivity(new Intent(this, AddingAccounts.class));
+                break;
+
         }
     }
 }

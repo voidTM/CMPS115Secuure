@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="10dp"
@@ -9,21 +12,7 @@
 
     <TextView
         android:text="Hello User"
-        android:layout_gravity="bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textUserID" />
-
-    <Button
-        android:id="@+id/bLogout"
-        android:text="Logout"
-        android:layout_gravity="end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:text="Add"
-        android:layout_gravity="bottom"
+        android:id="@+id/textUserID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -48,5 +37,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+    <Button
+        android:id="@+id/bLogout"
+        android:text="Log out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="top|end"
+        tools:background="?attr/colorControlHighlight" />
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="22dp"
+        android:src="@drawable/ic_action_add"
+        android:id="@+id/addAccounts"
+        android:elevation="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_anchor="@+id/titleList"
+        app:layout_anchorGravity="bottom|right" />
+
+</android.support.design.widget.CoordinatorLayout>
