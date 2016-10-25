@@ -23,17 +23,19 @@ def login(): # hit enter or login button
     global userentry
     global passentry
     user_str = userentry.get()
-    if (user_str == ""):
-        userstr = "<EMPTY>"
+
     pass_str = passentry.get()
-    if (pass_str == ""):
-        passstr = "<EMPTY>"
     #Call to login function in storage.py
     login_valid = verLogin(user_str, pass_str, userAccounts)
 
+    if (len(user_str) == 0):
+        user_str = "<EMPTY>"
+    if (len(pass_str) == 0):
+        pass_str = "<EMPTY>"
+
     info_str = "Your username is %s\n" % \
         (user_str) + "Your password is %s\n" % (pass_str)
-        
+    
     if (login_valid):
         info_str += "This is a valid combination"
     else:
@@ -50,6 +52,20 @@ def quit_prgrm(): # when you hit escape
     global root
     root.destroy()
 
+def map_reg_key(event): # only called through register_account()
+    if (len(event.char) != 1):
+        return
+    if (ord(event.char) == 27):
+        self.reg_win.destroy()
+    return
+
+def register_account():
+    return # for now
+    self.reg_win = tkinter.Toplevel(width = natwidth / 2, height = natheight / 2)
+    self.reg_win.title("Register Account")
+    self.reg_win.bind('<Key>', map_reg_key)
+
+
 root = tkinter.Tk() # set root to be toplevel window
 root.title("Welcome to Secuure")
 
@@ -60,20 +76,32 @@ root.geometry(("%dx%d") % (natwidth / 2,natheight / 2)) # start with a window
                                                         # 1/4 the size of the
                                                         # screen
 
+frame_main = tkinter.Frame(root)
+
 root.attributes("-fullscreen", fscreen_en) # default to non-fullscreen
 
 root.bind('<F11>', toggle_fscreen)
 root.bind('<Key>', mapKeyToFunc) # for most keystrokes, one function will map
 
-loginButton = tkinter.Button(root, text ="log in", width = 10, height = 3,
+login_Button = tkinter.Button(root, text ="log in", width = 10, height = 3,
         command = login)
 
-userentry = tkinter.Entry(root, bd = 5)
-passentry = tkinter.Entry(root, bd = 5, show = '*') # password is hidden
 
-loginButton.pack(side=tkinter.BOTTOM) # button on bottom
-userentry.pack(side=tkinter.TOP) # entry on top
-passentry.pack(side=tkinter.TOP) # ""
+userentry = tkinter.Entry(root, bd = 5)
+user_label = tkinter.Label(root, text = 'Username')
+passentry = tkinter.Entry(root, bd = 5, show = '*') # password is hidden
+pass_label = tkinter.Label(root, text = 'Password')
+reg_button = tkinter.Button(root, text = "Register", command = register_account)
+
+blank_label = tkinter.Label(root, text = '')
+
+reg_button.grid(row = 4, column = 1)
+blank_label.grid(row = 3, column = 100) # filling space
+login_Button.grid(row = 2, column = 1)
+userentry.grid(row = 0, column = 1) # these four need to be sized appropriately
+user_label.grid(row = 0, column = 0)
+passentry.grid(row = 1, column = 1)
+pass_label.grid(row = 1, column = 0)
 
 def donothing():
     return
