@@ -4,7 +4,8 @@
     $username = "root";
     $password = "";
     $dbname = secuure;
-    $usertable = data;
+    $usertable = users;
+    $datatable = data;
 
     //Creates database
 
@@ -26,7 +27,7 @@
     mysqli_close($conn);
 
 
-    //Creates table with columns: account, website, password
+    //Creates user table
     
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -36,7 +37,7 @@
     }
 
     //Create table
-    $sql = "CREATE TABLE $usertable ( `account` VARCHAR(50) NOT NULL , `website` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL ) ENGINE = InnoDB";
+    $sql = "CREATE TABLE $usertable ( `id` INT NOT NULL AUTO_INCREMENT, `username` VARCHAR(50) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB";
 
     if (mysqli_query($conn, $sql)) {
         echo "Table created successfully" . "\r\n";
@@ -44,5 +45,26 @@
         echo "Error creating table: " . mysqli_error($conn) . "\r\n";
     }
 
+    mysqli_close($conn);
+    
+    
+    //Creates data table
+    
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error() . "\r\n");
+    }
+    
+    //Create table
+    $sql = "CREATE TABLE $datatable ( `userid` INT NOT NULL REFERENCES $usertable(`id`) , `account` VARCHAR(50) NOT NULL , `website` VARCHAR(50) NOT NULL, `password` VARCHAR(50) NOT NULL ) ENGINE = InnoDB";
+    
+    if (mysqli_query($conn, $sql)) {
+        echo "Table created successfully" . "\r\n";
+    } else {
+        echo "Error creating table: " . mysqli_error($conn) . "\r\n";
+    }
+    
     mysqli_close($conn);
 ?>
