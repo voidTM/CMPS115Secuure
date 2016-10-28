@@ -1,2 +1,2 @@
-python main_gui.py
+python secuure_main.py
 pause
