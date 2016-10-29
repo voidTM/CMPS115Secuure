@@ -116,10 +116,9 @@ class Secuure_GUI:
         
             messagebox.showinfo("Account information", info_str)
         
-        def toggle_fscreen(event):
-            global fscreen_en
-            fscreen_en = not fscreen_en
-            self.root.attributes("-fullscreen", fscreen_en)
+        def toggle_fscreen(self, event):
+            self.fscreen_en = not self.fscreen_en
+            self.root.attributes("-fullscreen", self.fscreen_en)
         
         def quit_prgrm(self): # when you hit escape
             self.root.destroy()
