@@ -12,8 +12,8 @@
 		9187C03F1DAACB2400B1079B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9187C03D1DAACB2400B1079B /* Main.storyboard */; };
 		9187C0411DAACB2400B1079B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9187C0401DAACB2400B1079B /* Assets.xcassets */; };
 		9187C0441DAACB2400B1079B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9187C0421DAACB2400B1079B /* LaunchScreen.storyboard */; };
-		9187C04F1DAACB2400B1079B /* EzPassStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C04E1DAACB2400B1079B /* EzPassStoreTests.swift */; };
-		9187C05A1DAACB2400B1079B /* EzPassStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0591DAACB2400B1079B /* EzPassStoreUITests.swift */; };
+		9187C04F1DAACB2400B1079B /* SecuureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C04E1DAACB2400B1079B /* SecuureTests.swift */; };
+		9187C05A1DAACB2400B1079B /* SecuureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0591DAACB2400B1079B /* SecuureUITests.swift */; };
 		9187C0681DB2B9D500B1079B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0671DB2B9D500B1079B /* SignupViewController.swift */; };
 		9187C06A1DB2BA9200B1079B /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */; };
 		9187C06C1DB6E08B00B1079B /* EmailVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */; };
@@ -55,10 +55,10 @@
 		9187C0431DAACB2400B1079B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9187C0451DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9187C04A1DAACB2400B1079B /* SecuureSecuures.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuureSecuures.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9187C04E1DAACB2400B1079B /* EzPassStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzPassStoreTests.swift; sourceTree = "<group>"; };
+		9187C04E1DAACB2400B1079B /* SecuureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuureTests.swift; sourceTree = "<group>"; };
 		9187C0501DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9187C0551DAACB2400B1079B /* SecuureUISecuures.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuureUISecuures.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9187C0591DAACB2400B1079B /* EzPassStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzPassStoreUITests.swift; sourceTree = "<group>"; };
+		9187C0591DAACB2400B1079B /* SecuureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuureUITests.swift; sourceTree = "<group>"; };
 		9187C05B1DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9187C0671DB2B9D500B1079B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
@@ -103,9 +103,9 @@
 		9187C02D1DAACB2400B1079B = {
 			isa = PBXGroup;
 			children = (
-				9187C0381DAACB2400B1079B /* EzPassStore */,
-				9187C04D1DAACB2400B1079B /* EzPassStoreTests */,
-				9187C0581DAACB2400B1079B /* EzPassStoreUITests */,
+				9187C0381DAACB2400B1079B /* Secuure */,
+				9187C04D1DAACB2400B1079B /* Secuure */,
+				9187C0581DAACB2400B1079B /* Secuure */,
 				9187C0371DAACB2400B1079B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,7 +120,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9187C0381DAACB2400B1079B /* EzPassStore */ = {
+		9187C0381DAACB2400B1079B /* Secuure */ = {
 			isa = PBXGroup;
 			children = (
 				9187C0391DAACB2400B1079B /* AppDelegate.swift */,
@@ -143,24 +143,27 @@
 				91D8E6491DC6AA5D004BDB2A /* secuure60px.png */,
 				91D8E64A1DC6AA5D004BDB2A /* secuure40px.png */,
 			);
+			name = Secuure;
 			path = EzPassStore;
 			sourceTree = "<group>";
 		};
-		9187C04D1DAACB2400B1079B /* EzPassStoreTests */ = {
+		9187C04D1DAACB2400B1079B /* Secuure */ = {
 			isa = PBXGroup;
 			children = (
-				9187C04E1DAACB2400B1079B /* EzPassStoreTests.swift */,
+				9187C04E1DAACB2400B1079B /* SecuureTests.swift */,
 				9187C0501DAACB2400B1079B /* Info.plist */,
 			);
+			name = Secuure;
 			path = EzPassStoreTests;
 			sourceTree = "<group>";
 		};
-		9187C0581DAACB2400B1079B /* EzPassStoreUITests */ = {
+		9187C0581DAACB2400B1079B /* Secuure */ = {
 			isa = PBXGroup;
 			children = (
-				9187C0591DAACB2400B1079B /* EzPassStoreUITests.swift */,
+				9187C0591DAACB2400B1079B /* SecuureUITests.swift */,
 				9187C05B1DAACB2400B1079B /* Info.plist */,
 			);
+			name = Secuure;
 			path = EzPassStoreUITests;
 			sourceTree = "<group>";
 		};
@@ -321,7 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9187C04F1DAACB2400B1079B /* EzPassStoreTests.swift in Sources */,
+				9187C04F1DAACB2400B1079B /* SecuureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9187C05A1DAACB2400B1079B /* EzPassStoreUITests.swift in Sources */,
+				9187C05A1DAACB2400B1079B /* SecuureUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
