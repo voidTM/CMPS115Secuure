@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //segue from viewcontroller to mainint view
+    //segue from viewcontroller to mainint view with data
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMainIntViewController" {
             let MainInterfaceViewController = segue.destination as! MainInterfaceViewController
@@ -77,8 +77,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             pass = passwordText.text!;
             warningLabel.text = "Logging in...";
         }else{
-            warningLabel.text = "Please enter your username and password!"
-            print("warninglabel seg");
+            let signupAlertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
+            signupAlertController.addAction(okAction)
+            self.present(signupAlertController, animated: true, completion: nil)
+
         }
     }
 }

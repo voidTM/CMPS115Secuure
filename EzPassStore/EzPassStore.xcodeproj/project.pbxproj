@@ -17,6 +17,9 @@
 		9187C0681DB2B9D500B1079B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0671DB2B9D500B1079B /* SignupViewController.swift */; };
 		9187C06A1DB2BA9200B1079B /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */; };
 		9187C06C1DB6E08B00B1079B /* EmailVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */; };
+		919C00E41DC59FB5003927A6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C00E31DC59FB5003927A6 /* SettingViewController.swift */; };
+		919C00E61DC5A6B6003927A6 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C00E51DC5A6B6003927A6 /* AddViewController.swift */; };
+		91D8E6431DC5B2F0004BDB2A /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D8E6421DC5B2F0004BDB2A /* PassViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		9187C0671DB2B9D500B1079B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
 		9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVerifyViewController.swift; sourceTree = "<group>"; };
+		919C00E31DC59FB5003927A6 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		919C00E51DC5A6B6003927A6 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		91D8E6421DC5B2F0004BDB2A /* PassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +110,14 @@
 			isa = PBXGroup;
 			children = (
 				9187C0391DAACB2400B1079B /* AppDelegate.swift */,
-				9187C03B1DAACB2400B1079B /* ViewController.swift */,
 				9187C03D1DAACB2400B1079B /* Main.storyboard */,
+				91D8E6421DC5B2F0004BDB2A /* PassViewController.swift */,
+				9187C03B1DAACB2400B1079B /* ViewController.swift */,
+				919C00E51DC5A6B6003927A6 /* AddViewController.swift */,
 				9187C06B1DB6E08B00B1079B /* EmailVerifyViewController.swift */,
 				9187C0691DB2BA9200B1079B /* MainInterfaceViewController.swift */,
 				9187C0671DB2B9D500B1079B /* SignupViewController.swift */,
+				919C00E31DC59FB5003927A6 /* SettingViewController.swift */,
 				9187C0401DAACB2400B1079B /* Assets.xcassets */,
 				9187C0421DAACB2400B1079B /* LaunchScreen.storyboard */,
 				9187C0451DAACB2400B1079B /* Info.plist */,
@@ -270,10 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9187C0681DB2B9D500B1079B /* SignupViewController.swift in Sources */,
+				91D8E6431DC5B2F0004BDB2A /* PassViewController.swift in Sources */,
 				9187C03C1DAACB2400B1079B /* ViewController.swift in Sources */,
+				919C00E61DC5A6B6003927A6 /* AddViewController.swift in Sources */,
 				9187C03A1DAACB2400B1079B /* AppDelegate.swift in Sources */,
 				9187C06C1DB6E08B00B1079B /* EmailVerifyViewController.swift in Sources */,
 				9187C06A1DB2BA9200B1079B /* MainInterfaceViewController.swift in Sources */,
+				919C00E41DC59FB5003927A6 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,23 +1,24 @@
 //
-//  MainInterfaceViewController.swift
+//  AddViewController.swift
 //  EzPassStore
 //
-//  Created by Alexander Ou on 10/15/16.
+//  Created by Alexander Ou on 10/29/16.
 //  Copyright © 2016 HashMappers. All rights reserved.
 //
 
 import UIKit
 
-class MainInterfaceViewController: UIViewController {
+class AddViewController: UIViewController, UITextFieldDelegate {
 
-    //data passing from viewcontroller to mainintview
-    @IBOutlet weak var loginUserLabel: UILabel!
-    var username:String = ""
+    @IBOutlet weak var AccountName: UITextField!
+    @IBOutlet weak var UserName: UITextField!
+    @IBOutlet weak var Password: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var AdditionalNote: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set loginuserlabel from username passed in from viewcontroller
-        loginUserLabel.text = username;
+        
         // Do any additional setup after loading the view.
     }
 
@@ -28,43 +29,31 @@ class MainInterfaceViewController: UIViewController {
     
     //segue from signupview to emailverifyviews
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSettingViewController" {
-            _ = segue.destination as! SettingViewController
+        if segue.identifier == "showMainIntViewController" {
+            _ = segue.destination as! MainInterfaceViewController
             
         }
-        if segue.identifier == "showViewController" {
-            _ = segue.destination as! ViewController
+        if segue.identifier == "showPassViewController" {
+            _ = segue.destination as! PassViewController
         }
-        if segue.identifier == "showAddViewController" {
-            _ = segue.destination as! AddViewController
-        }
+    
     }
     
     //conditionals to making the segue
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if(identifier == "showSettingViewController") {
+        if(identifier == "showMainIntViewController") {
             //if all fields are filled, return true
             return true;
         }
-        if(identifier == "showViewController") {
+        if(identifier == "showPassViewController") {
             return true;
         }
-        if(identifier == "showAddViewController") {
-            return true;
-        }
-        
         return false
     }
-
-    @IBAction func addAccountButton(_ sender: AnyObject) {
-    }
     
-    @IBAction func settingButton(_ sender: AnyObject) {
-    }
-
-    @IBAction func signoutButton(_ sender: AnyObject) {
-    }
     
+    @IBOutlet weak var addAccountButton: UIButton!
+
     /*
     // MARK: - Navigation
 

@@ -59,6 +59,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             _ = segue.destination as! EmailVerifyViewController
             
         }
+        if segue.identifier == "showViewController" {
+            _ = segue.destination as! ViewController
+        }
     }
     
     //conditionals to making the segue
@@ -68,6 +71,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             if(!(password.text?.isEmpty)! && !(cpassword.text?.isEmpty)! && !(firstName.text?.isEmpty)! && !(lastName.text?.isEmpty)! && !(email.text?.isEmpty)!) {
                     return true
             }
+        }
+        if(identifier == "showViewController") {
+            return true;
         }
        
         return false
