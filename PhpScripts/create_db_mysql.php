@@ -46,6 +46,26 @@
     }
 
     mysqli_close($conn);
+
+    
+    //Ensure unique usernames
+    
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error() . "\r\n");
+    }
+    
+    //Alter user talbe
+    $sql = "ALTER TABLE $usertable ADD CONSTRAINT uniqueness UNIQUE (username)";
+    
+    if (mysqli_query($conn, $sql)) {
+    } else {
+        echo "Error creating table: " . mysqli_error($conn) . "\r\n";
+    }
+    
+    mysqli_close($conn);
     
     
     //Creates data table

@@ -56,7 +56,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
-    $sql = "GRANT ALL PRIVILEGES ON *.* TO '$usr'@'localhost' WITH GRANT OPTION";
+    $sql = "GRANT SELECT, INSERT ON $dbname.* TO '$usr'@'localhost'";
     
     if (mysqli_query($conn, $sql)) {
     } else {
