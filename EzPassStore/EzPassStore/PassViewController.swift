@@ -10,6 +10,9 @@ import UIKit
 
 class PassViewController: UIViewController {
 
+    @IBOutlet weak var generatedPass: UILabel!
+    @IBOutlet weak var sliderLabel: UILabel!
+    @IBOutlet weak var sliderOutlet: UISlider!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +24,35 @@ class PassViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //segue from signupview to emailverifyviews
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddViewController" {
+            _ = segue.destination as! AddViewController
+            
+        }
+        
+    }
+    
+    //conditionals to making the segue
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if(identifier == "showAddViewController") {
+            //if all fields are filled, return true
+            return true;
+        }
+        return false
+    }
+    
+    @IBAction func slider(_ sender: AnyObject) {
+        sliderLabel.text = String(Int(sliderOutlet.value))
+    }
+    @IBAction func cancelButton(_ sender: AnyObject) {
+    }
+    
+    @IBAction func okayButton(_ sender: AnyObject) {
+    }
+    
+    @IBAction func generateButton(_ sender: AnyObject) {
+    }
 
     /*
     // MARK: - Navigation

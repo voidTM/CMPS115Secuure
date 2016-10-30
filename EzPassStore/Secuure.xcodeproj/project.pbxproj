@@ -20,6 +20,13 @@
 		919C00E41DC59FB5003927A6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C00E31DC59FB5003927A6 /* SettingViewController.swift */; };
 		919C00E61DC5A6B6003927A6 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C00E51DC5A6B6003927A6 /* AddViewController.swift */; };
 		91D8E6431DC5B2F0004BDB2A /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D8E6421DC5B2F0004BDB2A /* PassViewController.swift */; };
+		91D8E64B1DC6AA5D004BDB2A /* secuure80px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E6441DC6AA5D004BDB2A /* secuure80px.png */; };
+		91D8E64C1DC6AA5D004BDB2A /* secuure120px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E6451DC6AA5D004BDB2A /* secuure120px.png */; };
+		91D8E64D1DC6AA5D004BDB2A /* secuure180px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E6461DC6AA5D004BDB2A /* secuure180px.png */; };
+		91D8E64E1DC6AA5D004BDB2A /* secuure87px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E6471DC6AA5D004BDB2A /* secuure87px.png */; };
+		91D8E64F1DC6AA5D004BDB2A /* secuure58px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E6481DC6AA5D004BDB2A /* secuure58px.png */; };
+		91D8E6501DC6AA5D004BDB2A /* secuure60px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E6491DC6AA5D004BDB2A /* secuure60px.png */; };
+		91D8E6511DC6AA5D004BDB2A /* secuure40px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D8E64A1DC6AA5D004BDB2A /* secuure40px.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,17 +47,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9187C0361DAACB2400B1079B /* EzPassStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EzPassStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9187C0361DAACB2400B1079B /* Secuure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Secuure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9187C0391DAACB2400B1079B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9187C03B1DAACB2400B1079B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9187C03E1DAACB2400B1079B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9187C0401DAACB2400B1079B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9187C0431DAACB2400B1079B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9187C0451DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9187C04A1DAACB2400B1079B /* EzPassStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EzPassStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9187C04A1DAACB2400B1079B /* SecuureSecuures.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuureSecuures.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9187C04E1DAACB2400B1079B /* EzPassStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzPassStoreTests.swift; sourceTree = "<group>"; };
 		9187C0501DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9187C0551DAACB2400B1079B /* EzPassStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EzPassStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9187C0551DAACB2400B1079B /* SecuureUISecuures.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecuureUISecuures.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9187C0591DAACB2400B1079B /* EzPassStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzPassStoreUITests.swift; sourceTree = "<group>"; };
 		9187C05B1DAACB2400B1079B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9187C0671DB2B9D500B1079B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +66,13 @@
 		919C00E31DC59FB5003927A6 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		919C00E51DC5A6B6003927A6 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		91D8E6421DC5B2F0004BDB2A /* PassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
+		91D8E6441DC6AA5D004BDB2A /* secuure80px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure80px.png; path = ../../../../Downloads/secuure80px.png; sourceTree = "<group>"; };
+		91D8E6451DC6AA5D004BDB2A /* secuure120px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure120px.png; path = ../../../../Downloads/secuure120px.png; sourceTree = "<group>"; };
+		91D8E6461DC6AA5D004BDB2A /* secuure180px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure180px.png; path = ../../../../Downloads/secuure180px.png; sourceTree = "<group>"; };
+		91D8E6471DC6AA5D004BDB2A /* secuure87px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure87px.png; path = ../../../../Downloads/secuure87px.png; sourceTree = "<group>"; };
+		91D8E6481DC6AA5D004BDB2A /* secuure58px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure58px.png; path = ../../../../Downloads/secuure58px.png; sourceTree = "<group>"; };
+		91D8E6491DC6AA5D004BDB2A /* secuure60px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure60px.png; path = ../../../../Downloads/secuure60px.png; sourceTree = "<group>"; };
+		91D8E64A1DC6AA5D004BDB2A /* secuure40px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = secuure40px.png; path = ../../../../Downloads/secuure40px.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +113,9 @@
 		9187C0371DAACB2400B1079B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9187C0361DAACB2400B1079B /* EzPassStore.app */,
-				9187C04A1DAACB2400B1079B /* EzPassStoreTests.xctest */,
-				9187C0551DAACB2400B1079B /* EzPassStoreUITests.xctest */,
+				9187C0361DAACB2400B1079B /* Secuure.app */,
+				9187C04A1DAACB2400B1079B /* SecuureSecuures.xctest */,
+				9187C0551DAACB2400B1079B /* SecuureUISecuures.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +135,13 @@
 				9187C0401DAACB2400B1079B /* Assets.xcassets */,
 				9187C0421DAACB2400B1079B /* LaunchScreen.storyboard */,
 				9187C0451DAACB2400B1079B /* Info.plist */,
+				91D8E6441DC6AA5D004BDB2A /* secuure80px.png */,
+				91D8E6451DC6AA5D004BDB2A /* secuure120px.png */,
+				91D8E6461DC6AA5D004BDB2A /* secuure180px.png */,
+				91D8E6471DC6AA5D004BDB2A /* secuure87px.png */,
+				91D8E6481DC6AA5D004BDB2A /* secuure58px.png */,
+				91D8E6491DC6AA5D004BDB2A /* secuure60px.png */,
+				91D8E64A1DC6AA5D004BDB2A /* secuure40px.png */,
 			);
 			path = EzPassStore;
 			sourceTree = "<group>";
@@ -146,9 +167,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9187C0351DAACB2400B1079B /* EzPassStore */ = {
+		9187C0351DAACB2400B1079B /* Secuure */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9187C05E1DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStore" */;
+			buildConfigurationList = 9187C05E1DAACB2400B1079B /* Build configuration list for PBXNativeTarget "Secuure" */;
 			buildPhases = (
 				9187C0321DAACB2400B1079B /* Sources */,
 				9187C0331DAACB2400B1079B /* Frameworks */,
@@ -158,14 +179,14 @@
 			);
 			dependencies = (
 			);
-			name = EzPassStore;
+			name = Secuure;
 			productName = EzPassStore;
-			productReference = 9187C0361DAACB2400B1079B /* EzPassStore.app */;
+			productReference = 9187C0361DAACB2400B1079B /* Secuure.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9187C0491DAACB2400B1079B /* EzPassStoreTests */ = {
+		9187C0491DAACB2400B1079B /* SecuureSecuures */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9187C0611DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStoreTests" */;
+			buildConfigurationList = 9187C0611DAACB2400B1079B /* Build configuration list for PBXNativeTarget "SecuureSecuures" */;
 			buildPhases = (
 				9187C0461DAACB2400B1079B /* Sources */,
 				9187C0471DAACB2400B1079B /* Frameworks */,
@@ -176,14 +197,14 @@
 			dependencies = (
 				9187C04C1DAACB2400B1079B /* PBXTargetDependency */,
 			);
-			name = EzPassStoreTests;
+			name = SecuureSecuures;
 			productName = EzPassStoreTests;
-			productReference = 9187C04A1DAACB2400B1079B /* EzPassStoreTests.xctest */;
+			productReference = 9187C04A1DAACB2400B1079B /* SecuureSecuures.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9187C0541DAACB2400B1079B /* EzPassStoreUITests */ = {
+		9187C0541DAACB2400B1079B /* SecuureUISecuures */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9187C0641DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStoreUITests" */;
+			buildConfigurationList = 9187C0641DAACB2400B1079B /* Build configuration list for PBXNativeTarget "SecuureUISecuures" */;
 			buildPhases = (
 				9187C0511DAACB2400B1079B /* Sources */,
 				9187C0521DAACB2400B1079B /* Frameworks */,
@@ -194,9 +215,9 @@
 			dependencies = (
 				9187C0571DAACB2400B1079B /* PBXTargetDependency */,
 			);
-			name = EzPassStoreUITests;
+			name = SecuureUISecuures;
 			productName = EzPassStoreUITests;
-			productReference = 9187C0551DAACB2400B1079B /* EzPassStoreUITests.xctest */;
+			productReference = 9187C0551DAACB2400B1079B /* SecuureUISecuures.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -226,7 +247,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9187C0311DAACB2400B1079B /* Build configuration list for PBXProject "EzPassStore" */;
+			buildConfigurationList = 9187C0311DAACB2400B1079B /* Build configuration list for PBXProject "Secuure" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -239,9 +260,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9187C0351DAACB2400B1079B /* EzPassStore */,
-				9187C0491DAACB2400B1079B /* EzPassStoreTests */,
-				9187C0541DAACB2400B1079B /* EzPassStoreUITests */,
+				9187C0351DAACB2400B1079B /* Secuure */,
+				9187C0491DAACB2400B1079B /* SecuureSecuures */,
+				9187C0541DAACB2400B1079B /* SecuureUISecuures */,
 			);
 		};
 /* End PBXProject section */
@@ -252,8 +273,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9187C0441DAACB2400B1079B /* LaunchScreen.storyboard in Resources */,
+				91D8E64E1DC6AA5D004BDB2A /* secuure87px.png in Resources */,
 				9187C0411DAACB2400B1079B /* Assets.xcassets in Resources */,
+				91D8E64F1DC6AA5D004BDB2A /* secuure58px.png in Resources */,
+				91D8E64D1DC6AA5D004BDB2A /* secuure180px.png in Resources */,
+				91D8E64B1DC6AA5D004BDB2A /* secuure80px.png in Resources */,
+				91D8E6511DC6AA5D004BDB2A /* secuure40px.png in Resources */,
 				9187C03F1DAACB2400B1079B /* Main.storyboard in Resources */,
+				91D8E6501DC6AA5D004BDB2A /* secuure60px.png in Resources */,
+				91D8E64C1DC6AA5D004BDB2A /* secuure120px.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,12 +338,12 @@
 /* Begin PBXTargetDependency section */
 		9187C04C1DAACB2400B1079B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9187C0351DAACB2400B1079B /* EzPassStore */;
+			target = 9187C0351DAACB2400B1079B /* Secuure */;
 			targetProxy = 9187C04B1DAACB2400B1079B /* PBXContainerItemProxy */;
 		};
 		9187C0571DAACB2400B1079B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9187C0351DAACB2400B1079B /* EzPassStore */;
+			target = 9187C0351DAACB2400B1079B /* Secuure */;
 			targetProxy = 9187C0561DAACB2400B1079B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -471,7 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = HashMappers.EzPassStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EzPassStore.app/EzPassStore";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Secuure.app/Secuure";
 			};
 			name = Debug;
 		};
@@ -485,7 +513,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = HashMappers.EzPassStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EzPassStore.app/EzPassStore";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Secuure.app/Secuure";
 			};
 			name = Release;
 		};
@@ -518,7 +546,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9187C0311DAACB2400B1079B /* Build configuration list for PBXProject "EzPassStore" */ = {
+		9187C0311DAACB2400B1079B /* Build configuration list for PBXProject "Secuure" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9187C05C1DAACB2400B1079B /* Debug */,
@@ -527,7 +555,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9187C05E1DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStore" */ = {
+		9187C05E1DAACB2400B1079B /* Build configuration list for PBXNativeTarget "Secuure" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9187C05F1DAACB2400B1079B /* Debug */,
@@ -536,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9187C0611DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStoreTests" */ = {
+		9187C0611DAACB2400B1079B /* Build configuration list for PBXNativeTarget "SecuureSecuures" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9187C0621DAACB2400B1079B /* Debug */,
@@ -545,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9187C0641DAACB2400B1079B /* Build configuration list for PBXNativeTarget "EzPassStoreUITests" */ = {
+		9187C0641DAACB2400B1079B /* Build configuration list for PBXNativeTarget "SecuureUISecuures" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9187C0651DAACB2400B1079B /* Debug */,

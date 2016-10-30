@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9187C0351DAACB2400B1079B"
-               BuildableName = "EzPassStore.app"
-               BlueprintName = "EzPassStore"
-               ReferencedContainer = "container:EzPassStore.xcodeproj">
+               BuildableName = "Secuure.app"
+               BlueprintName = "Secuure"
+               ReferencedContainer = "container:Secuure.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9187C0491DAACB2400B1079B"
-               BuildableName = "EzPassStoreTests.xctest"
-               BlueprintName = "EzPassStoreTests"
-               ReferencedContainer = "container:EzPassStore.xcodeproj">
+               BuildableName = "SecuureSecuures.xctest"
+               BlueprintName = "SecuureSecuures"
+               ReferencedContainer = "container:Secuure.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9187C0541DAACB2400B1079B"
-               BuildableName = "EzPassStoreUITests.xctest"
-               BlueprintName = "EzPassStoreUITests"
-               ReferencedContainer = "container:EzPassStore.xcodeproj">
+               BuildableName = "SecuureUISecuures.xctest"
+               BlueprintName = "SecuureUISecuures"
+               ReferencedContainer = "container:Secuure.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9187C0351DAACB2400B1079B"
-            BuildableName = "EzPassStore.app"
-            BlueprintName = "EzPassStore"
-            ReferencedContainer = "container:EzPassStore.xcodeproj">
+            BuildableName = "Secuure.app"
+            BlueprintName = "Secuure"
+            ReferencedContainer = "container:Secuure.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9187C0351DAACB2400B1079B"
-            BuildableName = "EzPassStore.app"
-            BlueprintName = "EzPassStore"
-            ReferencedContainer = "container:EzPassStore.xcodeproj">
+            BuildableName = "Secuure.app"
+            BlueprintName = "Secuure"
+            ReferencedContainer = "container:Secuure.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9187C0351DAACB2400B1079B"
-            BuildableName = "EzPassStore.app"
-            BlueprintName = "EzPassStore"
-            ReferencedContainer = "container:EzPassStore.xcodeproj">
+            BuildableName = "Secuure.app"
+            BlueprintName = "Secuure"
+            ReferencedContainer = "container:Secuure.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
