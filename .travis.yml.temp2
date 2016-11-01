@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+# command to install dependencies
+script: Computer_App/Client_tests.sh
+
+before_install:
+   - sudo apt-get install python-tk
+
+install:
+   - echo testing!
+
+branches:
+  only:
+    - Computer-Client
