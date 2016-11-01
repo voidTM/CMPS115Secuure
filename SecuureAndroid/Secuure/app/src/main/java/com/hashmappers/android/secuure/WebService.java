@@ -22,6 +22,24 @@ public class WebService {
 
     public static WebInterface WebService() {
 
+        if(service == null) {
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                    .create();
+
+            Retrofit rest = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+            ;
+
+            service = rest.create(WebInterface.class);
+        }
+
+        return service;
+    }
+
+    public void resetService(){
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -33,7 +51,5 @@ public class WebService {
         ;
 
         service = rest.create(WebInterface.class);
-
-        return service;
     }
 }
