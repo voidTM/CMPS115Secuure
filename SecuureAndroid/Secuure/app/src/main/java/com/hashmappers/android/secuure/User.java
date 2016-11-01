@@ -63,4 +63,11 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    //used for anonymous users
+    public void setANUser(String username, String password){
+        this.username = username;
+        this.password = password;
+
+    }
 }

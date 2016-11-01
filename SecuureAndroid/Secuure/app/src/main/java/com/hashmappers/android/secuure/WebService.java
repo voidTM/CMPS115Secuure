@@ -17,10 +17,13 @@ import com.google.gson.GsonBuilder;
 
 public class WebService {
     // Attempt to access the web
-    public static final String BASE_URL = "http://api.myservice.com/";
+    public static final String BASE_URL = "http://10.0.2.2/";
     private static WebInterface service;
 
-    public static WebInterface WebService() {
+    /**
+     * @return
+     */
+    public static WebInterface getService() {
 
         if(service == null) {
             Gson gson = new GsonBuilder()
