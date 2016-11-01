@@ -144,6 +144,23 @@ class Secuure_GUI:
             self.window_info.title("Account Information for '%s'" % (user_str))
             self.window_info.bind('<Key>', self.map_list_account_info_key)
 
+            #get accounts
+            list_accounts = {}
+            list_accounts["Admin"] = "Password"
+            label_usernames = []
+            label_passwords = []
+            for key in list_accounts:
+                label_usernames.append(tkinter.Label(self.window_info, text =
+                    key + " : "))
+                label_passwords.append(tkinter.Label(self.window_info, text =
+                    list_accounts[key]))
+            
+            for index in range(0, len(label_usernames)):
+                label_user = label_usernames[index]
+                label_pass = label_passwords[index]
+                label_user.grid(row = index, column = 0)
+                label_pass.grid(row = index, column = 1)
+
         def submit_account_registration(self):
             if (self.field_confpass.get() != self.field_pass.get()):
                 messagebox.showerror("Account Registration Error", "Passwords" +
