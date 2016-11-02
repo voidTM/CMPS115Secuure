@@ -102,7 +102,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let emess = "Connection failed"
                 let range = responseString?.range(of:emess)
                 if (range != nil) {
-                    login_result = true;
+                    let esuc = "denied"
+                    let range2 = responseString?.range(of:esuc)
+                    if (range2 != nil){
+                        login_result = true;
+                    }
+                    else {
+                        login_result = false;
+                    }
                 }
                 else {
                     login_result = false;
