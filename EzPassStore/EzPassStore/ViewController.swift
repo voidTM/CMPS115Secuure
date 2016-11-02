@@ -47,6 +47,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
+    
+    func invalidLogin() {
+        let signupAlertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
+        signupAlertController.addAction(okAction)
+        self.present(signupAlertController, animated: true, completion: nil)
+    }
 
     //conditionals to making the segue
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -61,6 +68,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 else {
                     return false
                 }
+            }
+            else {
+                return false
             }
         }
         return false
@@ -105,25 +115,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let esuc = "denied"
                     let range2 = responseString?.range(of:esuc)
                     if (range2 != nil){
-                        login_result = true;
+                        login_result = true
                     }
                     else {
-                        login_result = false;
+                        login_result = false
                     }
                 }
                 else {
-                    login_result = false;
+                    login_result = false
                 }
             }
             task.resume()
-
-            warningLabel.text = "Logging in...";
+            if (login_result == true) {
+                warningLabel.text = "Logging in...";
+            }
+            else {
+                invalidLogin()
+            }
         }else{
-            let signupAlertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
-            signupAlertController.addAction(okAction)
-            self.present(signupAlertController, animated: true, completion: nil)
-
+            invalidLogin()
         }
     }
 }
