@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Foundation
 
 // global var to hold username and pass
 var user = "";
 var pass = "";
+var login_result = false;
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -53,8 +55,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         if(identifier == "showMainIntViewController") {
             if(!(usernameText.text?.isEmpty)! && !(passwordText.text?.isEmpty)!) {
-                
-                return true
+                if(login_result == true){
+                    return true
+                }
+                else {
+                    return false
+                }
             }
         }
         return false
@@ -75,6 +81,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if(!(usernameText.text?.isEmpty)! && !(passwordText.text?.isEmpty)!) {
             user = usernameText.text!;
             pass = passwordText.text!;
+            
+            /*****Send data to db to verify login*****/
+            var request = URLRequest(url: URL(string: "http://localhost/~Steven/login_mysql.php")!)
+            request.httpMethod = "POST"
+            let postString = "arg_usr="+usernameText.text!+"&arg_pwd="+passwordText.text!
+            request.httpBody = postString.data(using: .utf8)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    print("error: \(error)")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response: \(response)")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                let emess = "Connection failed"
+                let range = responseString?.range(of:emess)
+                if (range != nil) {
+                    login_result = true;
+                }
+                else {
+                    login_result = false;
+                }
+            }
+            task.resume()
+
             warningLabel.text = "Logging in...";
         }else{
             let signupAlertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: UIAlertControllerStyle.alert)
