@@ -7,6 +7,8 @@
     $usertable = users;
     $usr = $_POST['arg_usr'];
     $pwd = $_POST['arg_pwd'];
+    $firstname = $_POST['arg_fname'];
+    $lastname = $_POST['arg_lname'];
 
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
@@ -16,7 +18,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO `$usertable` (`username`) VALUES ('$usr')";
+    $sql = "INSERT INTO `$usertable` (`username`, `first_name`, `last_name`, `mpass`) VALUES ('$usr', '$firstname', '$lastname', '$pwd')";
 
     if (mysqli_query($conn, $sql)) {
         echo "New record created successfully" . "\r\n";
@@ -56,7 +58,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
-    $sql = "GRANT SELECT, INSERT ON $dbname.* TO '$usr'@'localhost'";
+    $sql = "GRANT SELECT, INSERT, DELETE ON $dbname.* TO '$usr'@'localhost'";
     
     if (mysqli_query($conn, $sql)) {
     } else {

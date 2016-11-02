@@ -37,7 +37,7 @@
     }
 
     //Create table
-    $sql = "CREATE TABLE $usertable ( `id` INT NOT NULL AUTO_INCREMENT, `username` VARCHAR(50) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB";
+    $sql = "CREATE TABLE $usertable ( `id` INT NOT NULL AUTO_INCREMENT, `username` VARCHAR(50) NOT NULL, `first_name` VARCHAR(50) NOT NULL, `last_name` VARCHAR(50) NOT NULL, `mpass` VARCHAR(50) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB";
 
     if (mysqli_query($conn, $sql)) {
         echo "Table created successfully" . "\r\n";
