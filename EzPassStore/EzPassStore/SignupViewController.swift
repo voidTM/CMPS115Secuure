@@ -83,7 +83,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             /**** pass to db ******/
                 var request = URLRequest(url: URL(string: "http://localhost/~Steven/register_mysql.php")!)
                 request.httpMethod = "POST"
-                let postString = "arg_usr="+email.text!+"&arg_pwd="+password.text!
+                let postString = "arg_usr="+email.text!+"&arg_pwd="+password.text!+"&arg_fname="+firstName.text!+"&arg_lname="+lastName.text!
                 request.httpBody = postString.data(using: .utf8)
                 let task = URLSession.shared.dataTask(with: request) { data, response, error in
                     guard let data = data, error == nil else {                                                 // check for fundamental networking error
