@@ -8,12 +8,6 @@
 
 import UIKit
 
-var signupPass = ""
-var signupCpass = ""
-var signupFirstN = ""
-var signupLastN = ""
-var signupEmail = ""
-
 class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signupText: UILabel!
     @IBOutlet weak var firstName: UITextField!
@@ -67,9 +61,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     //conditionals to making the segue
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if(identifier == "showEmailVerifyViewController") {
-            //if all fields are filled, return true
-            if(!(password.text?.isEmpty)! && !(cpassword.text?.isEmpty)! && !(firstName.text?.isEmpty)! && !(lastName.text?.isEmpty)! && !(email.text?.isEmpty)!) {
-                    return true
+            if(!fieldIsEmpty()) {
+                if(password.text == cpassword.text) {
+                    return true;
+                }else{
+                    return false;
+                }
             }
         }
         if(identifier == "showViewController") {
@@ -81,12 +78,36 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUp(_ sender: AnyObject) {
         //are all the fields filled? if so initialize
-        if(!(password.text?.isEmpty)! && !(cpassword.text?.isEmpty)! && !(firstName.text?.isEmpty)! && !(lastName.text?.isEmpty)! && !(email.text?.isEmpty)!) {
-            signupPass = password.text!;
-            signupCpass = cpassword.text!;
-            signupFirstN = firstName.text!
-            signupLastN = lastName.text!
-            signupEmail = email.text!
+        if(!fieldIsEmpty()) {
+            if(password.text == cpassword.text) {
+            /**** pass to db ******/
+                var request = URLRequest(url: URL(string: "http://localhost/~Steven/register_mysql.php")!)
+                request.httpMethod = "POST"
+                let postString = "arg_usr="+email.text!+"&arg_pwd="+password.text!
+                request.httpBody = postString.data(using: .utf8)
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                        print("error: \(error)")
+                        return
+                    }
+                    
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response: \(response)")
+                    }
+                    
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString: \(responseString)")
+                }
+                task.resume()
+            }else {
+                //uialert for unmatching password
+                let signupAlertController = UIAlertController(title: "Unmatching password", message: "Please enter the correct password", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
+                signupAlertController.addAction(okAction)
+                self.present(signupAlertController, animated: true, completion: nil)
+            }
+            
         //if fields arent filled, prep UIAlert
         }else{
             let signupAlertController = UIAlertController(title: "Sign up failed", message: "Please enter all fields", preferredStyle: UIAlertControllerStyle.alert)
@@ -95,6 +116,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             self.present(signupAlertController, animated: true, completion: nil)
             
         }
+    }
+    //return true if fields are empty
+    func fieldIsEmpty() -> Bool {
+        if(!(password.text?.isEmpty)! && !(cpassword.text?.isEmpty)! && !(firstName.text?.isEmpty)! && !(lastName.text?.isEmpty)! && !(email.text?.isEmpty)!) {
+            return false;
+        }
+        return true;
     }
     
     /*
