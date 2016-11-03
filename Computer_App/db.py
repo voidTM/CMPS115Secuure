@@ -18,6 +18,14 @@ def createMasterTable(table):
 def insertToUserTable(fname,lname, user, pw):
     conn = createCon()
     cursor = conn.cursor()
+
+    query = ("""SELECT user FROM accounts""")       #
+    cursor.execute(query)                           #
+    for u in conn:                                  # This piece checks if an account exists already
+            if u.lower() == user.lower():           #
+            print("Account name already exists")    #
+            return                                  #
+
     cursor.execute("""INSERT IGNORE INTO accounts values (%s, %s, %s, %s)""", (fname, lname, user, pw))
     conn.commit()
     conn.close()
