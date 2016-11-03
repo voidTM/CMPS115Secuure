@@ -1,6 +1,6 @@
 import hashlib
 import getpass
-import tkinter
+
 
 accounts = {}
 passList = {}

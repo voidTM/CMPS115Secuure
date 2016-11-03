@@ -3,15 +3,16 @@
 #main_gui for secuure
 #developed by Isaak Cherdak
 
-
 import tkinter
 from storage import *
 from tkinter import messagebox
+from db import *
 
 class Secuure_GUI:
 
         def __init__(self):
 
+                createMasterTable("accounts")
                 self.fscreen_en = False
                 self.userAccounts = {}# temporary users until backend is sorted out
                 self.userAccounts["Admin"] = "Password"
@@ -99,7 +100,7 @@ class Secuure_GUI:
             pass_str = self.passentry.get()
             
             #Call to login function in storage.py
-            login_valid = verLogin(user_str, pass_str, self.userAccounts)
+            login_valid = verMasterLogin(user_str, pass_str)
 
             if (len(user_str) == 0):
                 user_str = "<EMPTY>"
