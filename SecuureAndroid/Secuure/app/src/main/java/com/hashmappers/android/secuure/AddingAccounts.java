@@ -2,6 +2,7 @@ package com.hashmappers.android.secuure;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.hashmappers.android.secuure.R.id.titleList;
 
@@ -61,7 +66,29 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 String login = enterLogin.getText().toString();
                 String password = enterPassword.getText().toString();
                 String notes = enterAdditionalNotes.getText().toString();
-                //User accountData = new User(name, login, password);
+
+                User loggedIn = Global.getUser();
+
+                WebInterface web = WebService.getService();
+
+                web.addAccount(loggedIn.getUsername(), loggedIn.getPassword(),
+                        login, title, password).enqueue(new Callback<Boolean>() {
+                @Override
+                // check for any messages
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    //api success
+                    //Boolean sucess = response.body();
+                    Log.w("Apicall", "Successful add account call");
+
+                    //if(sucess == true)
+                    //    Log.w("Apicall", "Successfuly added account");
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+                    Log.e("Apicall", t.getMessage());
+                }
+            });
 
                 startActivity(new Intent(this, Login.class));
                 break;
