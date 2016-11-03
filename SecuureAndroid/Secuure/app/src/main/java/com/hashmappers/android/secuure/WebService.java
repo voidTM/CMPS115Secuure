@@ -32,6 +32,7 @@ public class WebService {
 
             Retrofit rest = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonStringConverterFactory.create(gson))
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
             ;

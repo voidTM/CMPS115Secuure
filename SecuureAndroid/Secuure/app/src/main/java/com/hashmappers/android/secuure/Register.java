@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import java.io.UnsupportedEncodingException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +55,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 String confirmPassword = etConfirmPassword.getText().toString();
+
                 //User registeredData = new User(name, username, password);
                 User userID = Global.getUser();
                 UserTable userT = Global.getUserT();
@@ -60,24 +63,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 userID.setUser(firstName, username, password);
                 // Add to user table
                 userT.addUser(userID);
-
+                userID.printUser();
                 // registers user with database
                 web.registerUser(username, firstName, password).enqueue(new Callback<Boolean>() {
-                @Override
+                    @Override
                     // check for any messages
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                         //api success
                         //Boolean sucess //= response.body();
-
                         Log.w("Apicall", "Successful register call");
                     }
 
-                @Override
+                    @Override
                     public void onFailure(Call<Boolean> call, Throwable t) {
                         Log.e("Apicall", t.getMessage());
                     }
                 });
-
 
                 // Checks if the password that is entered is the same or not same when you confirm it, displays a popup screen
                 // Shouldn't this happen before adding the user?
