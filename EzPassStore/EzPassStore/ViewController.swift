@@ -68,6 +68,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //login button, sets username and password accordingly
     @IBAction func loginButton(_ sender: AnyObject) {
+        var serverResp = 0
         if(!(usernameText.text?.isEmpty)! && !(passwordText.text?.isEmpty)!) {
             user = usernameText.text!;
             pass = passwordText.text!;
@@ -87,14 +88,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response: \(response)")
                 }
-                print("---------------------------------------------------------")
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString: \(responseString)")
                 responsePhp = responseString!
+                serverResp = 1
             }
             task.resume()
             //wait for server response
-            sleep(1)
+            while(serverResp != 1){
+                usleep(1)
+            }
             if(authenticate()) {
                 self.performSegue(withIdentifier: "showMainIntViewController", sender: self)
             }else{
@@ -102,31 +105,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    //HOW DOES HELL IS IT MAKING THE SEGUE TO REGISTER
-
-    //conditionals to making the segue
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-//
-//            print("++++++++++++++++++++++++++++++++++++++++++++++++")
-//            if(identifier == "showSignupViewController") {
-//                return true
-//            }
-//            if(identifier == "showMainIntViewController") {
-//                let jump = authenticate()
-//                if(jump) {
-//                    return true
-//                }else{
-//                    invalidLogin()
-//                    return false
-//                }
-//            }
-//            return false
-//
-//    }
-    
     
     func authenticate() -> Bool {
-        print("*****************************************************************")
         let emess = "{\"login\":true}"
         let range = responsePhp.range(of:emess)
         if (range != nil) {
