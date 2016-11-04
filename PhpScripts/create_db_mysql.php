@@ -2,7 +2,7 @@
     //Setup connection variables
     $hostname = "localhost";
     $username = "root";
-    $password = "";
+    $password = "aaaa";
     $dbname = secuure;
     $usertable = users;
     $datatable = data;
