@@ -1,9 +1,11 @@
 
 package com.hashmappers.android.secuure;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -74,9 +76,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogout:
-/*                userLocalStore.clearUserData();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+
+                builder.setMessage("Are you sure you want to log out?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(Login.this, MainActivity.class));
+                            }
+                        })
+                        .setNegativeButton("NO", null);
+                AlertDialog alert = builder.create();
+                alert.show();
+/*              userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);*/
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+/*                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popuplogout, null);
 
                 // Pressing the log out button, a popup window asks if you want to log out
@@ -99,7 +113,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onClick(View v) {
                         startActivity(new Intent(Login.this, MainActivity.class));
                     }
-                });
+                });*/
                 break;
             case R.id.addAccounts:
                 startActivity(new Intent(this, AddingAccounts.class));

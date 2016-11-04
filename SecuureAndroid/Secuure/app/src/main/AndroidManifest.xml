@@ -20,7 +20,12 @@
         <activity android:name=".Register"></activity>
         <activity android:name=".Login"></activity>
         <activity android:name=".Logout"></activity>
+<<<<<<< HEAD
+        <activity android:name=".AddingAccounts" />
+        <activity android:name=".EditingAccounts"></activity>
+=======
         <activity android:name=".AddingAccounts"></activity>
+>>>>>>> origin/Android-App-JB
 
         <meta-data
             android:name="com.google.android.gms.version"

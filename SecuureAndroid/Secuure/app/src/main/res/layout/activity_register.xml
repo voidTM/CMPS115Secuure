@@ -32,7 +32,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="Username/E-mail"
+        android:text="Username"
         android:layout_height="wrap_content" />
 
     <EditText
