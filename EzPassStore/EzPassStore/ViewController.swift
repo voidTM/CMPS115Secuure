@@ -73,7 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             pass = passwordText.text!;
             
             /*****Send data to db to verify login*****/
-            var request = URLRequest(url: URL(string: "http://localhost/~Aou/login_mysql.php")!)
+            var request = URLRequest(url: URL(string: "http://localhost/~Steven/login_mysql.php")!)
             request.httpMethod = "POST"
             let postString = "arg_usr="+user+"&arg_pwd="+pass
             request.httpBody = postString.data(using: .utf8)
@@ -93,7 +93,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 responsePhp = responseString!
             }
             task.resume()
-            
+            //wait for server response
+            sleep(1)
             if(authenticate()) {
                 self.performSegue(withIdentifier: "showMainIntViewController", sender: self)
             }else{
@@ -122,6 +123,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //            return false
 //
 //    }
+    
     
     func authenticate() -> Bool {
         print("*****************************************************************")
