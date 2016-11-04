@@ -12,10 +12,11 @@ import Foundation
 // global var to hold username and pass
 var user = "";
 var pass = "";
-var login_result = false;
+var responsePhp = "";
+
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,27 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.present(signupAlertController, animated: true, completion: nil)
     }
 
-    //conditionals to making the segue
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if(identifier == "showSignupViewController") {
-          return true
-        }
-        if(identifier == "showMainIntViewController") {
-            if(!(usernameText.text?.isEmpty)! && !(passwordText.text?.isEmpty)!) {
-                if(login_result == true){
-                    return true
-                }
-                else {
-                    return false
-                }
-            }
-            else {
-                return false
-            }
-        }
-        return false
-    }
-
     // username and password textfield input
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var usernameText: UITextField!
@@ -95,7 +75,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             /*****Send data to db to verify login*****/
             var request = URLRequest(url: URL(string: "http://localhost/~Steven/login_mysql.php")!)
             request.httpMethod = "POST"
-            let postString = "arg_usr="+usernameText.text!+"&arg_pwd="+passwordText.text!
+            let postString = "arg_usr="+user+"&arg_pwd="+pass
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil else {                                                 // check for fundamental networking error
@@ -107,33 +87,50 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response: \(response)")
                 }
-                
+                print("---------------------------------------------------------")
                 let responseString = String(data: data, encoding: .utf8)
-                let emess = "Connection failed"
-                let range = responseString?.range(of:emess)
-                if (range != nil) {
-                    let esuc = "denied"
-                    let range2 = responseString?.range(of:esuc)
-                    if (range2 != nil){
-                        login_result = true
-                    }
-                    else {
-                        login_result = false
-                    }
-                }
-                else {
-                    login_result = false
-                }
+                print("responseString: \(responseString)")
+                responsePhp = responseString!
             }
             task.resume()
-            if (login_result == true) {
-                warningLabel.text = "Logging in...";
-            }
-            else {
+            if(authenticate()) {
+                self.performSegue(withIdentifier: "showMainIntViewController", sender: self)
+            }else{
                 invalidLogin()
             }
         }else{
             invalidLogin()
+        }
+    }
+
+    //conditionals to making the segue
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//
+//            print("++++++++++++++++++++++++++++++++++++++++++++++++")
+//            if(identifier == "showSignupViewController") {
+//                return true
+//            }
+//            if(identifier == "showMainIntViewController") {
+//                let jump = authenticate()
+//                if(jump) {
+//                    return true
+//                }else{
+//                    invalidLogin()
+//                    return false
+//                }
+//            }
+//            return false
+//
+//    }
+    
+    func authenticate() -> Bool {
+        print("*****************************************************************")
+        let emess = "{\"login\":true}"
+        let range = responsePhp.range(of:emess)
+        if (range != nil) {
+            return true
+        }else{
+            return false
         }
     }
 }
