@@ -96,7 +96,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             task.resume()
             //wait for server response
             while(serverResp != 1){
-                usleep(1)
+                //50 Milliseconds
+                usleep(50000)
             }
             if(authenticate()) {
                 self.performSegue(withIdentifier: "showMainIntViewController", sender: self)
