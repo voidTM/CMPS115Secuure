@@ -65,7 +65,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 userT.addUser(userID);
                 userID.printUser();
                 // registers user with database
-                web.registerUser(username, firstName, password).enqueue(new Callback<Boolean>() {
+                web.registerUser(username, password, firstName, lastName).enqueue(new Callback<Boolean>() {
                     @Override
                     // check for any messages
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
