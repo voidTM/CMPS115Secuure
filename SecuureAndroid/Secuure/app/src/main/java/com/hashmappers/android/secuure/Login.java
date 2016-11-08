@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
         bLogout = (Button) findViewById(R.id.bLogout);
         addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
+        list = (ListView) findViewById(R.id.titleList);
         bLogout.setOnClickListener(this);
         addAccounts.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);

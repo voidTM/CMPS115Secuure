@@ -1,8 +1,10 @@
 package com.hashmappers.android.secuure;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -81,16 +83,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     startActivity(new Intent(MainActivity.this, Login.class));
                 } else {
                     // Display the popup window in the center of screen if you fail to log in correctly
-                    popupWindow = new PopupWindow(container, 500, 220, true);
-                    popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
-                    // To exit the popup window, hit the 'OK' button
-                    Button buttonOk = (Button) container.findViewById(R.id.buttonOk);
-                    buttonOk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            popupWindow.dismiss();
-                        }
-                    });
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                    builder.setMessage("Error: Invalid Log In")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
 
               /*  User user = new User(null, null);

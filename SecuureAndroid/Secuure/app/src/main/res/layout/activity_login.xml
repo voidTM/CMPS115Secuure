@@ -16,27 +16,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+    <ListView
+        android:id="@+id/titleList"
+        android:padding="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="475dp">
+    </ListView>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
     <Button
         android:id="@+id/bLogout"
         android:text="Log out"
