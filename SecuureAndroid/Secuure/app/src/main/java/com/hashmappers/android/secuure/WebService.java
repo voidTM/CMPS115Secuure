@@ -17,7 +17,7 @@ import com.google.gson.GsonBuilder;
 
 public class WebService {
     // Attempt to access the web
-    public static final String BASE_URL = "http://10.0.2.2/";
+    public static String BASE_URL = "http://10.0.2.2/";
     private static WebInterface service;
 
     /**
@@ -55,5 +55,12 @@ public class WebService {
         ;
 
         service = rest.create(WebInterface.class);
+    }
+
+    public void ifInternet(Boolean internet) {
+        if(internet)
+            BASE_URL = "http://10.0.2.2/";
+        else
+            BASE_URL = "http://localhost/";
     }
 }

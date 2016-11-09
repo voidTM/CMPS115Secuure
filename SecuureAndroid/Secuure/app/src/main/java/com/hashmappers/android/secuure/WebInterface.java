@@ -46,7 +46,7 @@ public interface WebInterface {
 
     @Multipart
     @POST("login_mysql.php")
-    Call<ResponseBody> login(@Part("arg_usr") String username, @Part("arg_pwd") String password);
+    Call<String> login(@Part("arg_usr") String username, @Part("arg_pwd") String password);
 
 }
 

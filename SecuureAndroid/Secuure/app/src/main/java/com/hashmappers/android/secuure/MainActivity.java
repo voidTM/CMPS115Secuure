@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,11 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -70,10 +76,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
              // Converts username and password to string
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
+                WebInterface web = WebService.getService();
 
                 // Get the instance of the LayoutInflator
                 layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupfaillogin, null);
+
+                Call<String> call = web.login(username, password);
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        int statusCode = response.code();
+                        String output = response.body();
+                        Log.w("Apicall", output);
+                        Log.w("Apicall", "Status " + statusCode);
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        // Log error here since request failed
+                    }
+                });
 
                 if ((!username.isEmpty() && username.length() > 0) && (!password.isEmpty() && password.length() > 0)) {
                     Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
