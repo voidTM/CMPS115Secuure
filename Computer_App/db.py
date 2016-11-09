@@ -1,6 +1,5 @@
 import mysql.connector
 
-
 #initalizes database if table doesn't already exist
 def createMasterTable(table):
     conn = createCon()
@@ -21,10 +20,10 @@ def insertToUserTable(fname,lname, user, pw):
 
     query = ("""SELECT user FROM accounts""")       #
     cursor.execute(query)                           #
-    for u in conn:                                  # This piece checks if an account exists already
+    for u in cursor:                                  # This piece checks if an account exists already
             if u.lower() == user.lower():           #
-            print("Account name already exists")    #
-            return                                  #
+                print("Account name already exists")    #
+                return                                  #
 
     cursor.execute("""INSERT IGNORE INTO accounts values (%s, %s, %s, %s)""", (fname, lname, user, pw))
     conn.commit()
@@ -37,6 +36,7 @@ def verMasterLogin(login, login_pw):
     cursor = conn.cursor()
     query = ("""SELECT user,password FROM accounts""") #query to select all user/pw from table
     cursor.execute(query)
+
     for u, p in cursor:
         if u.lower() == login.lower() and login_pw.lower() == login_pw.lower(): #if they match return true
             conn.close()
@@ -48,8 +48,8 @@ def verMasterLogin(login, login_pw):
 
 #Creates connection to local MySQL database
 def createCon():
-    conn = mysql.connector.connect(user='root', password='passmanager',
-                                     host='localhost', database = 'secuure_db')
+    conn = mysql.connector.connect(user='root', password='root',
+                                     host='localhost',database='secuuredb')
     return conn
 #####################
 #      Testing      #
