@@ -2,7 +2,7 @@
     //Setup connection variables
     $hostname = "localhost";
     $username = "root";
-    $password = "aaaa";
+    $password = "";
     $dbname = secuure;
     $usertable = users;
     $usr = $_POST['arg_usr'];

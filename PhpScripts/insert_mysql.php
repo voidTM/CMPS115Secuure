@@ -8,6 +8,7 @@
     $acc = $_POST['arg_add_acc'];
     $ws = $_POST['arg_add_ws'];
     $pwd = $_POST['arg_add_pwd'];
+    $note = $_POST['arg_add_note'];
     $uid = 0;
 
     // Fetch user id
@@ -41,7 +42,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO `$usertable` (`userid`, `account`, `website`, `password`) VALUES ('$uid', '$acc', '$ws',  '$pwd')";
+    $sql = "INSERT INTO `$usertable` (`userid`, `account`, `website`, `password`, `notes`) VALUES ('$uid', '$acc', '$ws',  '$pwd', '$note')";
 
     if (mysqli_query($conn, $sql)) {
         echo "New record created successfully" . "\r\n";

@@ -2,7 +2,7 @@
     //Setup connection variables
     $hostname = "localhost";
     $username = "root";
-    $password = "aaaa";
+    $password = "";
     $dbname = secuure;
     $usertable = users;
     $datatable = data;
@@ -78,7 +78,7 @@
     }
     
     //Create table
-    $sql = "CREATE TABLE $datatable ( `userid` INT NOT NULL REFERENCES $usertable(`id`) , `account` VARCHAR(50) NOT NULL , `website` VARCHAR(50) NOT NULL, `password` VARCHAR(50) NOT NULL ) ENGINE = InnoDB";
+    $sql = "CREATE TABLE $datatable ( `userid` INT NOT NULL REFERENCES $usertable(`id`) , `account` VARCHAR(50) NOT NULL , `website` VARCHAR(50) NOT NULL, `password` VARCHAR(50) NOT NULL, `notes` VARCHAR(500) NOT NULL ) ENGINE = InnoDB";
     
     if (mysqli_query($conn, $sql)) {
         echo "Table created successfully" . "\r\n";

@@ -47,7 +47,8 @@
             $acc = $row[account];
             $ws = $row[website];
             $pwd = $row[password];
-            echo $acc . "  |  " . $ws . "  |  " . $pwd . " ----------- ";
+            $note = $row[notes];
+            echo $acc . "  |  " . $ws . "  |  " . $pwd . " | " . $note . " ----------- ";
         }
     }
 ?>

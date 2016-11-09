@@ -4,6 +4,7 @@
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
     $dbname = secuure;
+    $result = False;
 
 
     // Create connection
@@ -12,10 +13,16 @@
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
+        $result = False;
     }
     else {
-        echo "Login Success";
+        $result = True;
     }
 
     mysqli_close($conn);
+    
+    $resultarray = Array("login" => $result);
+    header("Content-Type: application/json");
+    echo json_encode($resultarray);
+    
 ?>
