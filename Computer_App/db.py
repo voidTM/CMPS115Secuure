@@ -75,6 +75,7 @@ def addPass(user, username, pw, website, notes):
     conn.commit()
     conn.close()
 
+#Prints passwords for a specified user
 def getPasswordsForUser(accountName):
     (conn, cursor) = createCon()
     query = ("""SELECT account, username, password, website, notes FROM DATA """)
@@ -82,6 +83,15 @@ def getPasswordsForUser(accountName):
     for a, u, p, w, n in cursor:
         if accountName.lower() == a.lower():
             print(a, u, p, w, n)
+    conn.close()
+
+def removeEntry(accountName, username, pw, website, notes):
+    (conn, cursor) = createCon()
+    query = """DELETE FROM DATA WHERE
+                account=%s && username=%s && password=%s && website=%s && notes=%s
+                """
+    cursor.execute(query, (accountName, username, pw, website, notes))
+    conn.commit()
     conn.close()
 
 
@@ -92,7 +102,12 @@ def getPasswordsForUser(accountName):
 createMasterTable("accounts")
 createPassTable()
 insertToUserTable("John", "King", "jking", "test")
+print("Before printing\n")
+addPass("jking", "sup yossssssss", "mypass3!!!21test", "gmail", "last")
 addPass("jking", "sup yos", "mypass321test", "gmail", "last")
+getPasswordsForUser("jking")
+print("After printing\n")
+removeEntry("jking", "sup yos", "mypass321test", "gmail", "last")
 getPasswordsForUser("jking")
 
 #c.execute(query)
