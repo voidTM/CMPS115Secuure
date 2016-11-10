@@ -3,19 +3,15 @@ package com.hashmappers.android.secuure;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -24,9 +20,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import java.util.List;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,10 +76,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 //Account user = response.body();
                 JsonArray body = response.body();
                 Log.w("Apicall", "Status " + statusCode);
-                Log.w("Apicall", "body size " + body.size());
+                Log.w("Apicall", "Result: " + body.toString());
+                for(JsonElement i: body){
+                    JsonObject acc = i.getAsJsonObject();
+                    //acc.get("")
+                }
+                /*Log.w("Apicall", "body size " + body.size());
                 for(JsonElement i : body){
                     Log.w("Apicall", i.toString());
-                }
+                }*/
             }
 
             @Override
