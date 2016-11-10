@@ -20,10 +20,11 @@ def insertToUserTable(fname,lname, user, pw):
 
     query = ("""SELECT user FROM accounts""")       #
     cursor.execute(query)                           #
-    for u in cursor:                                  # This piece checks if an account exists already
-            if u.lower() == user.lower():           #
-                print("Account name already exists")    #
-                return                                  #
+    for u in cursor:                                # This piece checks if an account exists already
+        print(u[0], user)
+        if u[0].lower() == user.lower():           #
+             print("Account name already exists")    #
+             return                                  #
 
     cursor.execute("""INSERT IGNORE INTO accounts values (%s, %s, %s, %s)""", (fname, lname, user, pw))
     conn.commit()
@@ -56,8 +57,8 @@ def createCon():
 #####################
 
 createMasterTable("accounts")
-insertToUserTable("John", "King", "jking", "test")
-print(verMasterLogin("jking", "test"))
+insertToUserTable("John", "King", "joscking", "test")
+print(verMasterLogin("jkiing", "test"))
 #query = ("SELECT user, password FROM accounts")
 #
 #c.execute(query)
