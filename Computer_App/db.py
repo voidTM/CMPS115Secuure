@@ -12,6 +12,17 @@ def createMasterTable(table):
             )""" %table)
     conn.close()
 
+def createPassTable():
+    conn = createCon()
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS data(
+                account text,
+                username text,
+                password text,
+                website text,
+                notes text
+                )""")
+    conn.close()
 #inserts into the "accounts" table.
 #Thing to note: table to be inserted into CANNOT be a variable (must be hardcoded)
 def insertToUserTable(fname,lname, user, pw):
@@ -52,15 +63,33 @@ def createCon():
     conn = mysql.connector.connect(user='root', password='root',
                                      host='localhost',database='secuuredb')
     return conn
+
+#Adds a username and password for a specific website given by the user
+def addPass(user, username, pw, website, notes):
+    print(user, username, pw, website, notes)
+    conn = createCon()
+    cursor = conn.cursor()
+    query = ("""SELECT username, website FROM data """)
+    cursor.execute(query)
+    for u, w in cursor:
+        if u.lower() == user.lower() and website.lower == w.lower:
+            print("Duplicate entry in table, please try again")
+            conn.close
+            return
+    cursor.execute("""INSERT IGNORE INTO data values (%s, %s, %s, %s, %s)""", (user, username, pw, website, notes))
+    conn.commit()
+    conn.close()
+
+
 #####################
 #      Testing      #
 #####################
 
 createMasterTable("accounts")
+createPassTable()
 insertToUserTable("John", "King", "joscking", "test")
-print(verMasterLogin("jkiing", "test"))
-#query = ("SELECT user, password FROM accounts")
-#
+addPass("joscking", "jking", "mypass321test", "gmail", "last")
+
 #c.execute(query)
 
 

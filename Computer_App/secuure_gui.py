@@ -4,7 +4,6 @@
 #developed by Isaak Cherdak
 
 import tkinter
-from storage import *
 from tkinter import messagebox
 from db import *
 
@@ -13,6 +12,7 @@ class Secuure_GUI:
         def __init__(self):
 
                 createMasterTable("accounts")
+                createPassTable("data")
                 self.fscreen_en = False
                 self.userAccounts = {}# temporary users until backend is sorted out
                 self.userAccounts["Admin"] = "Password"
