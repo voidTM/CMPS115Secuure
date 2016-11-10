@@ -1,0 +1,7 @@
+1. Uninstall all versions of python
+2. Install Python 3.4.4 : url (https://www.python.org/downloads/release/python-344/)
+3. Download the mySQL installer: url (https://dev.mysql.com/downloads/installer/)
+4. While installing mySQL, download all mySQL products (its easier that way)
+5. Make sure that connector/python is installed
+
+These steps should ensure that mysql.connector works.
