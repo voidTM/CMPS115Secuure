@@ -17,11 +17,33 @@ import com.google.gson.GsonBuilder;
 
 public class WebService {
     // Attempt to access the web
-    public static final String BASE_URL = "http://api.myservice.com/";
+    public static final String BASE_URL = "http://10.0.2.2/";
     private static WebInterface service;
 
-    public static WebInterface WebService() {
+    /**
+     * @return
+     */
+    public static WebInterface getService() {
 
+        if(service == null) {
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                    .create();
+
+            Retrofit rest = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonStringConverterFactory.create(gson))
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+            ;
+
+            service = rest.create(WebInterface.class);
+        }
+
+        return service;
+    }
+
+    public void resetService(){
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -33,7 +55,5 @@ public class WebService {
         ;
 
         service = rest.create(WebInterface.class);
-
-        return service;
     }
 }

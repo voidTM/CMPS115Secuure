@@ -6,17 +6,6 @@
     android:padding="10dp"
     android:layout_width="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Thanks for stopping by!"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="We hope to see you again soon."
-        android:layout_height="wrap_content" />
-
-
     <Button
         android:id="@+id/bLogin"
         android:text="Login"

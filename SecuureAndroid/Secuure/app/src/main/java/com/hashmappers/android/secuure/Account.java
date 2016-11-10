@@ -5,7 +5,7 @@ package com.hashmappers.android.secuure;
  * NOT IN USE
  */
 
-class Account {
+public class Account {
     //Private data
     String username;
     String password;

@@ -1,5 +1,7 @@
 package com.hashmappers.android.secuure;
 
+import android.util.Log;
+
 /**
  * Created by Jamie on 10/16/2016.
  *
@@ -62,5 +64,16 @@ public class User {
         this.name = name;
         this.username = username;
         this.password = password;
+    }
+
+    //used for anonymous users
+    public void setANUser(String username, String password){
+        this.username = username;
+        this.password = password;
+
+    }
+
+    public void printUser(){
+        Log.d("user", username + "\n" + password + "\n");
     }
 }

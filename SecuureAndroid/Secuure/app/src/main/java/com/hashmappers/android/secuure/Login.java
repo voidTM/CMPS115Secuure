@@ -19,6 +19,13 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton addAccounts;
@@ -54,12 +61,29 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         TextView entry = new TextView(this);
         String password = usr.getPassword();
         String username = usr.getUsername();
-        accountEntry = "Username: " + username + " Password: " + password;
-        entry.setText(accountEntry);
-        lView.addView(entry);
+        //accountEntry = "Username: " + username + " Password: " + password;
+        //entry.setText(accountEntry);
+        //lView.addView(entry);
 
         // populate with a list;
         //for(User someone : userT)
+
+        WebInterface web = WebService.getService();
+
+        Call<ResponseBody> call = web.getAllAccounts(username, password);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int statusCode = response.code();
+                //Account user = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Log error here since request failed
+            }
+        });
     }
 
 /*    @Override
@@ -83,6 +107,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Global.reset();
                                 startActivity(new Intent(Login.this, MainActivity.class));
                             }
                         })

@@ -79,8 +79,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
                 if ((!username.isEmpty() && username.length() > 0) && (!password.isEmpty() && password.length() > 0)) {
                     Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
+                    User usr = Global.getUser();
+                    usr.setANUser(username, password);
+                    // check login for users?
                     pass.show();
-                    startActivity(new Intent(MainActivity.this, Login.class));
+
+                    //startActivity(new Intent(MainActivity.this, Login.class));
+                    startActivity(new Intent(this, Login.class)); //Causing problems
                 } else {
                     // Display the popup window in the center of screen if you fail to log in correctly
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

@@ -16,12 +16,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ListView
-        android:id="@+id/titleList"
-        android:padding="400dp"
-        android:layout_width="wrap_content"
-        android:layout_height="475dp">
-    </ListView>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/titleList"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/bLogout"
