@@ -1,9 +1,9 @@
 import mysql.connector
-
+import difflib
 #initalizes database if table doesn't already exist
 def createMasterTable(table):
-    conn = createCon()
-    cursor = conn.cursor()
+    (conn, cursor) = createCon()
+
     cursor.execute("""CREATE TABLE IF NOT EXISTS %s(
             fname  text,
             lname  text,
@@ -13,8 +13,7 @@ def createMasterTable(table):
     conn.close()
 
 def createPassTable():
-    conn = createCon()
-    cursor = conn.cursor()
+    (conn, cursor) = createCon()
     cursor.execute("""CREATE TABLE IF NOT EXISTS data(
                 account text,
                 username text,
@@ -26,9 +25,7 @@ def createPassTable():
 #inserts into the "accounts" table.
 #Thing to note: table to be inserted into CANNOT be a variable (must be hardcoded)
 def insertToUserTable(fname,lname, user, pw):
-    conn = createCon()
-    cursor = conn.cursor()
-
+    (conn, cursor) = createCon()
     query = ("""SELECT user FROM accounts""")       #
     cursor.execute(query)                           #
     for u in cursor:                                # This piece checks if an account exists already
@@ -44,8 +41,7 @@ def insertToUserTable(fname,lname, user, pw):
 
 #Iterates over the database and looks for login and login_pw, if they match, returns true, otherwise false.
 def verMasterLogin(login, login_pw):
-    conn = createCon()
-    cursor = conn.cursor()
+    (conn, cursor) = createCon()
     query = ("""SELECT user,password FROM accounts""") #query to select all user/pw from table
     cursor.execute(query)
 
@@ -62,22 +58,30 @@ def verMasterLogin(login, login_pw):
 def createCon():
     conn = mysql.connector.connect(user='root', password='root',
                                      host='localhost',database='secuuredb')
-    return conn
+    cursor = conn.cursor()
+    return (conn, cursor)
 
 #Adds a username and password for a specific website given by the user
 def addPass(user, username, pw, website, notes):
-    print(user, username, pw, website, notes)
-    conn = createCon()
-    cursor = conn.cursor()
+    (conn, cursor) = createCon()
     query = ("""SELECT username, website FROM data """)
     cursor.execute(query)
     for u, w in cursor:
-        if u.lower() == user.lower() and website.lower == w.lower:
+        if u.lower() == username.lower() and website.lower() == w.lower():
             print("Duplicate entry in table, please try again")
             conn.close
             return
     cursor.execute("""INSERT IGNORE INTO data values (%s, %s, %s, %s, %s)""", (user, username, pw, website, notes))
     conn.commit()
+    conn.close()
+
+def getPasswordsForUser(accountName):
+    (conn, cursor) = createCon()
+    query = ("""SELECT account, username, password, website, notes FROM DATA """)
+    cursor.execute(query)
+    for a, u, p, w, n in cursor:
+        if accountName.lower() == a.lower():
+            print(a, u, p, w, n)
     conn.close()
 
 
@@ -87,8 +91,9 @@ def addPass(user, username, pw, website, notes):
 
 createMasterTable("accounts")
 createPassTable()
-insertToUserTable("John", "King", "joscking", "test")
-addPass("joscking", "jking", "mypass321test", "gmail", "last")
+insertToUserTable("John", "King", "jking", "test")
+addPass("jking", "sup yos", "mypass321test", "gmail", "last")
+getPasswordsForUser("jking")
 
 #c.execute(query)
 
