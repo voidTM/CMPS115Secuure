@@ -26,8 +26,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     Button bLogin, bSignUp;
     EditText etUsername, etPassword;
-    private PopupWindow popupWindow;
-    private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -72,10 +70,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
              // Converts username and password to string
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-
-                // Get the instance of the LayoutInflator
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupfaillogin, null);
 
                 if ((!username.isEmpty() && username.length() > 0) && (!password.isEmpty() && password.length() > 0)) {
                     Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);

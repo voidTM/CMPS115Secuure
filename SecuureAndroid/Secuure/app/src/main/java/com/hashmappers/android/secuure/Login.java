@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton addAccounts;
     Button bLogout;
-    ListView list;
+    TableLayout list;
 
     String name;
     String accountEntry;
@@ -46,7 +47,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
         bLogout = (Button) findViewById(R.id.bLogout);
         addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
-        list = (ListView) findViewById(R.id.titleList);
+        list = (TableLayout) findViewById(R.id.titleList);
         bLogout.setOnClickListener(this);
         addAccounts.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);
