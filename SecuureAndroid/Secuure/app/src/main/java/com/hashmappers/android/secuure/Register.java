@@ -25,9 +25,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     Button bSignUp;
     EditText etFirstName, etLastName, etUsername, etPassword, etConfirmPassword;
-    private PopupWindow popupWindowFail;
-    private PopupWindow popupWindowSuc;
-    private LayoutInflater layoutInflater;
     private LinearLayout linearLayout;
 
     @Override
@@ -67,20 +64,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 userT.addUser(userID);
                 userID.printUser();
                 // registers user with database
-                web.registerUser(username, password, firstName, lastName).enqueue(new Callback<Boolean>() {
-                    @Override
-                    // check for any messages
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                        //api success
-                        //Boolean sucess //= response.body();
-                        Log.w("Apicall", "Successful register call");
-                    }
-
-                    @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
-                        Log.e("Apicall", t.getMessage());
-                    }
-                });
 
                 // Checks if the password that is entered is the same or not same when you confirm it, displays a popup screen
                 // Shouldn't this happen before adding the user?
@@ -97,6 +80,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     AlertDialog alert = builder.create();
                     alert.show();
                 } else {
+                    // Registers user with server
+                    web.registerUser(username, password, firstName, lastName).enqueue(new Callback<String>() {
+                        @Override
+                        // check for any messages
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            //api success
+                            //Boolean sucess //= response.body();
+                            Log.w("Apicall", "Successful register");
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            Log.e("Apicall", t.getMessage());
+                        }
+                    });
+                    // Successful log in message display
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
 
                     builder.setMessage("Successful")
@@ -108,8 +107,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             });
                     AlertDialog alert = builder.create();
                     alert.show();
+
                 }
                 break;
         }
     }
+
 }

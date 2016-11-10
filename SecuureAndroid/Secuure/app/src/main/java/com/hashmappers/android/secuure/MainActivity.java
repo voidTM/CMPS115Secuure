@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +23,24 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     Button bLogin, bSignUp;
     EditText etUsername, etPassword;
     private RelativeLayout relativeLayout;
+    WebInterface web;
+    String username, password;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -43,7 +57,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        web = WebService.getService();
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         bLogin = (Button) findViewById(R.id.bLogin);
@@ -70,34 +84,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
              // Converts username and password to string
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-
-                if ((!username.isEmpty() && username.length() > 0) && (!password.isEmpty() && password.length() > 0)) {
-                    Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
-                    User usr = Global.getUser();
-                    usr.setANUser(username, password);
-                    // check login for users?
-                    pass.show();
-
-                    //startActivity(new Intent(MainActivity.this, Login.class));
-                    startActivity(new Intent(this, Login.class)); //Causing problems
-                } else {
-                    // Display the popup window in the center of screen if you fail to log in correctly
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-                    builder.setMessage("Error: Invalid Log In")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    startActivity(new Intent(MainActivity.this, MainActivity.class));
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-
-              /*  User user = new User(null, null);
-                userLocalStore.storedUserData(user);
-                userLocalStore.setUserLoggedIn(true);*/
+                WebInterface web = WebService.getService();
+                // calls login
+                login(username, password);
                 break;
             case R.id.bSignUp:
                 startActivity(new Intent(this, Register.class));
@@ -139,6 +128,60 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    // function to log the user in
+    public void login(String username, String password) {
+
+        // Checks to make sure that user has inputed a username and password
+        if ((!username.isEmpty() && username.length() > 0) && (!password.isEmpty() && password.length() > 0)) {
+            Call<JsonObject> call = web.login(username, password);
+            Response<JsonObject> respond;
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    int statusCode = response.code();
+                    JsonObject output = response.body();
+                    boolean result = output.get("login").getAsBoolean();
+                    //Log.w("Apicall", result);
+                    Log.w("Apicall", "Status " + statusCode);
+
+                    switchToLogin(result);
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    // Log error here since request failed
+                    Log.w("Apicall", t.getMessage());
+                }
+            });
+        }
+
+    }
+
+    void switchToLogin(boolean loggedIn){
+        if(loggedIn) {
+            Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
+            User usr = Global.getUser();
+            usr.setANUser(username, password);
+            // check login for users?
+            pass.show();
+            //startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(this, Login.class)); //Causing problems
+            } else {
+            // Display the popup window in the center of screen if you fail to log in correctly
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+            builder.setMessage("Error: Invalid Log In")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
     /**

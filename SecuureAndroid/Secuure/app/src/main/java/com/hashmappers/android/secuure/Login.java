@@ -3,26 +3,24 @@ package com.hashmappers.android.secuure;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.util.List;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,18 +69,30 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         WebInterface web = WebService.getService();
 
-        Call<ResponseBody> call = web.getAllAccounts(username, password);
+        Call<JsonArray> call = web.getAllAccounts(username, password);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 int statusCode = response.code();
                 //Account user = response.body();
+                JsonArray body = response.body();
+                Log.w("Apicall", "Status " + statusCode);
+                Log.w("Apicall", "Result: " + body.toString());
+                for(JsonElement i: body){
+                    JsonObject acc = i.getAsJsonObject();
+                    //acc.get("")
+                }
+                /*Log.w("Apicall", "body size " + body.size());
+                for(JsonElement i : body){
+                    Log.w("Apicall", i.toString());
+                }*/
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
                 // Log error here since request failed
+                Log.e("Apicall", t.getMessage());
             }
         });
     }

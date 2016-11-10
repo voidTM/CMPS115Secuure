@@ -72,7 +72,7 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 WebInterface web = WebService.getService();
 
                 web.addAccount(loggedIn.getUsername(), loggedIn.getPassword(),
-                        login, title, password).enqueue(new Callback<Boolean>() {
+                        login, title, password, notes).enqueue(new Callback<Boolean>() {
                 @Override
                 // check for any messages
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {

@@ -5,9 +5,12 @@ package com.hashmappers.android.secuure;
  * Get php files from ios-app
  */
 
-import java.util.List;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
+import java.util.List;
 import okhttp3.ResponseBody;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -25,7 +28,7 @@ public interface WebInterface {
     // note for get we should be using query strings instead
     @Multipart
     @POST("read_mysql.php")
-    Call<ResponseBody> getAllAccounts(@Part("arg_usr")String usr, @Part("arg_pwd") String pwd);
+    Call<JsonArray> getAllAccounts(@Part("arg_usr")String usr, @Part("arg_pwd") String pwd);
 
     @Multipart
     @DELETE("delete_mysql.php")
@@ -35,18 +38,18 @@ public interface WebInterface {
 
     @Multipart
     @POST("register_mysql.php")
-    Call<Boolean> registerUser(@Part("arg_usr") String username, @Part("arg_pwd") String password,
+    Call<String> registerUser(@Part("arg_usr") String username, @Part("arg_pwd") String password,
                                @Part("arg_fname") String fname, @Part("arg_lname") String lname);
 
     @Multipart
     @POST("insert_mysql.php")
     Call<Boolean> addAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
                              @Part("arg_add_acc") String accUsr, @Part("arg_add_ws") String name,
-                             @Part("arg_add_pwd") String accPwd);
+                             @Part("arg_add_pwd") String accPwd, @Part("arg_add_note") String note);
 
     @Multipart
     @POST("login_mysql.php")
-    Call<ResponseBody> login(@Part("arg_usr") String username, @Part("arg_pwd") String password);
+    Call<JsonObject> login(@Part("arg_usr") String username, @Part("arg_pwd") String password);
 
 }
 
