@@ -5,6 +5,7 @@ package com.hashmappers.android.secuure;
  * Get php files from ios-app
  */
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface WebInterface {
     // note for get we should be using query strings instead
     @Multipart
     @POST("read_mysql.php")
-    Call<ResponseBody> getAllAccounts(@Part("arg_usr")String usr, @Part("arg_pwd") String pwd);
+    Call<JsonArray> getAllAccounts(@Part("arg_usr")String usr, @Part("arg_pwd") String pwd);
 
     @Multipart
     @DELETE("delete_mysql.php")
