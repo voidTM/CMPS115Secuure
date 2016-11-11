@@ -82,8 +82,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bLogin:
              // Converts username and password to string
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
+                username = etUsername.getText().toString();
+                password = etPassword.getText().toString();
                 WebInterface web = WebService.getService();
                 // calls login
                 login(username, password);

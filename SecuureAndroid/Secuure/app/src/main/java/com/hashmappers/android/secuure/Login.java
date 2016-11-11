@@ -1,4 +1,3 @@
-
 package com.hashmappers.android.secuure;
 
 import android.content.DialogInterface;
@@ -30,7 +29,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton addAccounts;
     Button bLogout;
-    TableLayout list;
+    ListView list;
 
     String name;
     String accountEntry;
@@ -48,7 +47,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
         bLogout = (Button) findViewById(R.id.bLogout);
         addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
-        list = (TableLayout) findViewById(R.id.titleList);
         bLogout.setOnClickListener(this);
         addAccounts.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);
@@ -64,14 +62,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         TextView entry = new TextView(this);
         String password = usr.getPassword();
         String username = usr.getUsername();
-        //accountEntry = "Username: " + username + " Password: " + password;
-        //entry.setText(accountEntry);
-        //lView.addView(entry);
-
-        // populate with a list;
-        //for(User someone : userT)
-
         WebInterface web = WebService.getService();
+        Log.w("Apicall", "User " + username);
+        Log.w("Apicall", "Password " + password);
 
         Call<JsonArray> call = web.getAllAccounts(username, password);
         // Performs a call to the server requesting for the accounts
