@@ -58,6 +58,8 @@ def verMasterLogin(login, login_pw):
 def createCon():
     conn = mysql.connector.connect(user='cs115', password='insecuurity',
                                      host='192.168.0.107',database='secuure')
+    # note the above host name is my local one: external IP is 98.234.141.183
+
     cursor = conn.cursor()
     return (conn, cursor)
 
