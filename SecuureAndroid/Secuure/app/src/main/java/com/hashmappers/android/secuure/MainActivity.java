@@ -1,8 +1,10 @@
 package com.hashmappers.android.secuure;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,8 +38,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     Button bLogin, bSignUp;
     EditText etUsername, etPassword;
-    private PopupWindow popupWindow;
-    private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
     WebInterface web;
     String username, password;
@@ -82,8 +82,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bLogin:
              // Converts username and password to string
-                username = etUsername.getText().toString();
-                password = etPassword.getText().toString();
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
                 WebInterface web = WebService.getService();
                 // calls login
                 login(username, password);
@@ -160,9 +160,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     void switchToLogin(boolean loggedIn){
-        layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupfaillogin, null);
-
         if(loggedIn) {
             Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
             User usr = Global.getUser();
@@ -171,19 +168,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             pass.show();
             //startActivity(new Intent(MainActivity.this, Login.class));
             startActivity(new Intent(this, Login.class)); //Causing problems
-        } else {
+            } else {
             // Display the popup window in the center of screen if you fail to log in correctly
-            popupWindow = new PopupWindow(container, 500, 220, true);
-            popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
-            // To exit the popup window, hit the 'OK' button
-            Button buttonOk = (Button) container.findViewById(R.id.buttonOk);
-            buttonOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    popupWindow.dismiss();
-                }
-            });
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
+            builder.setMessage("Error: Invalid Log In")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 

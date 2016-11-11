@@ -1,5 +1,7 @@
 package com.hashmappers.android.secuure;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,9 +25,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     Button bSignUp;
     EditText etFirstName, etLastName, etUsername, etPassword, etConfirmPassword;
-    private PopupWindow popupWindowFail;
-    private PopupWindow popupWindowSuc;
-    private LayoutInflater layoutInflater;
     private LinearLayout linearLayout;
 
     @Override
@@ -69,27 +68,18 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 // Checks if the password that is entered is the same or not same when you confirm it, displays a popup screen
                 // Shouldn't this happen before adding the user?
                 if (!password.equals(confirmPassword) || password.length() == 0 || confirmPassword.length() == 0) {
-                    // Get the instance of the LayoutInflator
-                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                    ViewGroup container1 = (ViewGroup) layoutInflater.inflate(R.layout.popupinvalidsignup, null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
 
-                    // Display the popup window in the center of screen if you fail to log in correctly
-                    popupWindowFail = new PopupWindow(container1, 500, 220, true);
-                    popupWindowFail.showAtLocation(linearLayout, Gravity.CENTER, 0, 0);
-
-                    // To exit the popup window, hit the 'OK' button
-                    Button buttonOk = (Button) container1.findViewById(R.id.buttonOk);
-                    buttonOk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            popupWindowFail.dismiss();
-                        }
-                    });
+                    builder.setMessage("Error: Passwords Don't Match")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(Register.this, Register.class));
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 } else {
-                    // Get the instance of the LayoutInflator
-                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                    ViewGroup container2 = (ViewGroup) layoutInflater.inflate(R.layout.popupvalidsignup, null);
-
                     // Registers user with server
                     web.registerUser(username, password, firstName, lastName).enqueue(new Callback<String>() {
                         @Override
@@ -105,19 +95,19 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             Log.e("Apicall", t.getMessage());
                         }
                     });
+                    // Successful log in message display
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
 
-                    // Display the popup window if successfull register
-                    popupWindowSuc = new PopupWindow(container2, 500, 250, true);
-                    popupWindowSuc.showAtLocation(linearLayout, Gravity.CENTER, 0, 0);
+                    builder.setMessage("Successful")
+                            .setPositiveButton("BACK TO LOG IN", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(Register.this, MainActivity.class));
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
 
-                    // To exit the popup window and go back to the log in screen, hit the 'BACK TO LOG IN' button
-                    Button buttonBackLogin = (Button) container2.findViewById(R.id.buttonBackLogin);
-                    buttonBackLogin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(Register.this, MainActivity.class));
-                        }
-                    });
                 }
                 break;
         }
