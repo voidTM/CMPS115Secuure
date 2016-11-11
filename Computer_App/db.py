@@ -57,7 +57,7 @@ def verMasterLogin(login, login_pw):
 #Creates connection to local MySQL database
 def createCon():
     conn = mysql.connector.connect(user='cs115', password='insecuurity',
-                                     host='192.168.56.1',database='secuuredb')
+                                     host='192.168.0.107',database='secuure')
     cursor = conn.cursor()
     return (conn, cursor)
 
@@ -80,10 +80,15 @@ def getPasswordsForUser(accountName):
     (conn, cursor) = createCon()
     query = ("""SELECT account, username, password, website, notes FROM DATA """)
     cursor.execute(query)
+    data = []
     for a, u, p, w, n in cursor:
         if accountName.lower() == a.lower():
-            print(a, u, p, w, n)
+            temp = []
+            temp.extend((a, u, p, w, n))
+            data.append(temp)
+            print(temp)
     conn.close()
+    return data
 
 def removeEntry(accountName, username, pw, website, notes):
     (conn, cursor) = createCon()

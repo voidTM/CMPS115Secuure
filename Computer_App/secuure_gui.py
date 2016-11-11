@@ -12,7 +12,7 @@ class Secuure_GUI:
         def __init__(self):
 
                 createMasterTable("accounts")
-                createPassTable("data")
+                createPassTable()
                 self.fscreen_en = False
                 self.userAccounts = {}# temporary users until backend is sorted out
                 self.userAccounts["Admin"] = "Password"
@@ -150,12 +150,23 @@ class Secuure_GUI:
             list_accounts["Admin"] = "Password"
             label_usernames = []
             label_passwords = []
+            data = getPasswordsForUser(user_str)
+
+            """ new """
+            for info in data:
+                label_usernames.append(tkinter.Label(self.window_info, text =
+                    info[1] + " : "))
+                label_passwords.append(tkinter.Label(self.window_info, text =
+                    info[2]))
+
+            """ old
             for key in list_accounts:
                 label_usernames.append(tkinter.Label(self.window_info, text =
                     key + " : "))
                 label_passwords.append(tkinter.Label(self.window_info, text =
                     list_accounts[key]))
             
+            """
             for index in range(0, len(label_usernames)):
                 label_user = label_usernames[index]
                 label_pass = label_passwords[index]
@@ -171,14 +182,15 @@ class Secuure_GUI:
             user_str = self.field_username.get()
             pass_str = self.field_pass.get()
 
-            # need backend function
             
             if (user_str in self.userAccounts.keys()):
                 print ("Replacing Password: '%s' with '%s' for user '%s'" %
                         (self.userAccounts[user_str], pass_str, user_str))
+                return
             
             else:
                 print ("Adding user '%s' with password '%s'" % (user_str, pass_str))
+                insertToUserTable("fname", "lname", user_str, pass_str)
 
             self.userAccounts[user_str] = pass_str # remove after backend
                                                    #integration
