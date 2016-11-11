@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -37,6 +39,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private CoordinatorLayout lView;
+    private TableLayout tLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +51,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         bLogout.setOnClickListener(this);
         addAccounts.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);
+        tLayout = (TableLayout) findViewById(R.id.titleList);
         User usr = Global.getUser();
         UserTable userT = Global.getUserT();
         name = usr.getName();
 
-        userWelcome.setText("Welcome " + name);
+        userWelcome.setText("Welcome ");
         //userLocalStore = new UserLocalStore(this);
 
         lView = (CoordinatorLayout) findViewById(R.id.lLogin);
@@ -68,23 +73,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         WebInterface web = WebService.getService();
 
         Call<JsonArray> call = web.getAllAccounts(username, password);
-
+        // Performs a call to the server requesting for the accounts
+        // the user has stored.
         call.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 int statusCode = response.code();
-                //Account user = response.body();
-                JsonArray body = response.body();
                 Log.w("Apicall", "Status " + statusCode);
-                Log.w("Apicall", "Result: " + body.toString());
-                for(JsonElement i: body){
-                    JsonObject acc = i.getAsJsonObject();
-                    //acc.get("")
-                }
-                /*Log.w("Apicall", "body size " + body.size());
-                for(JsonElement i : body){
-                    Log.w("Apicall", i.toString());
-                }*/
+                if(statusCode == 200)
+                    updateAccountTable(response.body());
             }
 
             @Override
@@ -155,5 +152,34 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+    }
+
+    // This method will take in a Json response from
+    // server and then populate the current table.
+    public void updateAccountTable(JsonArray array){
+
+        // id format will row number * 10 + fieldnumber
+        for(int i = 0; i < array.size(); i++){
+            int id = i * 10;
+            TableRow row = new TableRow(this);
+            row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
+            row.setId(id);
+            JsonObject acc = array.get(i).getAsJsonObject();
+            Log.w("Apicall", "Object: " + acc.toString());
+
+            TextView nameField = new TextView(this);
+            nameField.setId(id+1);
+            nameField.setText(acc.get("website").toString());
+            row.addView(nameField);
+
+            TextView accnameField = new TextView(this);
+            accnameField.setId(id+2);
+            accnameField.setText(acc.get("account").toString());
+            row.addView(accnameField);
+
+            tLayout.addView(row);
+        }
+
     }
 }

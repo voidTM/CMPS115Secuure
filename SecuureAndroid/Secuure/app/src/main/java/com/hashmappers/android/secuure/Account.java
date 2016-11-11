@@ -1,5 +1,7 @@
 package com.hashmappers.android.secuure;
 
+import com.google.gson.JsonObject;
+
 /**
  * Created by voidtm on 10/15/16.
  * NOT IN USE
@@ -10,19 +12,29 @@ public class Account {
     String username;
     String password;
     String appName;
+    String note;
     // Public
     // Constructor
 
-    public Account(String userN, String pass, String appName) {
+    public Account(String userN, String pass, String appName, String note) {
         username = userN;
         password = pass;
         this.appName = appName;
+        this.note = note;
     }
 
     public Account(String userN, String pass) {
         username = userN;
         password = pass;
         appName = "(NONE)";
+        note =  "(NONE)";
+    }
+
+    public Account(JsonObject obj){
+        username = obj.get("account").toString();
+        password = obj.get("password").toString();
+        note = obj.get("notes").toString();
+        appName = obj.get("website").toString();
     }
 
     //Methods

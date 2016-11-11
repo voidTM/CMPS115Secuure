@@ -1,5 +1,7 @@
 package com.hashmappers.android.secuure;
 
+import com.google.gson.JsonObject;
+
 import java.util.HashMap;
 
 /**
