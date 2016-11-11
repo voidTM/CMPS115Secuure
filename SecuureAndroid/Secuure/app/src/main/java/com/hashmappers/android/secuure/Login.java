@@ -151,6 +151,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     // This method will take in a Json response from
     // server and then populate the current table.
     public void updateAccountTable(JsonArray array){
+        AccountTable table = Global.getAccountT();
 
         // id format will row number * 10 + fieldnumber
         for(int i = 0; i < array.size(); i++){
