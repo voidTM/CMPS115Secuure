@@ -150,28 +150,47 @@ class Secuure_GUI:
             list_accounts["Admin"] = "Password"
             label_usernames = []
             label_passwords = []
-            data = getPasswordsForUser(user_str)
 
             """ new """
+            """
+            data = getPasswordsForUser(user_str)
             for info in data:
                 label_usernames.append(tkinter.Label(self.window_info, text =
                     info[1] + " : "))
                 label_passwords.append(tkinter.Label(self.window_info, text =
                     info[2]))
+            """
 
-            """ old
+            """ old """
+            """"""
             for key in list_accounts:
                 label_usernames.append(tkinter.Label(self.window_info, text =
                     key + " : "))
                 label_passwords.append(tkinter.Label(self.window_info, text =
                     list_accounts[key]))
-            
-            """
+            """"""
+
             for index in range(0, len(label_usernames)):
                 label_user = label_usernames[index]
                 label_pass = label_passwords[index]
                 label_user.grid(row = index, column = 0)
                 label_pass.grid(row = index, column = 1)
+
+            # need to do this for every button (add account, remove account, etc)
+            blank_labels = [] # how to artificially make space
+            num_spaces = 10
+            space_start = 2
+            for i in range(0, num_spaces):
+                blank_labels.append(tkinter.Label(self.window_info, text = ' '))
+                blank_labels[i].grid(row  = 0, column = space_start + i)
+
+            button_add = tkinter.Button(self.window_info, text = "Add Account",
+                    command = self.donothing)
+            button_remove = tkinter.Button(self.window_info,
+            text = "Remove Account", command = self.donothing)
+            
+            button_add.grid(row = 0, column = space_start + num_spaces)
+            button_remove.grid(row = 1, column = space_start + num_spaces)
 
         def submit_account_registration(self):
             if (self.field_confpass.get() != self.field_pass.get()):
