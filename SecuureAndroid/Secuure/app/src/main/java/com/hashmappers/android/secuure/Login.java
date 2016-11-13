@@ -34,7 +34,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     String name;
     String accountEntry;
     TextView userWelcome;
-    //UserLocalStore userLocalStore;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private CoordinatorLayout lView;
@@ -54,7 +53,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         name = usr.getName();
 
         userWelcome.setText("Welcome " + name);
-        //userLocalStore = new UserLocalStore(this);
 
         lView = (CoordinatorLayout) findViewById(R.id.lLogin);
         TextView entry = new TextView(this);
@@ -127,30 +125,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 alert.show();
 /*              userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);*/
-/*                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popuplogout, null);
 
-                // Pressing the log out button, a popup window asks if you want to log out
-                popupWindow = new PopupWindow(container, 600, 300, true);
-                popupWindow.showAtLocation(lView, Gravity.CENTER, 0, 0);
-
-                // If you do not want to sign out just close the popup
-                Button bNo = (Button) container.findViewById(R.id.bNo);
-                bNo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
-
-                // If you do want to sign out, this should take you back to the log in screen
-                Button bYes = (Button) container.findViewById(R.id.bYes);
-                bYes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(Login.this, MainActivity.class));
-                    }
-                });*/
                 break;
             case R.id.addAccounts:
                 startActivity(new Intent(this, AddingAccounts.class));

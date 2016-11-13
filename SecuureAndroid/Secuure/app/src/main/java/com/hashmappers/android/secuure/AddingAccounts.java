@@ -2,6 +2,7 @@ package com.hashmappers.android.secuure;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ import static com.hashmappers.android.secuure.R.id.titleList;
 public class AddingAccounts extends AppCompatActivity implements View.OnClickListener {
 
     Button addList;
-    ImageButton imageButtonGP;
+    ImageButton imageButtonGP, imageButtonShowPass;
     EditText enterTitle, enterLogin, enterPassword, enterAdditionalNotes;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
@@ -47,10 +48,12 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
         enterAdditionalNotes = (EditText) findViewById(R.id.enterAdditionalNotes);
         addList = (Button) findViewById(R.id.addList);
         imageButtonGP = (ImageButton) findViewById(R.id.imageButtonGP);
+        imageButtonShowPass = (ImageButton) findViewById(R.id.imageButtonShowPass);
         relativeAddAccount = (RelativeLayout) findViewById(R.id.relativeAddAccount);
 
         addList.setOnClickListener(this);
         imageButtonGP.setOnClickListener(this);
+        imageButtonShowPass.setOnClickListener(this);
 
         // Adapter
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,titles);
@@ -93,6 +96,14 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 startActivity(new Intent(this, Login.class));
                 break;
             case R.id.imageButtonGP:
+                ImageButton imageButtonCL, imageButtonNum, imageButtonSym, imageButtonRefresh;
+
+                imageButtonCL = (ImageButton) findViewById(R.id.imageButtonCL);
+                imageButtonNum = (ImageButton) findViewById(R.id.imageButtonNum);
+                imageButtonSym = (ImageButton) findViewById(R.id.imageButtonSym);
+                imageButtonRefresh = (ImageButton) findViewById(R.id.imageButtonRefresh);
+
+
                 // Get the instance of the LayoutInflator
                 layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupgenpassword, null);
@@ -118,6 +129,9 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                         popupWindow.dismiss();
                     }
                 });
+                break;
+            case R.id.imageButtonShowPass:
+                enterPassword.setTransformationMethod(new PasswordTransformationMethod());
                 break;
         }
     }

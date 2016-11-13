@@ -21,7 +21,6 @@
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <activity android:name=".Register"></activity>
         <activity android:name=".Login"></activity>
-        <activity android:name=".Logout"></activity>
         <activity android:name=".AddingAccounts"></activity>
         <activity android:name=".EditingAccounts"></activity>
         <activity android:name=".AddingAccounts"></activity>

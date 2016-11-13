@@ -182,6 +182,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             AlertDialog alert = builder.create();
             alert.show();
         }
+            /* AlertDialog OptionDialog = new AlertDialog.Builder(this).create();
+    * background.setOnClickListener(new OnclickListener() {
+    *       public void onClick(View v) {
+    *           SetBackground();
+    *           OptionDialog.dismiss();
+    *       }
+    * }); */
     }
 
     /**
@@ -219,4 +226,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 //        AppIndex.AppIndexApi.end(client, getIndexApiAction());
 //        client.disconnect();
 //    }
+
+
+    // boolean connected = false;
+    // ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+    // if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        // connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+        // connected = true;
+    // } else {
+        // connected = false;
+    // }
 }
