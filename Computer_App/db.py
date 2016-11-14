@@ -85,6 +85,8 @@ def getPasswordsForUser(accountName):
             print(a, u, p, w, n)
     conn.close()
 
+
+#Removes entry from the table, all values have to match
 def removeEntry(accountName, username, pw, website, notes):
     (conn, cursor) = createCon()
     query = """DELETE FROM DATA WHERE
@@ -109,9 +111,6 @@ getPasswordsForUser("jking")
 print("After printing\n")
 removeEntry("jking", "sup yos", "mypass321test", "gmail", "last")
 getPasswordsForUser("jking")
-
-#c.execute(query)
-
 
 
 

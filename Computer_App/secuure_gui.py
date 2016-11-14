@@ -12,7 +12,7 @@ class Secuure_GUI:
         def __init__(self):
 
                 createMasterTable("accounts")
-                createPassTable("data")
+                createPassTable()
                 self.fscreen_en = False
                 self.userAccounts = {}# temporary users until backend is sorted out
                 self.userAccounts["Admin"] = "Password"
