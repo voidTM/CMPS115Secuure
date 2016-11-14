@@ -23,6 +23,5 @@
     
     $resultarray = Array("login" => $result);
     header("Content-Type: application/json");
-    echo $resultarray;
-    
+    echo json_encode($resultarray);
 ?>
