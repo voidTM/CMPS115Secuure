@@ -58,7 +58,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
-    $sql = "GRANT SELECT, INSERT, DELETE ON $dbname.* TO '$usr'@'localhost'";
+    $sql = "GRANT SELECT, INSERT, DELETE, UPDATE ON $dbname.* TO '$usr'@'localhost'";
     
     if (mysqli_query($conn, $sql)) {
     } else {
