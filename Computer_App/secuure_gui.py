@@ -11,6 +11,7 @@ class Secuure_GUI:
 
         def __init__(self):
 
+                self.bcolor = '#9ACAEE'
                 createMasterTable("accounts")
                 createPassTable()
                 self.fscreen_en = False
@@ -19,7 +20,7 @@ class Secuure_GUI:
         
                 self.root = tkinter.Tk() # set root to be toplevel window
                 self.root.title("Welcome to Secuure")
-                self.root.configure(background = 'cyan')
+                self.root.configure(background = self.bcolor)
                 
                 self.natwidth = self.root.winfo_screenwidth() # get native resolutions
                 self.natheight = self.root.winfo_screenheight()
@@ -40,14 +41,14 @@ class Secuure_GUI:
         
                 self.userentry = tkinter.Entry(self.root, bd = 5)
                 user_label = tkinter.Label(self.root, text = 'Username',
-                        background = 'cyan')
+                        background = self.bcolor)
                 self.passentry = tkinter.Entry(self.root, bd = 5, show = '*') # password is hidden
                 pass_label = tkinter.Label(self.root, text = 'Password',
-                        background = 'cyan')
+                        background = self.bcolor)
                 reg_button = tkinter.Button(self.root, text = "Register", command = self.register_account)
                 
                 blank_label = tkinter.Label(self.root, text = '', background =
-                        'cyan')
+                        self.bcolor)
                 
                 reg_button.grid(row = 4, column = 1)
                 blank_label.grid(row = 3, column = 100) # filling space
@@ -145,7 +146,7 @@ class Secuure_GUI:
 
         def list_account_info(self, user_str):
             self.window_info = tkinter.Toplevel()
-            self.window_info.configure(background = 'cyan')
+            self.window_info.configure(background = self.bcolor)
             self.window_info.geometry(("%dx%d") % (self.natwidth / 2,self.natheight / 2)) # start with a window
             self.window_info.title("Account Information for '%s'" % (user_str))
             self.window_info.bind('<Key>', self.map_list_account_info_key)
@@ -170,9 +171,9 @@ class Secuure_GUI:
             """"""
             for key in list_accounts:
                 label_usernames.append(tkinter.Label(self.window_info, text =
-                    key + " : ", background = 'cyan'))
+                    key + " : ", background = self.bcolor))
                 label_passwords.append(tkinter.Label(self.window_info, text =
-                    list_accounts[key], background = 'cyan'))
+                    list_accounts[key], background = self.bcolor))
             """"""
 
             for index in range(0, len(label_usernames)):
@@ -187,7 +188,7 @@ class Secuure_GUI:
             space_start = 2
             for i in range(0, num_spaces):
                 blank_labels.append(tkinter.Label(self.window_info, text = ' ',
-                    background = 'cyan'))
+                    background = self.bcolor))
                 blank_labels[i].grid(row  = 0, column = space_start + i)
 
             button_add = tkinter.Button(self.window_info, text = "Add Account",
@@ -224,13 +225,13 @@ class Secuure_GUI:
 
         def register_account(self):
             self.reg_win = tkinter.Toplevel(width = self.natwidth / 2, height = self.natheight / 2)
-            self.reg_win.configure(background = 'cyan')
+            self.reg_win.configure(background = self.bcolor)
             self.reg_win.geometry(("%dx%d") % (self.natwidth / 2,self.natheight / 2)) # start with a window
             self.reg_win.title("Register Account")
             self.reg_win.bind('<Key>', self.map_reg_key)
 
             label_blank = tkinter.Label(self.reg_win, text = '', background =
-                    'cyan')
+                    self.bcolor)
 
             button_submit = tkinter.Button(self.reg_win, text = "Submit",
                     width = 10, height = 3, command =
@@ -243,15 +244,15 @@ class Secuure_GUI:
             self.field_confpass = tkinter.Entry(self.reg_win, bd = 5, show = '*')
             
             label_fname = tkinter.Label(self.reg_win, text = "First Name",
-                    background = 'cyan')
+                    background = self.bcolor)
             label_lname = tkinter.Label(self.reg_win, text = "Last Name",
-                    background = 'cyan')
+                    background = self.bcolor)
             label_username = tkinter.Label(self.reg_win, text = "User Name",
-                    background = 'cyan')
+                    background = self.bcolor)
             label_pass = tkinter.Label(self.reg_win, text = "Password",
-                    background = 'cyan')
+                    background = self.bcolor)
             label_confpass = tkinter.Label(self.reg_win,
-                    text = "Confirm Password", background = 'cyan')
+                    text = "Confirm Password", background = self.bcolor)
             
             field_fname.grid(row = 0, column = 1) # trying to organize
             field_lname.grid(row = 1, column = 1)
