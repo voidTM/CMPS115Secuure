@@ -56,8 +56,12 @@ def verMasterLogin(login, login_pw):
 
 #Creates connection to local MySQL database
 def createCon():
-    conn = mysql.connector.connect(user='root', password='root',
-                                     host='localhost',database='secuuredb')
+    conn = mysql.connector.connect(user='cs115', password='insecuurity',
+                                     #host='192.168.0.107', #isaak's local ip
+                                     host = '98.234.141.183', # external ip
+                                     database='secuure')
+    # note the above host name is my local one: external IP is 98.234.141.183
+
     cursor = conn.cursor()
     return (conn, cursor)
 
@@ -80,10 +84,15 @@ def getPasswordsForUser(accountName):
     (conn, cursor) = createCon()
     query = ("""SELECT account, username, password, website, notes FROM DATA """)
     cursor.execute(query)
+    data = []
     for a, u, p, w, n in cursor:
         if accountName.lower() == a.lower():
-            print(a, u, p, w, n)
+            temp = []
+            temp.extend((a, u, p, w, n))
+            data.append(temp)
+            print(temp)
     conn.close()
+    return data
 
 
 #Removes entry from the table, all values have to match
@@ -105,12 +114,12 @@ createMasterTable("accounts")
 createPassTable()
 insertToUserTable("John", "King", "jking", "test")
 print("Before printing\n")
-addPass("jking", "sup yossssssss", "mypass3!!!21test", "gmail", "last")
-addPass("jking", "sup yos", "mypass321test", "gmail", "last")
-getPasswordsForUser("jking")
+#addPass("jking", "sup yossssssss", "mypass3!!!21test", "gmail", "last")
+#addPass("jking", "sup yos", "mypass321test", "gmail", "last")
+#getPasswordsForUser("jking")
 print("After printing\n")
-removeEntry("jking", "sup yos", "mypass321test", "gmail", "last")
-getPasswordsForUser("jking")
+#removeEntry("jking", "sup yos", "mypass321test", "gmail", "last")
+#getPasswordsForUser("jking")
 
 
 
