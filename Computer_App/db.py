@@ -2,7 +2,7 @@ import mysql.connector
 import difflib
 #initalizes database if table doesn't already exist
 def addToUserTable(user, pw):
-    (conn, cursor) = createCon("root","root")
+    (conn, cursor) = createCon('cs115','insecuurity')
     print(user, pw)
     try:
         create = ("""CREATE USER %s IDENTIFIED BY %s""")
@@ -24,30 +24,41 @@ def addToUserTable(user, pw):
     conn.close()
 
 
-#gets highest ID number in the table
-def getIdNum():
-    (conn, cursor) = createCon('root','root')
+#gets highest ID number in the USER table
+def getUserIdNum():
+    (conn, cursor) = createCon('cs115','insecuurity')
     cursor.execute("""SELECT ID from users""")
     max_id = 0
     for id in cursor:
         if id[0] > max_id:
             max_id = id[0]
+    conn.close()
+    return max_id + 1
+
+def getDataIdNum():
+    (conn, cursor) = createCon('cs115','insecuurity')
+    cursor.execute("""SELECT userid from data""")
+    max_id = 0
+    for id in cursor:
+        if id[0] > max_id:
+            max_id = id[0]
+    conn.close()
     return max_id + 1
 
 def createPassTable():
-    (conn, cursor) = createCon('root','root')
+    (conn, cursor) = createCon('cs115','insecuurity')
     cursor.execute("""CREATE TABLE IF NOT EXISTS data(
-                account text,
+                userid integer,
                 username text,
-                password text,
                 website text,
+                password text,
                 notes text
                 )""")
     conn.close()
 #inserts into the "accounts" table.
 #Thing to note: table to be inserted into CANNOT be a variable (must be hardcoded)
 def insertToUserTable(fname,lname, user):
-    (conn, cursor) = createCon('root','root')
+    (conn, cursor) = createCon('cs115','insecuurity')
     query = ("""SELECT username FROM users""")       #
     cursor.execute(query)                           #
     for u in cursor:                                # This piece checks if an account exists already
@@ -55,17 +66,15 @@ def insertToUserTable(fname,lname, user):
         if u[0].lower() == user.lower():           #
              print("Account name already exists")    #
              return                                  #
-    id = getIdNum()
-    insert = ("""INSERT IGNORE INTO users values (%d, %s, %s, %s)""") %(id, user, fname, lname)
-    print (insert)
-    cursor.execute(insert)
+    max_id = getUserIdNum()
+    cursor.execute("""INSERT IGNORE INTO users values (%s, %s, %s, %s)""", (max_id, user, fname, lname))
     conn.commit()
     conn.close()
 
 
 #Iterates over the database and looks for login and login_pw, if they match, returns true, otherwise false.
 def verMasterLogin(login, login_pw):
-    (conn, cursor) = createCon('root', 'root')
+    (conn, cursor) = createCon('cs115', 'insecuurity')
     query = ("""SELECT user,password FROM users""") #query to select all user/pw from table
     cursor.execute(query)
 
@@ -77,9 +86,11 @@ def verMasterLogin(login, login_pw):
     return False
 
 #Creates connection to local MySQL database
+# ***************REPLACES verMasterLogin******************
+#  Passwords for accounts are no longer stored on the db
 def createCon(user, pw):
     try:
-        conn = mysql.connector.connect(user=user, password=pw, host = 'localhost', database='secuuredb') #isaak: 98.234.141.183
+        conn = mysql.connector.connect(user=user, password=pw, host = '98.234.141.183', database='secuure') #isaak: 98.234.141.183
         cursor = conn.cursor()
         return (conn, cursor)
     except mysql.connector.Error as e:
@@ -91,43 +102,40 @@ def createCon(user, pw):
 
 
 #Adds a username and password for a specific website given by the user
-def addPassForWebsite(user, username, pw, website, notes):
-    (conn, cursor) = createCon()
-    query = ("""SELECT username, website FROM data """)
+def addPassForWebsite(username, pw, website, notes):
+    (conn, cursor) = createCon('cs115', 'insecuurity')
+    query = ("""SELECT account, website FROM data """)
     cursor.execute(query)
     for u, w in cursor:
         if u.lower() == username.lower() and website.lower() == w.lower():
             print("Duplicate entry in table, please try again")
             conn.close
             return
-    cursor.execute("""INSERT IGNORE INTO data values (%s, %s, %s, %s, %s)""", (user, username, pw, website, notes))
+    cursor.execute("""INSERT IGNORE INTO data values (%s, %s, %s, %s, %s)""", (getDataIdNum(), username, website, pw, notes))
     conn.commit()
     conn.close()
 
 #Prints passwords for a specified user
 def getPasswordsForUser(accountName):
-    (conn, cursor) = createCon()
-    query = ("""SELECT account, username, password, website, notes FROM DATA """)
+    (conn, cursor) = createCon('cs115','insecuurity')
+    query = ("""SELECT account, password, website, notes FROM DATA """)
     cursor.execute(query)
     data = []
-    for a, u, p, w, n in cursor:
+    for a, p, w, n in cursor:
         if accountName.lower() == a.lower():
-            temp = []
-            temp.extend((a, u, p, w, n))
-            data.append(temp)
-            print(temp)
+            print(a, p, w, n)
     conn.close()
     return data
 
 
 #Removes entry from the table, all values have to match
-def removeEntry(accountName, username, pw, website, notes):
-    (conn, cursor) = createCon()
+def removeEntry(username, pw, website, notes):
+    (conn, cursor) = createCon('cs115', 'insecuurity')
     query = """DELETE FROM DATA WHERE
-                account=%s && username=%s && password=%s && website=%s && notes=%s
+                account=%s && website=%s && password=%s && notes=%s
                 """
 
-    cursor.execute(query, (accountName, username, pw, website, notes))
+    cursor.execute(query, (username, website, pw, notes))
     conn.commit()
     conn.close()
 
@@ -136,17 +144,16 @@ def removeEntry(accountName, username, pw, website, notes):
 #      Testing      #
 #####################
 
-addToUserTable("josking","root")
-print(getIdNum())
+addToUserTable("josccking","root")
 #createPassTable()
-insertToUserTable('John', 'King', 'josckingking')
+insertToUserTable('John', 'King', 'joscddkingking')
 #print("Before printing\n")
-#addPassForWebsite("jking", "sup yossssssss", "mypass3!!!21test", "gmail", "last")
-#addPassForWebsite("jking", "sup yos", "mypass321test", "gmail", "last")
-#getPasswordsForUser("jking")
-#print("After printing\n")
-#removeEntry("jking", "sup yos", "mypass321test", "gmail", "last")
-#getPasswordsForUser("jking")
+addPassForWebsite("sup yossssssss", "mypass3!!!21test", "gmail", "last")
+addPassForWebsite("sup yos", "mypass321test", "gmail", "last")
+getPasswordsForUser("jking")
+print("After printing\n")
+#removeEntry("sup yos", "mypass321test", "gmail", "last")
+getPasswordsForUser("jking")
 
 
 
