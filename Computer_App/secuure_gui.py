@@ -158,23 +158,23 @@ class Secuure_GUI:
             label_passwords = []
 
             """ new """
-            """
+            """"""
             data = getPasswordsForUser(user_str)
             for info in data:
                 label_usernames.append(tkinter.Label(self.window_info, text =
                     info[1] + " : "))
                 label_passwords.append(tkinter.Label(self.window_info, text =
                     info[2]))
-            """
+            """"""
 
             """ old """
-            """"""
+            """
             for key in list_accounts:
                 label_usernames.append(tkinter.Label(self.window_info, text =
                     key + " : ", background = self.bcolor))
                 label_passwords.append(tkinter.Label(self.window_info, text =
                     list_accounts[key], background = self.bcolor))
-            """"""
+            """
 
             for index in range(0, len(label_usernames)):
                 label_user = label_usernames[index]
