@@ -30,12 +30,13 @@ Returns: Successful message or not depending if the login credentials are valid.
 read_accounts_mysql.php
 Parameters: arg_usr, arg_pwd
 Returns: Username and website string for each entry in the data table for a specific user.
-	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number to select all entries from the data table that also has that specific id number and returns a string containing all the account/website pairs for that user.  This will be parsed on the client side and used to display the table of accounts.	
+	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number to select all entries from the data table that also has that specific id number and returns a string containing all the account/website pairs for that user.  This will be parsed on the client side and used to display the table of accounts.
+	
 
 read_mysql.php
-Parameters: arg_usr, arg_pwd
-Returns: All entries within the data table created by a specific user.
-	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number to select all entries from the data table that also has that specific id number and returns the entries.
+Parameters: arg_usr, arg_pwd, arg_read_acc, arg_read_ws
+Returns: All entries within the data table created by a specific user that matches the passed in account and website values.
+	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number along with the provided account and website values to select all entries from the data table that also has those values and returns the entry.  The response string is then parsed on the client side into an array of strings.
 
 register_mysql.php
 Parameters: arg_usr, arg_pwd, arg_fname, arg_lname

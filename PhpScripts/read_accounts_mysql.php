@@ -55,7 +55,7 @@
     //Returns "accountname website | ...."
     foreach($accounts as $value) {
         echo "$value ";
-        echo " | ";
+        echo "|";
         
     }
     

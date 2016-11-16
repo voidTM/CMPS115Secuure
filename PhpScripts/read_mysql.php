@@ -5,6 +5,8 @@
     $password = $_POST['arg_pwd'];
     $dbname = secuure;
     $usertable= data;
+    $read_acc = $_POST['arg_read_acc'];
+    $read_ws = $_POST['arg_read_ws'];
     $uid = 0;
     
     // Fetch user id
@@ -33,7 +35,7 @@
     mysql_select_db($dbname, $connection);
  
     //Setup our query
-    $query = "SELECT * FROM $usertable WHERE userid=$uid";
+    $query = "SELECT * FROM $usertable WHERE userid=$uid AND account='$read_acc' AND website='$read_ws'";
  
     //Run the Query
     $result = mysql_query($query);
@@ -47,7 +49,7 @@
             $ws = $row[website];
             $pwd = $row[password];
             $note = $row[notes];
-            echo $acc . "  |  " . $ws . "  |  " . $pwd . " | " . $note . " - ";
+            echo $acc . " " . $ws . " " . $pwd . " " . $note . "|";
         }
     }
 ?>
