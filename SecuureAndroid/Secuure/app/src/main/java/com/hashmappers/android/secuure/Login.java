@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -47,6 +48,7 @@ public class Login extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
         bLogout = (Button) findViewById(R.id.bLogout);
         addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
@@ -57,7 +59,7 @@ public class Login extends Activity implements View.OnClickListener {
         User usr = Global.getUser();
         name = usr.getName();
         accountTable = new HashMap<Integer, Account>();
-        userWelcome.setText("");
+        //userWelcome.setText("");
         //userLocalStore = new UserLocalStore(this);
 
         lView = (CoordinatorLayout) findViewById(R.id.lLogin);
