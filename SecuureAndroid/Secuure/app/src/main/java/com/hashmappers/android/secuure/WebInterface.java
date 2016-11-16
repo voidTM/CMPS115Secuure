@@ -31,7 +31,7 @@ public interface WebInterface {
     Call<JsonArray> getAllAccounts(@Part("arg_usr")String usr, @Part("arg_pwd") String pwd);
 
     @Multipart
-    @DELETE("delete_mysql.php")
+    @POST("delete_mysql.php")
     Call<User> deleteAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
                          @Part("arg_del_acc") String acc, @Part("arg_del_ws") String name);
 

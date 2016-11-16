@@ -6,9 +6,31 @@
 
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:id="@+id/lLogin">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|end"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bLogout"
+                android:text="Log out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="top|right"
+                tools:background="?attr/colorControlHighlight" />
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
 
     <TextView
         android:text="Hello User"
@@ -16,33 +38,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/titleList"/>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    <Button
-        android:id="@+id/bLogout"
-        android:text="Log out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="top|end"
-        tools:background="?attr/colorControlHighlight" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -58,5 +53,13 @@
         app:backgroundTint="@color/colorAccent"
         app:layout_anchor="@+id/titleList"
         app:layout_anchorGravity="bottom|right" />
+
+    <TableLayout
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:id="@+id/titleList"
+        android:layout_width="match_parent" />
+
 
 </android.support.design.widget.CoordinatorLayout>
