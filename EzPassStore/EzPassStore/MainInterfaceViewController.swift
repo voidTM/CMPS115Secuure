@@ -8,16 +8,23 @@
 
 import UIKit
 
-class MainInterfaceViewController: UIViewController {
+class MainInterfaceViewController: UIViewController{
 
     //data passing from viewcontroller to mainintview
     @IBOutlet weak var loginUserLabel: UILabel!
     var username:String = ""
+    var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //set loginuserlabel from username passed in from viewcontroller
         loginUserLabel.text = username;
+//        let tableView = UITableView(frame: view.bounds)
+//        view.addSubview(tableView)
+//        self.tableView = tableView
+//        tableView.dataSource = self
+//        tableView.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -65,14 +72,31 @@ class MainInterfaceViewController: UIViewController {
     @IBAction func signoutButton(_ sender: AnyObject) {
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 5;
+//    }
+//    
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        
+//        let button : UIButton = UIButton(type:UIButtonType.custom) as UIButton
+//        
+//        button.frame = CGRect(origin: CGPoint(x: 40,y :60), size: CGSize(width: 100, height: 24))
+//        let cellHeight: CGFloat = 44.0
+//        button.center = CGPoint(x: view.bounds.width / 2.0, y: cellHeight / 2.0)
+//        button.backgroundColor = UIColor.red
+//        button.addTarget(self, action:Selector(("buttonClicked:")), for: UIControlEvents.touchUpInside)
+//        button.setTitle("Click Me !", for: UIControlState.normal)
+//        cell.addSubview(button)
+//        return cell
+//    }
 }
+
+//extension MainInterfaceViewController: UITableViewDataSource, UITableViewDelegate {
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//    
+//}
