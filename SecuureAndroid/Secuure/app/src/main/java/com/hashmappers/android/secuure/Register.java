@@ -57,11 +57,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 //User registeredData = new User(name, username, password);
                 User userID = Global.getUser();
-                UserTable userT = Global.getUserT();
                 WebInterface web = WebService.getService();
                 userID.setUser(firstName, username, password);
                 // Add to user table
-                userT.addUser(userID);
                 userID.printUser();
                 // registers user with database
 

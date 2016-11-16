@@ -131,7 +131,7 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 });
                 break;
             case R.id.imageButtonShowPass:
-                enterPassword.setTransformationMethod(new PasswordTransformationMethod());
+                //enterPassword.setTransformationMethod(new PasswordTransformationMethod());
                 break;
         }
     }

@@ -6,9 +6,9 @@ package com.hashmappers.android.secuure;
  */
 
 public class Global {
-    private static AccountTable accounts = null;
-    private static User usr = null;
-    private static UserTable userT = null;
+    private static AccountTable accounts = null; //may not use?
+    private static User usr = null; // Should remain static throughout
+    private static Account acc = null;
 
     public static synchronized AccountTable getAccountT()
     {
@@ -24,16 +24,22 @@ public class Global {
         return usr;
     }
 
-    public static synchronized UserTable getUserT(){
-        if(userT == null)
-            userT = new UserTable();
-        return userT;
+    public static synchronized Account getAcc(){
+        if(acc == null)
+            acc = new Account();
+        return acc;
     }
 
     public static synchronized void reset()
     {
         accounts = new AccountTable();
         usr = new User();
-        userT = new UserTable();
+        acc = new Account();
     }
+
+    public static synchronized void resetAccount(){
+        acc = new Account();
+    }
+
+
 }
