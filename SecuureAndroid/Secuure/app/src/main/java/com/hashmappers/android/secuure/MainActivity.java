@@ -153,6 +153,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     // Log error here since request failed
                     Log.w("Apicall", t.getMessage());
+                    //Send error status here too?
+                    switchToLogin(false);
                 }
             });
         }

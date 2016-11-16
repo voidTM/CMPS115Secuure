@@ -16,6 +16,12 @@ public class Account {
     // Public
     // Constructor
 
+    public Account() {
+        username = "username";
+        password = "password";
+        appName = "(NONE)";
+        note =  "(NONE)";
+    }
     public Account(String userN, String pass, String appName, String note) {
         username = userN;
         password = pass;
@@ -63,4 +69,8 @@ public class Account {
     public void changeUsername(String userN){
         username = userN;
     }
+
+    public void changeNote(String note){ this.note = note; }
+
+    public void changeApp(String appName){ this.appName = appName; }
 }

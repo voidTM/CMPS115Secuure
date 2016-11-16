@@ -21,6 +21,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.HashMap;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +32,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     FloatingActionButton addAccounts;
     Button bLogout;
     ListView list;
+    HashMap<Integer, Account> accountTable;
 
     String name;
     String accountEntry;
@@ -52,12 +55,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         userWelcome = (TextView) findViewById(R.id.textUserID);
         tLayout = (TableLayout) findViewById(R.id.titleList);
         User usr = Global.getUser();
-        UserTable userT = Global.getUserT();
         name = usr.getName();
 
         userWelcome.setText("Welcome ");
         //userLocalStore = new UserLocalStore(this);
-
+        accountTable = new HashMap<Integer, Account>();
         lView = (CoordinatorLayout) findViewById(R.id.lLogin);
         TextView entry = new TextView(this);
         String password = usr.getPassword();
@@ -151,6 +153,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     // This method will take in a Json response from
     // server and then populate the current table.
     public void updateAccountTable(JsonArray array){
+        // hash map takes id and account
 
         // id format will row number * 10 + fieldnumber
         for(int i = 0; i < array.size(); i++){
@@ -159,10 +162,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
             row.setId(id);
+
             JsonObject acc = array.get(i).getAsJsonObject();
             Log.w("Apicall", "Object: " + acc.toString());
 
-                    TextView nameField = new TextView(this);
+            // add account to accountTable.
+            accountTable.put(id, new Account(acc));
+
+            TextView nameField = new TextView(this);
             nameField.setId(id+1);
             nameField.setText(acc.get("website").toString());
             row.addView(nameField);
