@@ -27,6 +27,11 @@ Parameters: arg_usr, arg_pwd
 Returns: Successful message or not depending if the login credentials are valid.
 	Tests to see if the given user login credentials are valid to login to the MySQL server.  If valid, returns login success message, else returns access denied message.
 
+read_accounts_mysql.php
+Parameters: arg_usr, arg_pwd
+Returns: Username and website string for each entry in the data table for a specific user.
+	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number to select all entries from the data table that also has that specific id number and returns a string containing all the account/website pairs for that user.  This will be parsed on the client side and used to display the table of accounts.	
+
 read_mysql.php
 Parameters: arg_usr, arg_pwd
 Returns: All entries within the data table created by a specific user.

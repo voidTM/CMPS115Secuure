@@ -4,7 +4,8 @@
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
     $dbname = secuure;
-    $usertable= data;
+    $usertable = data;
+    $accounts = array();
     $uid = 0;
     
     // Fetch user id
@@ -45,9 +46,17 @@
         {
             $acc = $row[account];
             $ws = $row[website];
-            $pwd = $row[password];
-            $note = $row[notes];
-            echo $acc . "  |  " . $ws . "  |  " . $pwd . " | " . $note . " - ";
+            $str = $acc . " " . $ws;
+            array_push($accounts, $str);
+           
         }
     }
+    
+    //Returns "accountname website | ...."
+    foreach($accounts as $value) {
+        echo "$value ";
+        echo " | ";
+        
+    }
+    
 ?>
