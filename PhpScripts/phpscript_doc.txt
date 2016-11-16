@@ -1,0 +1,39 @@
+PhpScripts Documentation
+
+These php scripts control the interaction with the MySQL server.  The front end GUI sends information to the MySQL server via these php scripts which then also returns any information the server responded with to the front end.
+
+create_db_mysql.php
+Parameters: None
+Returns: Newly created secuure database which contains user and data tables.
+	Creates the necessary database and tables for Secuure app.  Specifically uses root privilege on the MySQL server to log in and create the secuure database which contains the user and data tables.  The user table stores a private unique id number for each user, their username, first name, and last name.  The user table is also created with a constraint which ensures unique usernames.  The data table is created with an id field which references the unique id number given to a user in the user table, account, website, password, and notes fields.  create_db_mysql.php is never executed by the end user, only used to initially set up the database and tables.
+
+delete_mysql.php
+Parameters: arg_usr, arg_pwd, arg_delete_acc, arg_del_ws
+Returns: Removes entry from database and returns confirmation back to user.
+	Removes a specific entry in the data table which corresponds to the user’s id number, and account and website fields provided as arguments by the user.  Uses the user’s provided username to identify their unique id number stored in the user table and uses this along with the provided account and website to select the specific entry in the data table to remove from the database.  Returns either a success message or unsuccessful message depending if the entry was removed or not.
+
+edit_mysql.php
+Parameters: arg_usr, arg_pwd, arg_edit_acc, arg_edit_ws, arg_edit_pwd, arg_edit_note
+Returns: Edits the password and/or notes field within the data table.
+	Edits the password and/or notes field within the data table given user provided account and website arguments.  Uses the user’s provided username to identify their unique id number stored in the user table and uses this along with the provided account and website to select the specific entry in the data table to edit.  Changes the password and notes field to the user specified values.  Returns either a success message or unsuccessful message depending if the entry was edited or not.
+
+insert_mysql.php 
+Parameters: arg_usr, arg_pwd, arg_add_acc, arg_add_ws, arg_add_pwd, arg_add_note
+Returns: Successful message or not depending if insert query worked.
+	Inserts a new entry into the data table given the user provided account, website, password, and notes.  Uses the user provided username to identify their unique id number stored in the user table and stores this in the new entry as well.  Returns successful message or unsuccessful message depending if the entry was correctly inserted or not into the database.
+
+login_mysql.php
+Parameters: arg_usr, arg_pwd
+Returns: Successful message or not depending if the login credentials are valid.
+	Tests to see if the given user login credentials are valid to login to the MySQL server.  If valid, returns login success message, else returns access denied message.
+
+read_mysql.php
+Parameters: arg_usr, arg_pwd
+Returns: All entries within the data table created by a specific user.
+	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number to select all entries from the data table that also has that specific id number and returns the entries.
+
+register_mysql.php
+Parameters: arg_usr, arg_pwd, arg_fname, arg_lname
+Returns: Success or unsuccessful message if a new user account with appropriate privileges has been correctly added to the MySQL database.
+	Uses the provided username, first name, and last name to create a new entry in the user table.  Also uses the username and password arguments to create a new user account on the MySQL database.  After user account is successfully added, it grants that user SELECT, INSERT, DELETE, and UPDATE privileges only on the secuure database.  If done correctly returns a success message, else returns an error message.  
+    
