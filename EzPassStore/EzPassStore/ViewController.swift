@@ -104,6 +104,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }else{
                 invalidLogin()
             }
+        }else{
+            invalidLogin()
         }
     }
     
