@@ -1,5 +1,5 @@
 <?php
-    //Setup connection variables
+    //Setup connection variables and user arguments
     $hostname = "localhost";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
@@ -26,7 +26,6 @@
     {
         while($row = mysql_fetch_array($result))
         {
-            //$records[] = $row;
             $uid = $row[id];
         }
         
@@ -42,6 +41,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    // Inserts data into the data table
     $sql = "INSERT INTO `$usertable` (`userid`, `account`, `website`, `password`, `notes`) VALUES ('$uid', '$acc', '$ws',  '$pwd', '$note')";
 
     if (mysqli_query($conn, $sql)) {

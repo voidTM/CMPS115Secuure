@@ -1,13 +1,11 @@
 <?php
-    //Setup connection variables
+    // Setup connection variables and user arguments
     $hostname = "localhost";
     $username = "root";
     $password = "";
     $dbname = secuure;
     $usertable = users;
     $datatable = data;
-
-    //Creates database
 
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password);
@@ -27,16 +25,16 @@
     mysqli_close($conn);
 
 
-    //Creates user table
+    // Creates user table
     
-    // Create connection
+    // Create connection to database
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error() . "\r\n");
     }
 
-    //Create table
+    //Create user table
     $sql = "CREATE TABLE $usertable ( `id` INT NOT NULL AUTO_INCREMENT, `username` VARCHAR(50) NOT NULL, `first_name` VARCHAR(50) NOT NULL, `last_name` VARCHAR(50) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB";
 
     if (mysqli_query($conn, $sql)) {
@@ -48,7 +46,7 @@
     mysqli_close($conn);
 
     
-    //Ensure unique usernames
+    // Ensure unique usernames
     
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -57,7 +55,7 @@
         die("Connection failed: " . mysqli_connect_error() . "\r\n");
     }
     
-    //Alter user talbe
+    // Alter user talbe to have constraint
     $sql = "ALTER TABLE $usertable ADD CONSTRAINT uniqueness UNIQUE (username)";
     
     if (mysqli_query($conn, $sql)) {
@@ -67,9 +65,6 @@
     
     mysqli_close($conn);
     
-    
-    //Creates data table
-    
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     // Check connection
@@ -77,7 +72,7 @@
         die("Connection failed: " . mysqli_connect_error() . "\r\n");
     }
     
-    //Create table
+    // Create data table
     $sql = "CREATE TABLE $datatable ( `userid` INT NOT NULL REFERENCES $usertable(`id`) , `account` VARCHAR(50) NOT NULL , `website` VARCHAR(50) NOT NULL, `password` VARCHAR(50) NOT NULL, `notes` VARCHAR(500) NOT NULL ) ENGINE = InnoDB";
     
     if (mysqli_query($conn, $sql)) {

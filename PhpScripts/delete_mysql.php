@@ -1,5 +1,5 @@
 <?php
-    //Setup connection variables
+    //Setup connection variables and user arguments
     $hostname = "localhost";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
@@ -10,21 +10,20 @@
     $uid = 0;
 
     // Fetch user id
-    //Connect to the database
+    // Connect to the database
     $connection = mysql_connect($hostname, $username, $password);
     mysql_select_db($dbname, $connection);
 
     $query = "SELECT id FROM users WHERE username='$username'";
     
-    //Run the Query
+    // Run the Query
     $result = mysql_query($query);
     
-    //Find the id for a particular username
+    // Find the id for a particular username
     if($result)
     {
         while($row = mysql_fetch_array($result))
         {
-            //$records[] = $row;
             $uid = $row[id];
         }
         
@@ -40,6 +39,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    // Sends query to the database to delete entry
     $sql = "DELETE FROM `$usertable` WHERE `userid`='$uid' and `account`='$acc' and `website`='$ws'";
 
     if (mysqli_query($conn, $sql)) {

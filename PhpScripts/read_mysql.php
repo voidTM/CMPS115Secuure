@@ -1,5 +1,5 @@
 <?php
-    //Setup connection variables
+    //Setup connection variables and user arguments
     $hostname = "localhost";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
@@ -22,7 +22,6 @@
     {
         while($row = mysql_fetch_array($result))
         {
-            //$records[] = $row;
             $uid = $row[id];
         }
         
