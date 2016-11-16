@@ -1,5 +1,5 @@
 <?php
-    //Setup connection variables
+    //Setup connection variables and user arguments
     $hostname = "localhost";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
@@ -26,14 +26,12 @@
     {
         while($row = mysql_fetch_array($result))
         {
-            //$records[] = $row;
             $uid = $row[id];
         }
         
     }
 
-
-    // Insert data
+    // Edit data
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
    
@@ -42,6 +40,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    // Updates password and/notes depending on account name and website
     $sql = "UPDATE $usertable SET password='$pwd', notes='$note' WHERE userid='$uid' AND account='$acc' AND website='$ws'";
 
     if (mysqli_query($conn, $sql)) {

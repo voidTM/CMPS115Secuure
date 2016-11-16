@@ -1,5 +1,5 @@
 <?php
-    //Setup connection variables
+    //Setup connection variables and user arguments
     $hostname = "localhost";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
@@ -21,6 +21,7 @@
 
     mysqli_close($conn);
     
+    // Return login result
     $resultarray = Array("login" => $result);
     header("Content-Type: application/json");
     echo json_encode($resultarray);

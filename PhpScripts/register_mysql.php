@@ -1,5 +1,5 @@
 <?php
-    //Setup connection variables
+    // Setup connection variables and user arguments
     $hostname = "localhost";
     $username = "root";
     $password = "";
@@ -18,6 +18,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    // Inserts user data into user table
     $sql = "INSERT INTO `$usertable` (`username`, `first_name`, `last_name`) VALUES ('$usr', '$firstname', '$lastname')";
 
     if (mysqli_query($conn, $sql)) {
@@ -58,6 +59,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
+    // Grants users SELECT, INSERT, DELETE, and UPDATE privileges only on secuure database
     $sql = "GRANT SELECT, INSERT, DELETE, UPDATE ON $dbname.* TO '$usr'@'localhost'";
     
     if (mysqli_query($conn, $sql)) {
