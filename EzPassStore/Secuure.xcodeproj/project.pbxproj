@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910103121DDD8DA9004F4B68 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910103111DDD8DA9004F4B68 /* InfoViewController.swift */; };
 		9187C03A1DAACB2400B1079B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0391DAACB2400B1079B /* AppDelegate.swift */; };
 		9187C03C1DAACB2400B1079B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C03B1DAACB2400B1079B /* ViewController.swift */; };
 		9187C03F1DAACB2400B1079B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9187C03D1DAACB2400B1079B /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		910103111DDD8DA9004F4B68 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9187C0361DAACB2400B1079B /* Secuure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Secuure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9187C0391DAACB2400B1079B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9187C03B1DAACB2400B1079B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				9187C0391DAACB2400B1079B /* AppDelegate.swift */,
 				9187C03D1DAACB2400B1079B /* Main.storyboard */,
+				910103111DDD8DA9004F4B68 /* InfoViewController.swift */,
 				91D8E6421DC5B2F0004BDB2A /* PassViewController.swift */,
 				9187C03B1DAACB2400B1079B /* ViewController.swift */,
 				919C00E51DC5A6B6003927A6 /* AddViewController.swift */,
@@ -313,6 +316,7 @@
 				91D8E6431DC5B2F0004BDB2A /* PassViewController.swift in Sources */,
 				9187C03C1DAACB2400B1079B /* ViewController.swift in Sources */,
 				919C00E61DC5A6B6003927A6 /* AddViewController.swift in Sources */,
+				910103121DDD8DA9004F4B68 /* InfoViewController.swift in Sources */,
 				9187C03A1DAACB2400B1079B /* AppDelegate.swift in Sources */,
 				9187C06C1DB6E08B00B1079B /* EmailVerifyViewController.swift in Sources */,
 				9187C06A1DB2BA9200B1079B /* MainInterfaceViewController.swift in Sources */,
