@@ -81,6 +81,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             //api success
                             //Boolean sucess //= response.body();
                             Log.w("Apicall", "Successful register");
+                            Log.w("ApiRegister",response.body());
                         }
 
                         @Override

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,43 +8,45 @@
 
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:id="@+id/lLogin">
-
-    <TextView
-        android:text="Hello User"
-        android:id="@+id/textUserID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TableLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/titleList"/>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    <Button
-        android:id="@+id/bLogout"
-        android:text="Log out"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="top|end"
-        tools:background="?attr/colorControlHighlight" />
+        android:fitsSystemWindows="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Secuure"
+                android:id="@+id/textUserID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textAlignment="viewStart"
+                android:textColor="#ffffffff"
+                android:layout_gravity="start|center_vertical"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif" />
+
+            <Button
+                android:id="@+id/bLogout"
+                android:text="Log out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                tools:background="?attr/colorControlHighlight"
+                app:layout_anchorGravity="top|right" />
+
+        </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -55,8 +59,18 @@
         android:elevation="4dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
         app:backgroundTint="@color/colorAccent"
         app:layout_anchor="@+id/titleList"
-        app:layout_anchorGravity="bottom|right" />
+        app:layout_anchorGravity="bottom|right"
+        android:layout_marginLeft="12dp" />
+
+    <TableLayout
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:id="@+id/titleList"
+        android:layout_width="match_parent" />
+
 
 </android.support.design.widget.CoordinatorLayout>

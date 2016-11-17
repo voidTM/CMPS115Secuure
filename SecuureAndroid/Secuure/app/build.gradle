@@ -34,4 +34,5 @@ dependencies {
     // Supposed to be able to create a circular floating action button
     compile 'com.android.support:design:24.2.1'
 
+    compile 'com.android.support:recyclerview-v7:24.2.1'
 }
