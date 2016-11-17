@@ -23,7 +23,6 @@
         <activity android:name=".Login"></activity>
         <activity android:name=".AddingAccounts"></activity>
         <activity android:name=".EditingAccounts"></activity>
-        <activity android:name=".AddingAccounts"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

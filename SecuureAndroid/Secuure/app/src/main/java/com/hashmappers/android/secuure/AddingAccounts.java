@@ -2,6 +2,7 @@ package com.hashmappers.android.secuure;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
@@ -35,6 +36,7 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
     private RelativeLayout relativeAddAccount;
     //ArrayList<String> titles = new ArrayList<String>();
     //ArrayAdapter<String> adapter;
+    boolean isClicked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,19 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
 
         addList.setOnClickListener(this);
         imageButtonGP.setOnClickListener(this);
-        imageButtonShowPass.setOnClickListener(this);
+        // Should show password if it is hidden
+        imageButtonShowPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isClicked) {
+                    enterPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    isClicked = false;
+                } else if (isClicked) {
+                    enterPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    isClicked = true;
+                }
+            }
+        });
 
         // Adapter
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,titles);
@@ -129,9 +143,6 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                         popupWindow.dismiss();
                     }
                 });
-                break;
-            case R.id.imageButtonShowPass:
-                //enterPassword.setTransformationMethod(new PasswordTransformationMethod());
                 break;
         }
     }

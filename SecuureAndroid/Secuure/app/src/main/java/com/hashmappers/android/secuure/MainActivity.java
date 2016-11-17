@@ -2,6 +2,8 @@ package com.hashmappers.android.secuure;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
@@ -64,8 +66,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         bSignUp = (Button) findViewById(R.id.bSignUp);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
 
-        bLogin.setOnClickListener(this);
-        bSignUp.setOnClickListener(this);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            bLogin.setOnClickListener(this);
+            bSignUp.setOnClickListener(this);
+        } else {
+            Toast pass = Toast.makeText(MainActivity.this, "Not Connected", Toast.LENGTH_SHORT);
+            pass.show();
+        }
 
         // userLocalStore = new UserLocalStore(this);
 
@@ -81,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogin:
-             // Converts username and password to string
+                // Converts username and password to string
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
                 WebInterface web = WebService.getService();
@@ -161,8 +170,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
-    void switchToLogin(boolean loggedIn){
-        if(loggedIn) {
+    void switchToLogin(boolean loggedIn) {
+        if (loggedIn) {
             Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
             User usr = Global.getUser();
             usr.setANUser(username, password);
@@ -170,17 +179,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             pass.show();
             //startActivity(new Intent(MainActivity.this, Login.class));
             startActivity(new Intent(this, Login.class)); //Causing problems
-            } else {
+        } else {
             // Display the popup window in the center of screen if you fail to log in correctly
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
             builder.setMessage("Error: Invalid Log In")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(MainActivity.this, MainActivity.class));
-                        }
-                    });
+                    .setPositiveButton("OK", null);
             AlertDialog alert = builder.create();
             alert.show();
         }
@@ -229,13 +233,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 //        client.disconnect();
 //    }
 
-
+// public boolean checkConnectivity() {
     // boolean connected = false;
     // ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
     // if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-        // connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-        // connected = true;
+    // connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+    // connected = true;
     // } else {
-        // connected = false;
+    // connected = false;
     // }
+//}
+
 }

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -31,7 +32,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton addAccounts;
     Button bLogout;
-    TableLayout list;
     HashMap<Integer, Account> accountTable;
 
     String name;
@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private CoordinatorLayout lView;
+    private TableLayout tLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
         bLogout = (Button) findViewById(R.id.bLogout);
         addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
-        list = (TableLayout) findViewById(R.id.titleList);
+        tLayout = (TableLayout) findViewById(R.id.titleList);
+
         bLogout.setOnClickListener(this);
         addAccounts.setOnClickListener(this);
         userWelcome = (TextView) findViewById(R.id.textUserID);
@@ -135,8 +137,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         }
     }
-<<<<<<< HEAD
-=======
 
     // This method will take in a Json response from
     // server and then populate the current table.
@@ -171,5 +171,4 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
->>>>>>> refs/remotes/origin/Android-App-JB
 }

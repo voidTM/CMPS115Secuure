@@ -69,12 +69,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
 
                     builder.setMessage("Error: Passwords Don't Match")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    startActivity(new Intent(Register.this, Register.class));
-                                }
-                            });
+                            .setPositiveButton("OK", null);
                     AlertDialog alert = builder.create();
                     alert.show();
                 } else {
