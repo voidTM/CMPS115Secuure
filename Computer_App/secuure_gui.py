@@ -12,7 +12,7 @@ class Secuure_GUI:
         def __init__(self):
 
                 self.bcolor = '#9ACAEE'
-                createMasterTable("accounts")
+                #createMasterTable("accounts")
                 createPassTable()
                 self.fscreen_en = False
                 self.userAccounts = {}# temporary users until backend is sorted out
@@ -192,9 +192,9 @@ class Secuure_GUI:
                 blank_labels[i].grid(row  = 0, column = space_start + i)
 
             button_add = tkinter.Button(self.window_info, text = "Add Account",
-                    command = self.donothing)
+                    command = self.add_account_window)
             button_remove = tkinter.Button(self.window_info,
-            text = "Remove Account", command = self.donothing)
+            text = "Remove Account", command = self.remove_account_window)
             
             button_add.grid(row = 0, column = space_start + num_spaces)
             button_remove.grid(row = 1, column = space_start + num_spaces)
@@ -269,6 +269,18 @@ class Secuure_GUI:
             label_blank.grid(row = 5, column = 1)
 
             button_submit.grid(row = 6, column = 1)
+
+        def add_account_window(self):
+            window_add_acc = tkinter.Toplevel()
+            window_add_acc.configure(background = self.bcolor)
+            window_add_acc.geometry(("%dx%d") % (self.natwidth / 2,self.natheight / 2)) # start with a window
+            window_add_acc.title("Add Account")
+
+        def remove_account_window(self):
+            window_rem_acc = tkinter.Toplevel()
+            window_rem_acc.configure(background = self.bcolor)
+            window_rem_acc.geometry(("%dx%d") % (self.natwidth / 2,self.natheight / 2)) # start with a window
+            window_rem_acc.title("Remove Account")
 
         def donothing(self):
             return
