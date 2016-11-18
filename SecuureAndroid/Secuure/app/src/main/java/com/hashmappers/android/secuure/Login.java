@@ -9,6 +9,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,11 @@ public class Login extends Activity implements View.OnClickListener {
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private CoordinatorLayout lView;
-    private TableLayout tLayout;
+    //private TableLayout tLayout;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +60,17 @@ public class Login extends Activity implements View.OnClickListener {
         addAccounts = (FloatingActionButton)findViewById(R.id.addAccounts);
         bLogout.setOnClickListener(this);
         addAccounts.setOnClickListener(this);
-        userWelcome = (TextView) findViewById(R.id.textUserID);
-        tLayout = (TableLayout) findViewById(R.id.titleList);
+        //tLayout = (TableLayout) findViewById(R.id.titleList);
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        accountTable = new HashMap<Integer, Account>();
+        mAdapter = new AccountAdapter(accountTable);
+        mRecyclerView.setAdapter(mAdapter);
+        //HashMap<String, Account> query = new HashMap<String, Account>();
+
         User usr = Global.getUser();
         name = usr.getName();
-        accountTable = new HashMap<Integer, Account>();
         //userWelcome.setText("");
         //userLocalStore = new UserLocalStore(this);
 
@@ -138,8 +150,8 @@ public class Login extends Activity implements View.OnClickListener {
     // server and then populate the current table.
     public void updateAccountTable(JsonArray array){
         // hash map takes id and account
-
         // id format will row number * 10 + fieldnumber
+        Log.w("Apicall", "Jsonarray: " + array.size());
         for(int i = 0; i < array.size(); i++){
             int id = i * 10;
             TableRow row = new TableRow(this);
@@ -164,9 +176,13 @@ public class Login extends Activity implements View.OnClickListener {
             //accnameField.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
             row.addView(accnameField);
 
-            tLayout.addView(row);
+            //tLayout.addView(row);
             accountTable.put(id, new Account(acc));
+            Log.d("Size", "Currently: " + accountTable.size());
         }
-
+        mAdapter = new AccountAdapter(accountTable);
+        mRecyclerView.setAdapter(mAdapter);
+        //mAdapter.notifyDataSetChanged();
+        //mRecyclerView.hasPendingAdapterUpdates();
     }
 }

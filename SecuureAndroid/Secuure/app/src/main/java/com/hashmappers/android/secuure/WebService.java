@@ -32,7 +32,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class WebService {
     // Attempt to access the web
-    //public static String BASE_URL = "http://98.234.141.183:3306/";
+    //public static String BASE_URL = "http://98.234.141.183:8080/";
     public static String BASE_URL = "http://10.0.2.2/";
     private static WebInterface service;
 

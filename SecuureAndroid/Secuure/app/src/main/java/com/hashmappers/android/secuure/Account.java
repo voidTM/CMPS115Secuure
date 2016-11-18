@@ -48,6 +48,12 @@ public class Account {
         return username;
     }
 
+    public String getAppName() { return appName; }
+
+    public String getNote() { return note; }
+
+    public String getPassword() { return password; }
+
     public Boolean checkPassword(String pass){
         if (password ==  pass)
             return true;

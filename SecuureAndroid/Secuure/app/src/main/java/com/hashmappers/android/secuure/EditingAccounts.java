@@ -25,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.hashmappers.android.secuure.R.id.titleList;
+//import static com.hashmappers.android.secuure.R.id.titleList;
 
 // Assuming an account has been passed over it will edit or delete the account
 public class EditingAccounts extends AppCompatActivity implements View.OnClickListener {
