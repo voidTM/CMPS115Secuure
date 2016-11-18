@@ -172,7 +172,7 @@ public class Login extends Activity implements View.OnClickListener {
 
             TextView accnameField = new TextView(this);
             accnameField.setId(id+2);
-            accnameField.setText(acc.get("account").toString());
+            accnameField.setText(acc.get("account").getAsString());
             //accnameField.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
             row.addView(accnameField);
 
