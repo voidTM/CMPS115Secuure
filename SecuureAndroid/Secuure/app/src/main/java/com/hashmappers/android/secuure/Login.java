@@ -36,7 +36,6 @@ public class Login extends Activity implements View.OnClickListener {
 
     FloatingActionButton addAccounts;
     Button bLogout;
-    TableLayout list;
     HashMap<Integer, Account> accountTable;
 
     String name;
