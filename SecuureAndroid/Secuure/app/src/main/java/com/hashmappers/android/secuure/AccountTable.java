@@ -13,6 +13,7 @@ import java.util.HashMap;
  public class AccountTable{
     // Private
 	private Integer counter;
+    private HashMap<String, String> website;
     private HashMap<String, Account> accounts;
 
     //Public

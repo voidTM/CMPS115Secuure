@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.hashmappers.android.secuure.R.id.titleList;
+//import static com.hashmappers.android.secuure.R.id.titleList;
 
 public class AddingAccounts extends AppCompatActivity implements View.OnClickListener {
 
