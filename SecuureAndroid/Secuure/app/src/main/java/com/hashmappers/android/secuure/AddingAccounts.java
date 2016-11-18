@@ -110,39 +110,8 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 startActivity(new Intent(this, Login.class));
                 break;
             case R.id.imageButtonGP:
-                ImageButton imageButtonCL, imageButtonNum, imageButtonSym, imageButtonRefresh;
-
-                imageButtonCL = (ImageButton) findViewById(R.id.imageButtonCL);
-                imageButtonNum = (ImageButton) findViewById(R.id.imageButtonNum);
-                imageButtonSym = (ImageButton) findViewById(R.id.imageButtonSym);
-                imageButtonRefresh = (ImageButton) findViewById(R.id.imageButtonRefresh);
-
-
-                // Get the instance of the LayoutInflator
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupgenpassword, null);
-
-                // Display the popup window in the center of screen if you fail to log in correctly
-                popupWindow = new PopupWindow(container, 800, 800, true);
-                popupWindow.showAtLocation(relativeAddAccount, Gravity.CENTER, 0, 0);
-
-                // Hit the 'OK' button to save the generated password
-                Button buttonOk = (Button) container.findViewById(R.id.buttonOk);
-                buttonOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
-
-                // Hit the "CANCEL' button to not save the generated password
-                Button buttonCancel = (Button) container.findViewById(R.id.buttonCancel);
-                buttonCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
+                // Goes to the password generator window
+                startActivity(new Intent(this,PasswordGenerator.class));
                 break;
         }
     }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Secuure</string>
+    <string name="title_activity_password_generator">PasswordGenerator</string>
 </resources>
