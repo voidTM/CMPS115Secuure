@@ -10,7 +10,8 @@
         android:layout_gravity="center|start"
         android:layout_margin="8dp"
         android:layout_weight="1"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:background = "@drawable/borders"/>
 
     <TextView
         android:id="@+id/accName"
@@ -18,8 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|start"
         android:layout_margin="8dp"
-        android:layout_weight="3"
-        android:textSize="24sp" />
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background = "@drawable/borders"/>
 
 
 </LinearLayout>

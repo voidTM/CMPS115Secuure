@@ -64,7 +64,7 @@ public class Login extends Activity implements View.OnClickListener {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         accountTable = new HashMap<Integer, Account>();
-        mAdapter = new AccountAdapter(accountTable);
+        mAdapter = new AccountAdapter(accountTable, this);
         mRecyclerView.setAdapter(mAdapter);
         //HashMap<String, Account> query = new HashMap<String, Account>();
 
@@ -179,7 +179,7 @@ public class Login extends Activity implements View.OnClickListener {
             accountTable.put(id, new Account(acc));
             Log.d("Size", "Currently: " + accountTable.size());
         }
-        mAdapter = new AccountAdapter(accountTable);
+        mAdapter = new AccountAdapter(accountTable, this);
         mRecyclerView.setAdapter(mAdapter);
         //mAdapter.notifyDataSetChanged();
         //mRecyclerView.hasPendingAdapterUpdates();

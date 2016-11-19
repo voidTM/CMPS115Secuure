@@ -82,16 +82,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="42dp" />
 
-    <Button
-        android:id="@+id/delete"
-        android:text="Delete"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Edit"
-        android:layout_alignBottom="@+id/Edit"
-        android:layout_toEndOf="@+id/Edit" />
-
-    <ImageButton
+ <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_view"
@@ -99,5 +90,14 @@
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:layout_alignTop="@+id/enterPassword"
         android:layout_alignEnd="@+id/delete" />
+
+ <Button
+     android:id="@+id/delete"
+     android:text="Delete"
+     android:layout_width="200dp"
+     android:layout_height="wrap_content"
+     android:layout_alignTop="@+id/edit"
+     android:layout_alignParentRight="true"
+     android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

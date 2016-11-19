@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
@@ -32,9 +33,11 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
 
     Button edit, delete;
     EditText enterTitle, enterLogin, enterPassword, enterAdditionalNotes;
+    TextView tile, login;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeEditAccount;
+    private Account acc;
     //ArrayList<String> titles = new ArrayList<String>();
     //ArrayAdapter<String> adapter;
 

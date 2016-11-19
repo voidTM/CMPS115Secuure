@@ -2,16 +2,22 @@ package com.hashmappers.android.secuure;
 
 import android.content.Context;
 import android.content.Intent;
+import android.renderscript.RenderScript;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+
+import static android.support.v4.app.ActivityCompat.startActivity;
+
+//import static android.support.v4.app.ActivityCompatJB.startActivity;
 
 /**
  * Created by voidtm on 11/16/16.
@@ -20,7 +26,7 @@ import java.util.Hashtable;
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountHolder> {
 
     //HashMap<String, HashMap<String, Account>> accounts;
-    private Context context;
+    Context context;
     HashMap<Integer, Account> accountTable;
     ArrayList accList;
 
@@ -29,11 +35,13 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
         private TextView wsName;
         private TextView accName;
         private Account acc;
-        public AccountHolder(View v) {
+        private Context context;
+        public AccountHolder(View v, Context cont) {
             super(v);
             accName = (TextView) v.findViewById(R.id.accName);
             wsName = (TextView) v.findViewById(R.id.wsName);
             v.setOnClickListener(this);
+            this.context = cont;
         }
 
         public void bindAccount(Account a) {
@@ -50,18 +58,19 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
             Account editAccount = Global.getAcc();
             editAccount = acc;
             // should jump to editingAccounts from here
-            //startActivity(new Intent(this, .class));
+            context.startActivity(new Intent(context, EditingAccounts.class));
         }
     }
 
 
-    public AccountAdapter(HashMap<Integer, Account> map) {
+    public AccountAdapter(HashMap<Integer, Account> map, Context context) {
 
         // Hashmap is duplicated into an list for easy display
         // brings the question is array needed?
         accountTable = map;
         accList = new ArrayList();
         accList.addAll(accountTable.entrySet());
+        this.context = context;
     }
 
     @Override
@@ -69,7 +78,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
         View node = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_acc_row, parent, false);
         //node.setBackground("border.xml");
-        return new AccountHolder(node);
+        return new AccountHolder(node, context);
 
     }
 
