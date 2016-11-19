@@ -33,7 +33,7 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
 
     Button edit, delete;
     EditText enterTitle, enterLogin, enterPassword, enterAdditionalNotes;
-    TextView tile, login;
+    TextView title, login;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeEditAccount;
@@ -47,13 +47,24 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_editing_accounts);
 
         // Initialize the variables used
-        enterTitle = (EditText) findViewById(R.id.enterTitle); // Should not be editable
-        enterLogin = (EditText) findViewById(R.id.enterLogin); // Should not be editable
+        title = (TextView) findViewById(R.id.title);
+        login = (TextView) findViewById(R.id.login);
         enterPassword = (EditText) findViewById(R.id.enterPassword);
         enterAdditionalNotes = (EditText) findViewById(R.id.enterAdditionalNotes);
         edit = (Button) findViewById(R.id.edit);
         delete = (Button) findViewById(R.id.delete);
         relativeEditAccount = (RelativeLayout) findViewById(R.id.relativeEditAccount);
+
+        acc = Global.getAcc();
+        Log.w("check", acc.getAppName());
+        Log.w("check", acc.getUsername());
+        Log.w("check", acc.getPassword());
+        Log.w("check", acc.getNote());
+
+        title.setText(acc.getAppName());
+        login.setText(acc.getUsername());
+        enterPassword.setText(acc.getPassword());
+        enterAdditionalNotes.setText(acc.getNote());
 
         edit.setOnClickListener(this);
         delete.setOnClickListener(this);

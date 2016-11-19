@@ -36,6 +36,13 @@ public class Account {
         note =  "(NONE)";
     }
 
+    public Account(Account copy){
+        this.username = copy.username;
+        this.password = copy.password;
+        this.appName = copy.appName;
+        this.note = copy.note;
+    }
+
     public Account(JsonObject obj){
         username = obj.get("account").toString();
         password = obj.get("password").toString();
@@ -66,6 +73,13 @@ public class Account {
             return true;
         else
             return false;
+    }
+
+    public void set(Account copy){
+        this.username = copy.username;
+        this.password = copy.password;
+        this.appName = copy.appName;
+        this.note = copy.note;
     }
 
     public void changePassword(String pass) {
