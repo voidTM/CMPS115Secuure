@@ -11,10 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="24sp"
-        android:background = "@drawable/borders"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:background = "@drawable/borders" />
 
     <ImageView
         android:layout_width="wrap_content"
