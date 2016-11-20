@@ -13,17 +13,6 @@
         android:textSize="24sp"
         android:background = "@drawable/borders" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_dialog_info"
-        android:id="@+id/imageInfo"
-        android:layout_alignTop="@+id/wsName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp" />
-
     <TextView
         android:id="@+id/accName"
         android:layout_width="150dp"
@@ -35,6 +24,18 @@
         android:layout_alignBottom="@+id/wsName"
         android:layout_toRightOf="@+id/wsName"
         android:layout_toEndOf="@+id/wsName" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_info"
+        android:id="@+id/imageInfo"
+        android:background="@color/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/accName"
+        android:layout_toEndOf="@+id/accName"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp" />
 
 
 </RelativeLayout>

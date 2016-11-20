@@ -38,8 +38,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
         private Context context;
         public AccountHolder(View v, Context cont) {
             super(v);
-            accName = (TextView) v.findViewById(R.id.accName);
-            wsName = (TextView) v.findViewById(R.id.wsName);
+            accName = (TextView) v.findViewById(R.id.account);
+            wsName = (TextView) v.findViewById(R.id.website);
             v.setOnClickListener(this);
             this.context = cont;
         }
@@ -76,7 +76,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
     @Override
     public AccountAdapter.AccountHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View node = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_acc_row, parent, false);
+                .inflate(R.layout.view_acc_row, parent, false);
         //node.setBackground("border.xml");
         return new AccountHolder(node, context);
 
