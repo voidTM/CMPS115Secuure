@@ -11,8 +11,11 @@ import UIKit
 
 class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-    var username:String = ""
-    var accountArray: [String] = []
+    var user:String = ""
+    var pass:String = ""
+    var cellLabel:String = ""
+    //parse result
+    var parse_response = [String]()
     
     @IBOutlet weak var loginUserLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -20,27 +23,67 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("USER IS: "+user)
+        print("PASS IS: "+pass)
         //set loginuserlabel from username passed in from viewcontroller
-        loginUserLabel.text = username;
+        loginUserLabel.text = user;
         // Do any additional setup after loading the view.
         tableView.register(myCell.self, forCellReuseIdentifier: "cellId")
-        accountArray += ["This", "Is", "A", "Test"]
+
+        //server response
+        //var serverResp = 0
+        
+        /*****Send data to db to verify login*****/
+        var request = URLRequest(url: URL(string: "http://localhost/~Aou/read_accounts_mysql_ios.php")!)
+        request.httpMethod = "POST"
+        /***** NOT SURE HOW ITS GETTING USER...CHECK LATER ***/
+        let postString = "arg_usr="+user+"&arg_pwd="+pass
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error: \(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response: \(response)")
+            }
+            let responseString = String(data: data, encoding: .utf8)
+            //print("************************************")
+            print("responseString: \(responseString)")
+            self.parse_response = self.parseOutput(response: responseString!)
+            print(self.parse_response)
+            //responsePhp = responseString!
+            //serverResp = 1
+            
+        }
+        task.resume()
+        
+        print("************************************")
+        print(parse_response)
+
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accountArray.count;
+        return parse_response.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! myCell
-        cell.rowLabel.text = accountArray[indexPath.row]
+        cell.rowLabel.text = parse_response[indexPath.row]
         cell.viewController = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+
+ 
+        
         self.performSegue(withIdentifier: "showInfoViewController", sender: self)
     }
     
@@ -51,6 +94,7 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
         self.performSegue(withIdentifier: "showAddViewController", sender: self)
     }
     
+    
     //segue from signupview to emailverifyviews
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSettingViewController" {
@@ -58,10 +102,15 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         if segue.identifier == "showViewController" {
-            _ = segue.destination as! ViewController
+            let InfoViewController = segue.destination as! InfoViewController
+            InfoViewController.user = user
+            InfoViewController.pass = pass
+            InfoViewController.cellLabel = cellLabel
         }
         if segue.identifier == "showAddViewController" {
-            _ = segue.destination as! AddViewController
+            let AddViewController = segue.destination as! AddViewController
+            AddViewController.user = user
+            AddViewController.pass = pass
         }
     }
     
@@ -82,8 +131,8 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     @IBAction func addAccountButton(_ sender: AnyObject) {
-        accountArray.append("New Account")
-        let insertIndexPath = NSIndexPath(row: accountArray.count - 1, section: 0)
+        parse_response.append("New Account")
+        let insertIndexPath = NSIndexPath(row: parse_response.count - 1, section: 0)
         tableView.insertRows(at: [insertIndexPath as IndexPath], with: .automatic)
     }
     
@@ -92,6 +141,14 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
 
     @IBAction func signoutButton(_ sender: AnyObject) {
     }
+    
+    func parseOutput(response: String) -> Array<String>{
+        var strArray = response.components(separatedBy: "|")
+        _ = strArray.removeLast()
+        return strArray
+    }
+    
+    
     
 }
 

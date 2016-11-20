@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1In-eB-tNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2390" y="545"/>
+            <point key="canvasLocation" x="2390" y="1077"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="uvd-cQ-e9O">
@@ -306,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UN6-11-AAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3466" y="1029"/>
+            <point key="canvasLocation" x="3698" y="971"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="I8A-qu-zax">
@@ -383,14 +383,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztU-6d-czQ">
-                                <rect key="frame" x="94" y="597" width="161" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <segue destination="eSZ-QV-thC" kind="showDetail" identifier="showMainIntViewController" id="CBD-sX-awr"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvX-Vr-fAu">
                                 <rect key="frame" x="306" y="261" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -406,6 +398,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZT-V6-ewz">
+                                <rect key="frame" x="102" y="597" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButton:" destination="yL1-Pd-Obt" eventType="touchUpInside" id="e3v-jm-6VS"/>
+                                    <segue destination="eSZ-QV-thC" kind="show" identifier="showMainIntViewController" id="7ga-B6-Y1d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztU-6d-czQ">
+                                <rect key="frame" x="175" y="597" width="161" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="addAccount:" destination="yL1-Pd-Obt" eventType="touchUpInside" id="wLz-wL-hqK"/>
+                                    <segue destination="eSZ-QV-thC" kind="showDetail" identifier="showMainIntViewController" id="CBD-sX-awr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.042812749743461609" green="0.87035000324249268" blue="0.99579721689224243" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -414,7 +424,6 @@
                         <outlet property="AdditionalNote" destination="bFr-7J-fYr" id="XER-MJ-fBq"/>
                         <outlet property="Password" destination="ZBp-iv-pJJ" id="Mah-Sb-Xo5"/>
                         <outlet property="UserName" destination="SFO-Yh-Zre" id="ESB-zd-m9k"/>
-                        <outlet property="addAccountButton" destination="ztU-6d-czQ" id="Vda-nD-bcM"/>
                         <outlet property="confirmPassword" destination="KXr-Sh-ci2" id="aiq-NR-ewQ"/>
                     </connections>
                 </viewController>
@@ -704,8 +713,8 @@
         <image name="secuure120px.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OL1-jE-i8X"/>
         <segue reference="cVJ-Ba-Vh3"/>
         <segue reference="3Jr-7E-kuW"/>
+        <segue reference="OL1-jE-i8X"/>
     </inferredMetricsTieBreakers>
 </document>

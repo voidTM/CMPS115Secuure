@@ -44,7 +44,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMainIntViewController" {
             let MainInterfaceViewController = segue.destination as! MainInterfaceViewController
-            MainInterfaceViewController.username = user
+            MainInterfaceViewController.user = user
+            MainInterfaceViewController.pass = pass
             
         }
     }
@@ -74,7 +75,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             pass = passwordText.text!;
             
             /*****Send data to db to verify login*****/
-            var request = URLRequest(url: URL(string: "http://localhost/~Aou/login_mysql.php")!)
+            var request = URLRequest(url: URL(string: "http://localhost/~Aou/login_mysql_ios.php")!)
             request.httpMethod = "POST"
             let postString = "arg_usr="+user+"&arg_pwd="+pass
             request.httpBody = postString.data(using: .utf8)

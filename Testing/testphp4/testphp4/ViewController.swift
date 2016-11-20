@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     @IBAction func buttonPressed(_ sender: UIButton) {
         var parse_response = [String]()
-        var request = URLRequest(url: URL(string: "http://localhost/~Steven/create_db_mysql.php")!)
+        var request = URLRequest(url: URL(string: "http://localhost/~Aou/create_db_mysql_ios.php")!)
 //        var request = URLRequest(url: URL(string: "http://localhost/~Steven/delete_mysql.php")!)
 //        var request = URLRequest(url: URL(string: "http://localhost/~Steven/edit_mysql.php")!)
 //        var request = URLRequest(url: URL(string: "http://localhost/~Steven/insert_mysql.php")!)
