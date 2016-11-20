@@ -10,8 +10,6 @@ import UIKit
 import Foundation
 
 // global var to hold username and pass
-var user = "";
-var pass = "";
 var responsePhp = "";
 
 
@@ -40,15 +38,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //segue from viewcontroller to mainint view with data
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMainIntViewController" {
-            let MainInterfaceViewController = segue.destination as! MainInterfaceViewController
-            MainInterfaceViewController.user = user
-            MainInterfaceViewController.pass = pass
-            
-        }
-    }
     
     func invalidLogin() {
         let signupAlertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: UIAlertControllerStyle.alert)
@@ -71,8 +60,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButton(_ sender: AnyObject) {
         var serverResp = 0
         if(!(usernameText.text?.isEmpty)! && !(passwordText.text?.isEmpty)!) {
-            user = usernameText.text!;
-            pass = passwordText.text!;
+
+            
+            
+            DataContainerSingleton.sharedDataContainer.userString = usernameText.text!
+            DataContainerSingleton.sharedDataContainer.passString = passwordText.text!
+            
+            let user = DataContainerSingleton.sharedDataContainer.userString! as String
+            let pass = DataContainerSingleton.sharedDataContainer.passString! as String
+            
             
             /*****Send data to db to verify login*****/
             var request = URLRequest(url: URL(string: "http://localhost/~Aou/login_mysql_ios.php")!)

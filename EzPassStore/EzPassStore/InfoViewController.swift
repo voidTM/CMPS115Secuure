@@ -9,23 +9,32 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    var user:String = ""
-    var pass:String = ""
-    var cellLabel:String = ""
+
+    
+    @IBOutlet weak var displayWebsite: UILabel!
+    
+    @IBOutlet weak var displayUsername: UILabel!
+    
+    @IBOutlet weak var displayPassword: UILabel!
+    
+    @IBOutlet weak var displayNotes: UILabel!
+    
     var parse_response = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("CELL LABEL IS: WHAT THE DONKEY IS STEVEN JK: "+cellLabel)
+        let user = DataContainerSingleton.sharedDataContainer.userString! as String
+        let pass = DataContainerSingleton.sharedDataContainer.passString! as String
+        let cellLabelArray = parseUnderscore(response: DataContainerSingleton.sharedDataContainer.cellText!)
         
         
         var serverResp = 0
         /*****Send data to db to verify login*****/
-        var request = URLRequest(url: URL(string: "http://localhost/~Aou/read_accounts_mysql_ios.php")!)
+        var request = URLRequest(url: URL(string: "http://localhost/~Aou/read_mysql_ios.php")!)
         request.httpMethod = "POST"
         /***** NOT SURE HOW ITS GETTING USER...CHECK LATER ***/
-        let postString = "arg_usr="+user+"&arg_pwd="+pass
+        let postString = "arg_usr="+user+"&arg_pwd="+pass+"&arg_read_acc="+cellLabelArray[0]+"&arg_read_ws="+cellLabelArray[1]
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
@@ -42,6 +51,12 @@ class InfoViewController: UIViewController {
             print("responseString: \(responseString)")
             self.parse_response = self.parseOutput(response: responseString!)
             print(self.parse_response)
+            
+            self.displayWebsite.text = self.parse_response[1]
+            self.displayUsername.text = self.parse_response[0]
+            self.displayPassword.text = self.parse_response[2]
+            self.displayNotes.text = self.parse_response[3]
+            
             responsePhp = responseString!
             serverResp = 1
         }
@@ -74,8 +89,12 @@ class InfoViewController: UIViewController {
     }
     
     func parseOutput(response: String) -> Array<String>{
-        var strArray = response.components(separatedBy: "|")
-        _ = strArray.removeLast()
+        let strArray = response.components(separatedBy: "|")
+        return strArray
+    }
+    
+    func parseUnderscore(response: String) -> Array<String>{
+        let strArray = response.components(separatedBy: "_")
         return strArray
     }
     /*

@@ -10,8 +10,6 @@ import UIKit
 
 class AddViewController: UIViewController, UITextFieldDelegate {
     
-    var user:String = ""
-    var pass:String = ""
 
     @IBOutlet weak var AccountName: UITextField!
     @IBOutlet weak var UserName: UITextField!
@@ -59,6 +57,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func addAccount(_ sender: Any) {
         if(!fieldIsEmpty()) {
+            let user = DataContainerSingleton.sharedDataContainer.userString! as String
+            let pass = DataContainerSingleton.sharedDataContainer.passString! as String
+            
             /***** CONNECT TO DB AND SEND DATA *****/
             var request = URLRequest(url: URL(string: "http://localhost/~Aou/insert_mysql_ios.php")!)
             request.httpMethod = "POST"
