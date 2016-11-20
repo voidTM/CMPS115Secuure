@@ -39,7 +39,7 @@
     }
     $sql = "UPDATE $usertable SET password='$pwd', notes='$note' WHERE userid='$uid' AND account='$acc' AND website='$ws'";
     if (mysqli_query($conn, $sql)) {
-        echo "Record edited successfully" . "\r\n";
+        echo "Record edited successfully + $pwd + $note + $sql" . "\r\n";
     } else {
         echo "Error: " . $sql . " " . mysqli_error($conn);
     }

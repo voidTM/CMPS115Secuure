@@ -5,9 +5,13 @@ package com.hashmappers.android.secuure;
  * Class for storing holding global variables
  */
 
+/**
+ * Global are a group of global variables that are required throughout the program.
+ *
+ * */
 public class Global {
-    private static AccountTable accounts = null; //may not use?
-    private static User usr = null; // Should remain static throughout
+    private static AccountTable accounts = null;
+    private static User usr = null; // Initialized after login
     private static Account acc = null;
 
     public static synchronized AccountTable getAccountT()
@@ -30,6 +34,7 @@ public class Global {
         return acc;
     }
 
+    // resets and clears all values upon logging out
     public static synchronized void reset()
     {
         accounts = new AccountTable();
@@ -37,9 +42,9 @@ public class Global {
         acc = new Account();
     }
 
+    // Resets value of the account as needed.
     public static synchronized void resetAccount(){
         acc = new Account();
     }
-
 
 }

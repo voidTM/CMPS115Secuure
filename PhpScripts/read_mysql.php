@@ -5,7 +5,7 @@
     $password = $_POST['arg_pwd'];
     $dbname = secuure;
     $usertable= data;
-    $uid = 1;
+    $uid = 0;
     
     // Fetch user id
     //Connect to the database

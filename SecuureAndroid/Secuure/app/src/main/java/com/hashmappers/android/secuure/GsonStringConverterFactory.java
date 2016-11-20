@@ -17,6 +17,9 @@ import retrofit2.Retrofit;
 /**
  * Created by voidtm on 11/3/16.
  * Based off retrofit.GsonConverterFactory
+ * It converts string Class to plain text
+ * for sending over as Json
+ * helps to prevent double quotes.
  */
 
 public class GsonStringConverterFactory extends Converter.Factory

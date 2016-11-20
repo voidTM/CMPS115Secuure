@@ -26,7 +26,7 @@ import retrofit2.http.Query;
 
 public interface WebInterface {
 
-    // note for get we should be using query strings instead
+    // All calls use POST due the way server is set up and requested input.
     @Multipart
     @POST("read_mysql.php")
     Call<JsonArray> getAllAccounts(@Part("arg_usr")String usr, @Part("arg_pwd") String pwd);

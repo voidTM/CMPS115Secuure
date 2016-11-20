@@ -166,6 +166,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     // Log error here since request failed
                     Log.w("Apicall", t.getMessage());
                     //Send error status here too?
+                    //AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                    //builder.setMessage("Error: Server Request Failed")
+                     //       .setPositiveButton("OK", null);
+                    //AlertDialog alert = builder.create();
+                    //alert.show();
                     switchToLogin(false);
                 }
             });
@@ -173,15 +179,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
+    // Checks to see if user logged successfully
+    // if so switch to next stage
     void switchToLogin(boolean loggedIn) {
-        if (loggedIn) {
+        if (loggedIn) { //Login successfull
+
             Toast pass = Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT);
             User usr = Global.getUser();
             usr.setANUser(username, password);
             // check login for users?
             pass.show();
-            //startActivity(new Intent(MainActivity.this, Login.class));
-            startActivity(new Intent(this, Login.class)); //Causing problems
+            // Move to next activity
+            startActivity(new Intent(this, Login.class));
         } else {
             // Display the popup window in the center of screen if you fail to log in correctly
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

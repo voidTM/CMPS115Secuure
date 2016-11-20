@@ -66,23 +66,14 @@ public class Login extends Activity implements View.OnClickListener {
         accountTable = new HashMap<Integer, Account>();
         mAdapter = new AccountAdapter(accountTable, this);
         mRecyclerView.setAdapter(mAdapter);
-        //HashMap<String, Account> query = new HashMap<String, Account>();
 
         User usr = Global.getUser();
         name = usr.getName();
-        //userWelcome.setText("");
-        //userLocalStore = new UserLocalStore(this);
 
         lView = (CoordinatorLayout) findViewById(R.id.lLogin);
         TextView entry = new TextView(this);
         String password = usr.getPassword();
         String username = usr.getUsername();
-        //accountEntry = "Username: " + username + " Password: " + password;
-        //entry.setText(accountEntry);
-        //lView.addView(entry);
-
-        // populate with a list;
-        //for(User someone : userT)
 
         WebInterface web = WebService.getService();
 
@@ -152,6 +143,7 @@ public class Login extends Activity implements View.OnClickListener {
         // id format will row number * 10 + fieldnumber
         Log.w("Apicall", "Jsonarray: " + array.size());
         for(int i = 0; i < array.size(); i++){
+            // update and add data
             int id = i * 10;
             String name;
             String usrName;
@@ -165,7 +157,5 @@ public class Login extends Activity implements View.OnClickListener {
         }
         mAdapter = new AccountAdapter(accountTable, this);
         mRecyclerView.setAdapter(mAdapter);
-        //mAdapter.notifyDataSetChanged();
-        //mRecyclerView.hasPendingAdapterUpdates();
     }
 }

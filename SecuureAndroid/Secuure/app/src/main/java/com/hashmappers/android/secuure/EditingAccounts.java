@@ -145,6 +145,7 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    // Deletes the account being edited from the database.
     public void deleteAcc(){
         Call<String> call = web.deleteAccount(usr.getUsername(), usr.getPassword(),
                 acc.getUsername(), acc.getAppName());
@@ -154,6 +155,7 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
             public void onResponse(Call<String> call, Response<String> response) {
                 int statusCode = response.code();
                 Log.w("Apicall", "Status " + statusCode);
+                // Debug message from server.
                 Log.w("Response", response.body());
                 // if statusCode 200  start activity?
                 goBack();

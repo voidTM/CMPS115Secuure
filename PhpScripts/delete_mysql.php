@@ -43,7 +43,7 @@
     $sql = "DELETE FROM `$usertable` WHERE `userid`='$uid' and `account`='$acc' and `website`='$ws'";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Record removed from database" . "\r\n";
+        echo "Record removed from database + $sql" . "\r\n";
     } else {
         echo "Error: " . $sql . " " . mysqli_error($conn);
     }
