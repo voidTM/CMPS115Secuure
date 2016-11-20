@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,14 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|start"
         android:layout_margin="8dp"
-<<<<<<< HEAD
-        android:layout_weight="1.61"
-        android:textSize="24sp" />
-=======
         android:layout_weight="1"
         android:textSize="24sp"
         android:background = "@drawable/borders"/>
->>>>>>> 2c16e7053ab9772986def6b415b9695a02bb59fa
 
     <TextView
         android:id="@+id/accName"
@@ -28,6 +24,12 @@
         android:layout_weight="1"
         android:textSize="24sp"
         android:background = "@drawable/borders"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@android:drawable/ic_dialog_info"
+        android:id="@+id/imageInfo" />
 
 
 </LinearLayout>
