@@ -18,7 +18,7 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
     Button buttonCancel, buttonOk;
     ImageButton imageButtonRefresh;
     SeekBar seekBarLength;
-    int progress = 0;
+    int progress = 8;
 
    /* int pound = 35;
     int excl = 33;
@@ -64,8 +64,9 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
         imageButtonRefresh.setOnClickListener(this);
 
         seekBarLength = (SeekBar) findViewById(R.id.seekBarLength);
-        seekBarLength.setMax(20);
-        seekBarLength.setProgress(progress);
+        // Sets the max password length to being 20 and minimum to 8
+        seekBarLength.setMax(12);
+        seekBarLength.setProgress(progress-8);
 
         textLength = (TextView) findViewById(R.id.textLength);
         textLength.setText(""+progress);
@@ -73,7 +74,7 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
         seekBarLength.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
-                progress = i;
+                progress = i+8;
                 textLength.setText("" + progress);
             }
 
