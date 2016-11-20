@@ -5,6 +5,7 @@ package com.hashmappers.android.secuure;
  * Get php files from ios-app
  */
 
+import com.google.android.gms.appdatasearch.GetRecentContextCall;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -32,12 +33,12 @@ public interface WebInterface {
 
     @Multipart
     @POST("delete_mysql.php")
-    Call<User> deleteAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
-                         @Part("arg_del_acc") String acc, @Part("arg_del_ws") String name);
+    Call<String> deleteAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
+                                                      @Part("arg_del_acc") String acc, @Part("arg_del_ws") String name);
 
     @Multipart
     @POST("edit_mysql.php")
-    Call<ResponseBody> editAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
+    Call<String> editAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
                           @Part("arg_edit_acc") String accUsr, @Part("arg_edit_ws") String name,
                           @Part("arg_edit_pwd") String accPwd, @Part("arg_edit_note") String note);
 

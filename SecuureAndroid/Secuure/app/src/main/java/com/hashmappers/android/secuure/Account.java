@@ -1,5 +1,7 @@
 package com.hashmappers.android.secuure;
 
+import android.util.Log;
+
 import com.google.gson.JsonObject;
 
 /**
@@ -36,11 +38,22 @@ public class Account {
         note =  "(NONE)";
     }
 
+    public Account(Account copy){
+        this.username = copy.username;
+        this.password = copy.password;
+        this.appName = copy.appName;
+        this.note = copy.note;
+    }
+
     public Account(JsonObject obj){
-        username = obj.get("account").toString();
-        password = obj.get("password").toString();
-        note = obj.get("notes").toString();
-        appName = obj.get("website").toString();
+        username = obj.get("account").toString().replaceAll("^\"|\"$", "");
+        //Log.w("username", username);
+        password = obj.get("password").toString().replaceAll("^\"|\"$", "");
+        //Log.w("password", password);
+        note = obj.get("notes").toString().replaceAll("^\"|\"$", "");
+        //Log.w("note", note);
+        appName = obj.get("website").toString().replaceAll("^\"|\"$", "");
+        //Log.w("appName", appName);
     }
 
     //Methods
@@ -66,6 +79,13 @@ public class Account {
             return true;
         else
             return false;
+    }
+
+    public void set(Account copy){
+        this.username = copy.username;
+        this.password = copy.password;
+        this.appName = copy.appName;
+        this.note = copy.note;
     }
 
     public void changePassword(String pass) {
