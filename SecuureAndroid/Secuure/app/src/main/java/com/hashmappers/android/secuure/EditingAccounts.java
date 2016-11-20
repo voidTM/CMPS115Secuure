@@ -1,7 +1,11 @@
 package com.hashmappers.android.secuure;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,7 +35,8 @@ import retrofit2.Response;
 // Assuming an account has been passed over it will edit or delete the account
 public class EditingAccounts extends AppCompatActivity implements View.OnClickListener {
 
-    Button edit, delete;
+    Button edit, delete, cancel;
+    ImageButton imageButtonShowPass;
     EditText enterTitle, enterLogin, enterPassword, enterAdditionalNotes;
     TextView viewTitle, viewLogin;
     private PopupWindow popupWindow;
@@ -40,6 +45,7 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
     private Account acc;
     User usr;
     WebInterface web;
+    boolean isClicked = true;
     //ArrayList<String> titles = new ArrayList<String>();
     //ArrayAdapter<String> adapter;
 
@@ -56,6 +62,8 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
         enterAdditionalNotes = (EditText) findViewById(R.id.enterAdditionalNotes);
         edit = (Button) findViewById(R.id.edit);
         delete = (Button) findViewById(R.id.delete);
+        cancel = (Button) findViewById(R.id.buttonCancel);
+        imageButtonShowPass = (ImageButton) findViewById(R.id.imageButtonShowPass);
         relativeEditAccount = (RelativeLayout) findViewById(R.id.relativeEditAccount);
 
         acc = Global.getAcc();
@@ -72,6 +80,20 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
 
         edit.setOnClickListener(this);
         delete.setOnClickListener(this);
+        cancel.setOnClickListener(this);
+
+        imageButtonShowPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isClicked) {
+                    enterPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    isClicked = false;
+                } else if (isClicked) {
+                    enterPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    isClicked = true;
+                }
+            }
+        });
 
         // Adapter
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,titles);
@@ -112,35 +134,23 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(this, Login.class));
                 break;
             case R.id.delete:
-                // Get the instance of the LayoutInflator
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupdelete, null);
+                // If you want to delete an entire account entry which was added
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditingAccounts.this);
 
-                // Display the popup window in the center of screen if you fail to log in correctly
-                popupWindow = new PopupWindow(container, 600, 300, true);
-                popupWindow.showAtLocation(relativeEditAccount, Gravity.CENTER, 0, 0);
-
-                // Hit the 'YES' button to delete account info go back to user page
-                Button bYes = (Button) container.findViewById(R.id.bYes);
-                bYes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.w("Proceed", "goint to delete acc");
-                        deleteAcc();
-                        popupWindow.dismiss();
-                    }
-                });
-
-                // Hit the 'NO' button to cancel your delete choice
-                Button bNo = (Button) container.findViewById(R.id.bNo);
-                bNo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
-
+                builder.setMessage("Are you sure you want to delete entry?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteAcc();
+                            }
+                        })
+                        .setNegativeButton("NO", null);
+                AlertDialog alert = builder.create();
+                alert.show();
                 // Go to login page?
+                break;
+            case R.id.buttonCancel:
+                goBack();
                 break;
         }
     }
