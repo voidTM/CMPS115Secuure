@@ -33,11 +33,13 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
 
     Button edit, delete;
     EditText enterTitle, enterLogin, enterPassword, enterAdditionalNotes;
-    TextView title, login;
+    TextView viewTitle, viewLogin;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeEditAccount;
     private Account acc;
+    User usr;
+    WebInterface web;
     //ArrayList<String> titles = new ArrayList<String>();
     //ArrayAdapter<String> adapter;
 
@@ -45,10 +47,11 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editing_accounts);
+        usr = Global.getUser();
 
         // Initialize the variables used
-        title = (TextView) findViewById(R.id.title);
-        login = (TextView) findViewById(R.id.login);
+        viewTitle = (TextView) findViewById(R.id.title);
+        viewLogin = (TextView) findViewById(R.id.login);
         enterPassword = (EditText) findViewById(R.id.enterPassword);
         enterAdditionalNotes = (EditText) findViewById(R.id.enterAdditionalNotes);
         edit = (Button) findViewById(R.id.edit);
@@ -60,9 +63,10 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
         Log.w("check", acc.getUsername());
         Log.w("check", acc.getPassword());
         Log.w("check", acc.getNote());
+        web = WebService.getService();
 
-        title.setText(acc.getAppName());
-        login.setText(acc.getUsername());
+        viewTitle.setText(acc.getAppName());
+        viewLogin.setText(acc.getUsername());
         enterPassword.setText(acc.getPassword());
         enterAdditionalNotes.setText(acc.getNote());
 
@@ -79,33 +83,33 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.edit:
                 // Receive all the user attributes that are typed in for an password accounts
-                String title = enterTitle.getText().toString();
-                String login = enterLogin.getText().toString();
                 String password = enterPassword.getText().toString();
                 String notes = enterAdditionalNotes.getText().toString();
                 //User accountData = new User(name, login, password);
-                User usr = Global.getUser();
                 //After getting the updated data send to server
-                WebInterface web = WebService.getService();
-                Call<ResponseBody> call = web.editAccount(usr.getUsername(), usr.getPassword(),
-                                            title, login, password, notes);
+                Log.w("Changed", password);
+                Log.w("Changed", notes);
 
-                call.enqueue(new Callback<ResponseBody>() {
+                Call<String> call = web.editAccount(usr.getUsername(), usr.getPassword(),
+                                            acc.getUsername(), acc.getAppName(), password, notes);
+
+                call.enqueue(new Callback<String>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    public void onResponse(Call<String> call, Response<String> response) {
                         int statusCode = response.code();
                         Log.w("Apicall", "Status " + statusCode);
+                        Log.w("Call Response,", response.body());
                         // if statusCode 200  start activity?
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<String> call, Throwable t) {
                         // Log error here since request failed
                         Log.e("Apicall", t.getMessage());
                     }
                 });
                 // Go to login page?
-                startActivity(new Intent(this, AddingAccounts.class));
+                startActivity(new Intent(this, Login.class));
                 break;
             case R.id.delete:
                 // Get the instance of the LayoutInflator
@@ -121,6 +125,7 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
                 bYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        deleteAcc();
                         popupWindow.dismiss();
                     }
                 });
@@ -138,4 +143,28 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
+    public void deleteAcc(){
+        Call<ResponseBody> call = web.deleteAccount(usr.getUsername(), usr.getPassword(),
+                acc.getAppName(), acc.getUsername());
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int statusCode = response.code();
+                Log.w("Apicall", "Status " + statusCode);
+                // if statusCode 200  start activity?
+                goBack();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("Apicall", t.getMessage());
+            }
+        });
+    }
+
+    void goBack(){startActivity(new Intent(this, Login.class));}
+
 }

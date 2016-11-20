@@ -153,29 +153,13 @@ public class Login extends Activity implements View.OnClickListener {
         Log.w("Apicall", "Jsonarray: " + array.size());
         for(int i = 0; i < array.size(); i++){
             int id = i * 10;
-            TableRow row = new TableRow(this);
-            row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                    TableRow.LayoutParams.MATCH_PARENT));
-            row.setId(id);
-
+            String name;
+            String usrName;
             JsonObject acc = array.get(i).getAsJsonObject();
             Log.w("Apicall", "Object: " + acc.toString());
 
             // add account to accountTable.
 
-            TextView nameField = new TextView(this);
-            nameField.setId(id+1);
-            nameField.setText(acc.get("website").toString());
-            //nameField.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
-            row.addView(nameField);
-
-            TextView accnameField = new TextView(this);
-            accnameField.setId(id+2);
-            accnameField.setText(acc.get("account").getAsString());
-            //accnameField.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT));
-            row.addView(accnameField);
-
-            //tLayout.addView(row);
             accountTable.put(id, new Account(acc));
             Log.d("Size", "Currently: " + accountTable.size());
         }
