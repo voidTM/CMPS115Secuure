@@ -49,7 +49,7 @@ public interface WebInterface {
 
     @Multipart
     @POST("insert_mysql.php")
-    Call<Boolean> addAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
+    Call<String> addAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
                              @Part("arg_add_acc") String accUsr, @Part("arg_add_ws") String name,
                              @Part("arg_add_pwd") String accPwd, @Part("arg_add_note") String note);
 

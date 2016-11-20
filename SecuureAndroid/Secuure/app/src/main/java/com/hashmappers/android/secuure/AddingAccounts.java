@@ -89,32 +89,35 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 WebInterface web = WebService.getService();
 
                 web.addAccount(loggedIn.getUsername(), loggedIn.getPassword(),
-                        login, title, password, notes).enqueue(new Callback<Boolean>() {
-                @Override
-                // check for any messages
-                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                    //api success
-                    //Boolean sucess = response.body();
-                    Log.w("Apicall", "Successful add account call");
+                        login, title, password, notes).enqueue(new Callback<String>() {
+                    @Override
+                    // check for any messages
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        //api success
+                        //Boolean sucess = response.body();
+                        Log.w("Apicall", "Successful add account call");
+                        goBack();
+                        //if(sucess == true)
+                        //    Log.w("Apicall", "Successfuly added account");
+                    }
 
-                    //if(sucess == true)
-                    //    Log.w("Apicall", "Successfuly added account");
-                }
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.e("Apicall", t.getMessage());
+                    }
+                });
 
-                @Override
-                public void onFailure(Call<Boolean> call, Throwable t) {
-                    Log.e("Apicall", t.getMessage());
-                }
-            });
-
-                startActivity(new Intent(this, Login.class));
                 break;
             case R.id.imageButtonGP:
                 // Goes to the password generator window
-                startActivity(new Intent(this,PasswordGenerator.class));
+                startActivity(new Intent(this, PasswordGenerator.class));
                 break;
         }
     }
+
+
+    public void goBack(){ startActivity(new Intent(this, Login.class)); }
+
 
 
 /*    private void addNewAccountListFunction() {
