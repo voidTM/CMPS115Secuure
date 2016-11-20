@@ -8,14 +8,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import java.util.Random;
 
 public class PasswordGenerator extends AppCompatActivity implements OnClickListener {
     RadioButton  radioCap, radioNum, radioSym;
-    TextView textViewPass;
+    TextView textViewPass, textLength;
     Button buttonCancel, buttonOk;
     ImageButton imageButtonRefresh;
+    SeekBar seekBarLength;
+    int progress = 0;
 
    /* int pound = 35;
     int excl = 33;
@@ -58,6 +61,30 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
         radioSym.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
         buttonOk.setOnClickListener(this);
+        imageButtonRefresh.setOnClickListener(this);
+
+        seekBarLength = (SeekBar) findViewById(R.id.seekBarLength);
+        seekBarLength.setMax(20);
+        seekBarLength.setProgress(progress);
+
+        textLength = (TextView) findViewById(R.id.textLength);
+        textLength.setText(""+progress);
+
+        seekBarLength.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
+                progress = i;
+                textLength.setText("" + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
 
     @Override
@@ -84,8 +111,14 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
             case R.id.buttonOk:
                 startActivity(new Intent(this,AddingAccounts.class));
                 break;
+
+            // Should call to create a new password with the specific specifications
+            case R.id.imageButtonRefresh:
+                textViewPass.setText("New password");
+                break;
         }
     }
+
 
     /*
     // Generates array of ascii values
