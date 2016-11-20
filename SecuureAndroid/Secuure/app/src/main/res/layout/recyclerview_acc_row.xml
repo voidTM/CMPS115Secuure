@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -7,29 +7,37 @@
     android:background = "@drawable/borders">
     <TextView
         android:id="@+id/wsName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|start"
-        android:layout_margin="8dp"
         android:layout_weight="1"
         android:textSize="24sp"
-        android:background = "@drawable/borders"/>
-
-    <TextView
-        android:id="@+id/accName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|start"
-        android:layout_margin="8dp"
-        android:layout_weight="1"
-        android:textSize="24sp"
-        android:background = "@drawable/borders"/>
+        android:background = "@drawable/borders"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_dialog_info"
-        android:id="@+id/imageInfo" />
+        android:id="@+id/imageInfo"
+        android:layout_alignTop="@+id/wsName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
+
+    <TextView
+        android:id="@+id/accName"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background = "@drawable/borders"
+        android:layout_alignBaseline="@+id/wsName"
+        android:layout_alignBottom="@+id/wsName"
+        android:layout_toRightOf="@+id/wsName"
+        android:layout_toEndOf="@+id/wsName" />
 
 
-</LinearLayout>
+</RelativeLayout>
