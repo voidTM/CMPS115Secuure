@@ -125,6 +125,7 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
                 bYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.w("Proceed", "goint to delete acc");
                         deleteAcc();
                         popupWindow.dismiss();
                     }
@@ -145,20 +146,21 @@ public class EditingAccounts extends AppCompatActivity implements View.OnClickLi
     }
 
     public void deleteAcc(){
-        Call<ResponseBody> call = web.deleteAccount(usr.getUsername(), usr.getPassword(),
-                acc.getAppName(), acc.getUsername());
+        Call<String> call = web.deleteAccount(usr.getUsername(), usr.getPassword(),
+                acc.getUsername(), acc.getAppName());
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 int statusCode = response.code();
                 Log.w("Apicall", "Status " + statusCode);
+                Log.w("Response", response.body());
                 // if statusCode 200  start activity?
                 goBack();
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 // Log error here since request failed
                 Log.e("Apicall", t.getMessage());
             }

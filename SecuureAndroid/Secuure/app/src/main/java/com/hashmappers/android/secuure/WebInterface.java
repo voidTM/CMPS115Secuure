@@ -33,7 +33,7 @@ public interface WebInterface {
 
     @Multipart
     @POST("delete_mysql.php")
-    Call<ResponseBody> deleteAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
+    Call<String> deleteAccount(@Part("arg_usr") String usr, @Part("arg_pwd") String pwd,
                                                       @Part("arg_del_acc") String acc, @Part("arg_del_ws") String name);
 
     @Multipart

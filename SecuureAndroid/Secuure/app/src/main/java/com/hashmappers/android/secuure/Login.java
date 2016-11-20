@@ -156,7 +156,7 @@ public class Login extends Activity implements View.OnClickListener {
             String name;
             String usrName;
             JsonObject acc = array.get(i).getAsJsonObject();
-            Log.w("Apicall", "Object: " + acc.toString());
+            //Log.w("Apicall", "Object: " + acc.toString());
 
             // add account to accountTable.
 

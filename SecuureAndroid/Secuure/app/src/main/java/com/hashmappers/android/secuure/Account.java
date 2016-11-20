@@ -47,13 +47,13 @@ public class Account {
 
     public Account(JsonObject obj){
         username = obj.get("account").toString().replaceAll("^\"|\"$", "");
-        Log.w("username", username);
+        //Log.w("username", username);
         password = obj.get("password").toString().replaceAll("^\"|\"$", "");
-        Log.w("password", password);
+        //Log.w("password", password);
         note = obj.get("notes").toString().replaceAll("^\"|\"$", "");
-        Log.w("note", note);
+        //Log.w("note", note);
         appName = obj.get("website").toString().replaceAll("^\"|\"$", "");
-        Log.w("appName", appName);
+        //Log.w("appName", appName);
     }
 
     //Methods

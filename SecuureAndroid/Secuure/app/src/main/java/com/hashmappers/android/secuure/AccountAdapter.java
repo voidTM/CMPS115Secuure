@@ -57,10 +57,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
 
             Account editAccount = Global.getAcc();
             editAccount.set(acc);
-            Log.w("precheck", editAccount.getAppName());
-            Log.w("precheck", editAccount.getUsername());
-            Log.w("precheck", editAccount.getPassword());
-            Log.w("precheck", editAccount.getNote());
             // should jump to editingAccounts from here
             context.startActivity(new Intent(context, EditingAccounts.class));
         }
