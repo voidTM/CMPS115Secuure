@@ -43,13 +43,16 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
     private String lowerCase = "abcdefghijklmnopqrstuvwxyz";
     private String num = "0123456789";
     private String symbol = "!@#$%^&*";
-    private int cap, sym, numbs;
+    private String mainString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+    private int cap = 0;
+    private int sym = 0;
+    private int numbs = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_generator);
-        cap = 0;    sym = 0;    numbs =0;
         // Initialize all the variables on the page
         radioCap = (CheckBox) findViewById(R.id.radioCap);
         radioNum = (CheckBox) findViewById(R.id.radioNum);
@@ -128,50 +131,45 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
 
             // Should call to create a new password with the specific specifications
             case R.id.imageButtonRefresh:
-                textViewPass.setText("New password");
+                if ((cap == 1) || (numbs == 1)|| (sym == 1)) {
+                    generatePass(seekBarLength.getProgress()+8, cap, numbs, sym);
+                } else {
+                    generatePass(seekBarLength.getProgress()+8, 0, 0, 0);
+                }
                 break;
         }
     }
 
-
-    /*
-    // Generates array of ascii values
-    public void generateAsciiArrays() {
-
-    }
-
-    // Converts array(s) of ascii values to their corresponding character values
-    public void generateArrayAll() {
-
-    }
-    */
-
-
     // Generates a random password based on user input
-/*    public void generatePass(int len) {
-        String[] array = new String[10];
+    public void generatePass(int progress, int noOfCapitals, int noOfNumbers, int noOfSymbols) {
         Random rnd = new Random();
-        int randNum = rnd.nextInt() % array.length;
-        char[] pswd = new char[randNum];
-        String genPass = String.valueOf("s");
-        textViewPass.setText(genPass);
-        while(true) {
-            if () {
-
-            } else {
-
-            }
+        int randNum = rnd.nextInt(progress);
+        // int randNum = rnd.nextInt(Integer.MAX_VALUE) % mainString.length();
+        char[] pswd = new char[progress];
+        int index = 0;
+        if (noOfCapitals == 1) {
+            index = getNextIndex(rnd, randNum, pswd);
+            pswd[index] = caps.charAt(rnd.nextInt(caps.length()));
+        } else if (noOfNumbers == 1) {
+            index = getNextIndex(rnd, randNum, pswd);
+            pswd[index] = num.charAt(rnd.nextInt(num.length()));
+        } else if (noOfSymbols == 1) {
+            index = getNextIndex(rnd, randNum, pswd);
+            pswd[index] = symbol.charAt(rnd.nextInt(symbol.length()));
         }
 
-    }*/
-
-/*    public char[] generatePass(int len) {
-        char[] pswd = new char[len];
-
-
-        String genPass = String.valueOf("s");
+        for (int i = 0; i < progress; i++) {
+            if (pswd[i] == 0) {
+                pswd[i] = lowerCase.charAt(rnd.nextInt(lowerCase.length()));
+            }
+        }
+        String genPass = String.valueOf(pswd);
         textViewPass.setText(genPass);
+    }
 
-        return pswd;
-    }*/
+    private int getNextIndex(Random rnd, int randNum, char[] pswd) {
+        int index = rnd.nextInt(randNum);
+        while (pswd[index = rnd.nextInt(randNum)] != 0);
+        return index;
+    }
 }
