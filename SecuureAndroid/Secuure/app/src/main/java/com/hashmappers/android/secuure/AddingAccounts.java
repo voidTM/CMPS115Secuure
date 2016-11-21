@@ -36,7 +36,7 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
     private RelativeLayout relativeAddAccount;
     //ArrayList<String> titles = new ArrayList<String>();
     //ArrayAdapter<String> adapter;
-    boolean isClicked = true;
+    boolean isClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +52,11 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
         imageButtonGP = (ImageButton) findViewById(R.id.imageButtonGP);
         imageButtonShowPass = (ImageButton) findViewById(R.id.imageButtonShowPass);
         relativeAddAccount = (RelativeLayout) findViewById(R.id.relativeAddAccount);
-
+        isClicked = false;
         addList.setOnClickListener(this);
         imageButtonGP.setOnClickListener(this);
         // Should show password if it is hidden
-        imageButtonShowPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isClicked) {
-                    enterPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    isClicked = false;
-                } else if (isClicked) {
-                    enterPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    isClicked = true;
-                }
-            }
-        });
+        imageButtonShowPass.setOnClickListener(this);
 
         // Adapter
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,titles);
@@ -112,6 +101,15 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
                 // Goes to the password generator window
                 startActivity(new Intent(this, PasswordGenerator.class));
                 break;
+            case R.id.imageButtonShowPass:
+                Log.d("Log", "clicked?" + isClicked);
+                if(isClicked) {
+                    isClicked = false;
+                    enterPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }else {
+                    isClicked = true;
+                    enterPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
         }
     }
 
