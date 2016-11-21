@@ -20,6 +20,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AccountName.text = "TEST"
         // Do any additional setup after loading the view.
     }
 

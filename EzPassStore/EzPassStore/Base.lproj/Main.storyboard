@@ -287,6 +287,7 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backToMainInt:" destination="bHJ-Xh-uB9" eventType="touchUpInside" id="n9V-on-2EB"/>
+                                    <segue destination="eSZ-QV-thC" kind="show" identifier="showMainIntViewController" id="9P8-xr-ok1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd2-Fm-YVW">
@@ -305,12 +306,11 @@
                         <outlet property="displayPassword" destination="xkd-fR-8Zu" id="LCa-nS-yd5"/>
                         <outlet property="displayUsername" destination="saG-ga-WnA" id="RYz-35-P86"/>
                         <outlet property="displayWebsite" destination="VCJ-9B-TmB" id="KHN-AI-FCe"/>
-                        <segue destination="eSZ-QV-thC" kind="show" identifier="showMainIntViewController" id="cVJ-Ba-Vh3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UN6-11-AAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3698" y="971"/>
+            <point key="canvasLocation" x="3696.8000000000002" y="970.16491754122944"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="I8A-qu-zax">
@@ -717,8 +717,8 @@
         <image name="secuure120px.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cVJ-Ba-Vh3"/>
+        <segue reference="9P8-xr-ok1"/>
         <segue reference="OL1-jE-i8X"/>
-        <segue reference="95c-XB-Bjy"/>
+        <segue reference="3Jr-7E-kuW"/>
     </inferredMetricsTieBreakers>
 </document>

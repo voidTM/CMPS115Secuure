@@ -21,6 +21,12 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(false)
+            print("RUNNING VIEWDIDAPPEAR")
+            tableView.reloadData()
+        }
+        
         print("CONNECTING FROM VIEWDIDLOAD MAIN********************************************")
 
         let user = DataContainerSingleton.sharedDataContainer.userString! as String
@@ -63,53 +69,20 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
         
         print("************************************")
         print(parse_response)
+        
+        print("reloading table data")
+       
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-         print("CONNECTING FROM VIEWDIDLOAD APPEAR********************************************")
-        
-        let user = DataContainerSingleton.sharedDataContainer.userString! as String
-        let pass = DataContainerSingleton.sharedDataContainer.passString! as String
-        
-        //set loginuserlabel from username passed in from viewcontroller
-        loginUserLabel.text = user;
-        
-        /*****Send data to db to verify login*****/
-        var request = URLRequest(url: URL(string: "http://localhost/~Aou/read_accounts_mysql_ios.php")!)
-        request.httpMethod = "POST"
-        /***** NOT SURE HOW ITS GETTING USER...CHECK LATER ***/
-        let postString = "arg_usr="+user+"&arg_pwd="+pass
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error: \(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response: \(response)")
-            }
-            let responseString = String(data: data, encoding: .utf8)
-            //print("************************************")
-            print("responseString: \(responseString)")
-            self.parse_response = self.parseOutput(response: responseString!)
-            print(self.parse_response)
-            //responsePhp = responseString!
-            //serverResp = 1
-            
-        }
-        task.resume()
-        
-        print("************************************")
-        print(parse_response)
-        
-        
+        super.viewDidAppear(false)
+        print("RUNNING VIEWDIDAPPEAR")
+        tableView.reloadData()
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("********* TABLE VIEW NUM ROW IS RUNNING")
         return parse_response.count;
     }
     
