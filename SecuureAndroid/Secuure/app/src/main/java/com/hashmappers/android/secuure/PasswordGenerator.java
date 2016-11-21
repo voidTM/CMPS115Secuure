@@ -3,9 +3,11 @@ package com.hashmappers.android.secuure;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class PasswordGenerator extends AppCompatActivity implements OnClickListener {
-    RadioButton  radioCap, radioNum, radioSym;
+    CheckBox  radioCap, radioNum, radioSym;
     TextView textViewPass, textLength;
     Button buttonCancel, buttonOk;
     ImageButton imageButtonRefresh;
@@ -41,16 +43,17 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
     private String lowerCase = "abcdefghijklmnopqrstuvwxyz";
     private String num = "0123456789";
     private String symbol = "!@#$%^&*";
+    private int cap, sym, numbs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_generator);
-
+        cap = 0;    sym = 0;    numbs =0;
         // Initialize all the variables on the page
-        radioCap = (RadioButton) findViewById(R.id.radioCap);
-        radioNum = (RadioButton) findViewById(R.id.radioNum);
-        radioSym = (RadioButton) findViewById(R.id.radioSym);
+        radioCap = (CheckBox) findViewById(R.id.radioCap);
+        radioNum = (CheckBox) findViewById(R.id.radioNum);
+        radioSym = (CheckBox) findViewById(R.id.radioSym);
         textViewPass = (TextView) findViewById(R.id.textView);
         imageButtonRefresh = (ImageButton) findViewById(R.id.imageButtonRefresh);
         buttonCancel = (Button) findViewById(R.id.buttonCancel);
@@ -94,16 +97,26 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
             // Should have some capitol letters in the generated password
             case R.id.radioCap:
                 //textViewPass.setText("Capitol");
+
+                cap +=1;
+                cap = cap % 2;
+                Log.d("Check cap", " cap" +cap);
                 break;
 
             // Should have some numbers in the generated password
             case R.id.radioNum:
                 //textViewPass.setText("Number");
+                numbs +=1;
+                numbs = numbs % 2;
+                Log.d("Check numbs", " numbs" +numbs);
                 break;
 
             // Should have some symbols in the generated password
             case R.id.radioSym:
                 //textViewPass.setText("Symbol");
+                sym +=1;
+                sym = sym % 2;
+                Log.d("Check sym", " Sym" +sym);
                 break;
 
             case R.id.buttonCancel:
