@@ -164,7 +164,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     // Log error here since request failed
-                    Log.w("Apicall", t.getMessage());
+                    Log.w("Apicall", "" + t.getMessage());
                     //Send error status here too?
                     //AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
