@@ -1,8 +1,8 @@
 <?php
     // Setup connection variables and user arguments
-    $hostname = "localhost";
-    $username = "root";
-    $password = "aaaa";
+    $hostname = "192.168.0.107";
+    $username = "cs115";
+    $password = "insecuurity";
     $dbname = secuure;
     $usertable = users;
     $datatable = data;
