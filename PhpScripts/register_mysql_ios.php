@@ -2,7 +2,7 @@
     // Setup connection variables and user arguments
     $hostname = "192.168.0.107";
     $username = "cs115";
-    $password = "insecurrity";
+    $password = "insecuurity";
     $dbname = secuure;
     $usertable = users;
     $usr = $_POST['arg_usr'];
