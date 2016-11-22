@@ -20,10 +20,17 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var displayNotes: UILabel!
     
     var parse_response = [String]()
+    var newAccount = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(DataContainerSingleton.sharedDataContainer.cellText == "New Account") {
+            newAccount = true
+        }
+        if(newAccount) {
+            displayWebsite.text = "New Account"
+        }else if(!newAccount) {
         let user = DataContainerSingleton.sharedDataContainer.userString! as String
         let pass = DataContainerSingleton.sharedDataContainer.passString! as String
         let cellLabelArray = parseUnderscore(response: DataContainerSingleton.sharedDataContainer.cellText!)
@@ -67,7 +74,7 @@ class InfoViewController: UIViewController {
             usleep(50000)
         }
 
-
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -79,6 +86,44 @@ class InfoViewController: UIViewController {
     @IBAction func deleteAccount(_ sender: Any) {
         //delete the account from database
         //segue back to mainint
+        if(!newAccount) {
+        
+        let user = DataContainerSingleton.sharedDataContainer.userString! as String
+        let pass = DataContainerSingleton.sharedDataContainer.passString! as String
+        
+        
+        var serverResp = 0
+        /*****Send data to db to verify login*****/
+        var request = URLRequest(url: URL(string: "http://localhost/~Aou/delete_mysql_ios.php")!)
+        request.httpMethod = "POST"
+        /***** NOT SURE HOW ITS GETTING USER...CHECK LATER ***/
+        let postString = "arg_usr="+user+"&arg_pwd="+pass+"&arg_del_acc="+parse_response[0]+"&arg_del_ws="+parse_response[1]
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error: \(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response: \(response)")
+            }
+            let responseString = String(data: data, encoding: .utf8)
+            //print("************************************")
+            print("responseString: \(responseString)")
+            self.parse_response = self.parseOutput(response: responseString!)
+            print(self.parse_response)
+            responsePhp = responseString!
+            serverResp = 1
+        }
+        task.resume()
+        //wait for response
+        while(serverResp != 1){
+            //50 Milliseconds
+            usleep(50000)
+        }
+        }
         self.performSegue(withIdentifier: "showMainIntViewController", sender: self)
         
     }

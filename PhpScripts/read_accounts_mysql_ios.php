@@ -46,15 +46,15 @@
         {
             $acc = $row[account];
             $ws = $row[website];
-            $str = $acc . " " . $ws;
+            $str = $acc . "_" . $ws;
             array_push($accounts, $str);
            
         }
     }
     
     //Returns "accountname website | ...."
-    foreach($accounts as $value) {
-        echo "$value ";
+   foreach($accounts as $value) {
+        echo "$value";
         echo "|";
         
     }

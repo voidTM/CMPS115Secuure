@@ -102,7 +102,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 task.resume()
             }else {
                 //uialert for unmatching password
-                let signupAlertController = UIAlertController(title: "Unmatching password", message: "Please enter the correct password", preferredStyle: UIAlertControllerStyle.alert)
+                let signupAlertController = UIAlertController(title: "Unmatching password", message: "Please enter matching passwords", preferredStyle: UIAlertControllerStyle.alert)
                 let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
                 signupAlertController.addAction(okAction)
                 self.present(signupAlertController, animated: true, completion: nil)

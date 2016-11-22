@@ -10,6 +10,9 @@ import UIKit
 
 class PassViewController: UIViewController {
 
+    @IBOutlet weak var symbolSwitch: UISwitch!
+    @IBOutlet weak var numSwitch: UISwitch!
+    @IBOutlet weak var capSwitch: UISwitch!
     @IBOutlet weak var generatedPass: UILabel!
     @IBOutlet weak var sliderLabel: UILabel!
     @IBOutlet weak var sliderOutlet: UISlider!

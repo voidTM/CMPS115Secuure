@@ -111,6 +111,10 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
     //update the account info
     func updateCell(cell: UITableViewCell)
     {
+        let currentCell = cell as! myCell
+        
+        DataContainerSingleton.sharedDataContainer.cellText = currentCell.rowLabel.text! as String
+
        //segue to add view controller
         self.performSegue(withIdentifier: "showAddViewController", sender: self)
     }
