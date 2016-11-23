@@ -92,7 +92,7 @@ public class Login extends Activity implements View.OnClickListener {
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
                 // Log error here since request failed
-                Log.e("Apicall", t.getMessage());
+                Log.e("Apicall", "error:" + t.getMessage());
             }
         });
     }

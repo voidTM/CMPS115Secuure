@@ -1,6 +1,6 @@
 <?php
     //Setup connection variables
-    $hostname = "98.234.141.183";
+    $hostname = "localhost";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
     $dbname = "secuure";
@@ -8,7 +8,7 @@
 
 
     // Create connection
-    $conn = mysqli_connect($hostname, $username, $password, $dbname);
+    $conn = mysqli_connect($hostname, $username, $password, $dbname, 3306);
    
     // Check connection
     if (!$conn) {
