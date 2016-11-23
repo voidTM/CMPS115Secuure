@@ -13,7 +13,7 @@
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
    
-    echo "User: $usr  Password: $pwd  FN: $firstname  LN: $lastname"
+    echo "User: $usr  Password: $pwd  FN: $firstname  LN: $lastname";
     
     // Check connection
     if (!$conn) {
