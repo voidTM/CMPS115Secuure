@@ -13,6 +13,7 @@ public class Global {
     private static AccountTable accounts = null;
     private static User usr = null; // Initialized after login
     private static Account acc = null;
+    // private static String newPass = "";
 
     public static synchronized AccountTable getAccountT()
     {

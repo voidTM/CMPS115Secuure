@@ -61,6 +61,10 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
         // Adapter
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,titles);
         //titleList.setAdapter(adapter);
+
+        //Intent intent = getIntent();
+        //String genPass = intent.getExtras().getString("gPass");
+        //enterPassword.setText("gPass");
     }
 
     @Override

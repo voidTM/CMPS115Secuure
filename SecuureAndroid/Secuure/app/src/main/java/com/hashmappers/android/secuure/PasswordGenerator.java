@@ -20,34 +20,12 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
     Button buttonCancel, buttonOk;
     ImageButton imageButtonRefresh;
     SeekBar seekBarLength;
-    int progress = 8;
+    int progress = 8; // Set the minimum length of password to be 8
 
-   /* int pound = 35;
-    int excl = 33;
-    int at = 64;
-    int dollar = 36;
-    int perc = 37;
-    int carrot = 94;
-    int amper = 38;
-    int ast = 42;
-
-    // Declaring the arrays of ascii values for corresponding set of characters
-    private char[] symbols;
-    private char[] numbers;
-    private char[] capitols;
-    private char[] lowerCase;
-    //private char symbolArr = [pound, excl, at, dollar, perc, carrot, amper, ast];
-    */
-
-    private String caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private String lowerCase = "abcdefghijklmnopqrstuvwxyz";
-    private String num = "0123456789";
-    private String symbol = "!@#$%^&*";
-    private String mainString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-
-    private int cap = 0;
-    private int sym = 0;
-    private int numbs = 0;
+    String genPass = "";
+    private int cap = 0, sym = 0, numbs = 0;
+    // Flags determine to help see if a box is checked which gets used to generate a password
+    private boolean flagCap = false, flagNum = false, flagSym = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +53,7 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
         seekBarLength.setProgress(progress-8);
 
         textLength = (TextView) findViewById(R.id.textLength);
-        textLength.setText(""+progress);
+        textLength.setText("" + progress);
 
         seekBarLength.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -99,26 +77,37 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
         switch (v.getId()) {
             // Should have some capitol letters in the generated password
             case R.id.radioCap:
-                //textViewPass.setText("Capitol");
-
                 cap +=1;
                 cap = cap % 2;
+                if (cap == 1) {
+                    flagCap = true;
+                } else {
+                    flagCap = false;
+                }
                 Log.d("Check cap", " cap" +cap);
                 break;
 
             // Should have some numbers in the generated password
             case R.id.radioNum:
-                //textViewPass.setText("Number");
                 numbs +=1;
                 numbs = numbs % 2;
+                if (numbs == 1) {
+                    flagNum = true;
+                } else {
+                    flagNum = false;
+                }
                 Log.d("Check numbs", " numbs" +numbs);
                 break;
 
             // Should have some symbols in the generated password
             case R.id.radioSym:
-                //textViewPass.setText("Symbol");
                 sym +=1;
                 sym = sym % 2;
+                if (sym == 1) {
+                    flagSym = true;
+                } else {
+                    flagSym = false;
+                }
                 Log.d("Check sym", " Sym" +sym);
                 break;
 
@@ -126,50 +115,58 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
                 startActivity(new Intent(this,AddingAccounts.class));
                 break;
             case R.id.buttonOk:
+                //Intent i = new Intent(this, AddingAccounts.class);
+                //i.putExtra("gPass",genPass);
+                //startActivity(i);
                 startActivity(new Intent(this,AddingAccounts.class));
                 break;
 
             // Should call to create a new password with the specific specifications
             case R.id.imageButtonRefresh:
-                if ((cap == 1) || (numbs == 1)|| (sym == 1)) {
-                    generatePass(seekBarLength.getProgress()+8, cap, numbs, sym);
-                } else {
-                    generatePass(seekBarLength.getProgress()+8, 0, 0, 0);
-                }
+                generatePass();
                 break;
         }
     }
 
     // Generates a random password based on user input
-    public void generatePass(int progress, int noOfCapitals, int noOfNumbers, int noOfSymbols) {
-        Random rnd = new Random();
-        int randNum = rnd.nextInt(progress);
-        // int randNum = rnd.nextInt(Integer.MAX_VALUE) % mainString.length();
-        char[] pswd = new char[progress];
-        int index = 0;
-        if (noOfCapitals == 1) {
-            index = getNextIndex(rnd, randNum, pswd);
-            pswd[index] = caps.charAt(rnd.nextInt(caps.length()));
-        } else if (noOfNumbers == 1) {
-            index = getNextIndex(rnd, randNum, pswd);
-            pswd[index] = num.charAt(rnd.nextInt(num.length()));
-        } else if (noOfSymbols == 1) {
-            index = getNextIndex(rnd, randNum, pswd);
-            pswd[index] = symbol.charAt(rnd.nextInt(symbol.length()));
-        }
-
-        for (int i = 0; i < progress; i++) {
-            if (pswd[i] == 0) {
-                pswd[i] = lowerCase.charAt(rnd.nextInt(lowerCase.length()));
-            }
-        }
-        String genPass = String.valueOf(pswd);
+    private void generatePass () {
+        final String genPass = randomString(seekBarLength.getProgress()+8, flagCap, flagNum, flagSym);
         textViewPass.setText(genPass);
     }
 
-    private int getNextIndex(Random rnd, int randNum, char[] pswd) {
-        int index = rnd.nextInt(randNum);
-        while (pswd[index = rnd.nextInt(randNum)] != 0);
-        return index;
+    /* This function creates a random string depending on the what the user wants to include in their
+           * random generated password. */
+    public String randomString (int progress, boolean noOfCapitals, boolean noOfNumbers, boolean noOfSymbols) {
+        String characters = "";
+
+        // Various cases of choosing capital letters, numbers, or symbols to be included
+        if (flagCap && !flagNum && !flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        } else if (!flagCap && flagNum && !flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+        } else if (!flagCap && !flagNum && flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyz!@#$%&^*()";
+        } else if (flagCap && flagNum && !flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        } else if (flagCap && !flagNum && flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()";
+        } else if (!flagCap && flagNum && flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxy0123456789!@#$%^&*()";
+        } else if (flagCap && flagNum && flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+        } else if (!flagCap && !flagNum && !flagSym) {
+            characters = "abcdefghijklmnopqrstuvwxyz";
+        }
+
+        // This creates a random string using one of the cases above
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < progress) {
+            int randNum = (int) (rnd.nextFloat()* characters.length());
+            salt.append(characters.charAt(randNum));
+        }
+
+        genPass = salt.toString();
+        return genPass;
     }
 }
