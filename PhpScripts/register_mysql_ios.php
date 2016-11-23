@@ -3,8 +3,8 @@
     $hostname = "192.168.0.107";
     $username = "cs115";
     $password = "insecuurity";
-    $dbname = secuure;
-    $usertable = users;
+    $dbname = "secuure";
+    $usertable = "users";
     $usr = $_POST['arg_usr'];
     $pwd = $_POST['arg_pwd'];
     $firstname = $_POST['arg_fname'];
