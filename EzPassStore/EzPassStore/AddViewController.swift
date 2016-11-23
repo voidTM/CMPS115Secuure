@@ -8,8 +8,10 @@
 
 import UIKit
 
-class AddViewController: UIViewController, UITextFieldDelegate {
+class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelegate{
     
+    
+    var genPass = ""
     var parse_response = [String]()
     var isEdit = true
     
@@ -21,6 +23,28 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "secuurebackground.jpg")?.draw(in: self.view.bounds)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+        
+        self.WebsiteName.delegate = self
+        self.UserName.delegate = self
+        self.Password.delegate = self
+        self.confirmPassword.delegate = self
+        self.AdditionalNote.delegate = self
+        
+        if(genPass != "") {
+            self.Password.text = genPass
+            self.confirmPassword.text = genPass
+        }
         
         if(DataContainerSingleton.sharedDataContainer.cellText == "New Account") {
             isEdit = false
@@ -69,10 +93,10 @@ class AddViewController: UIViewController, UITextFieldDelegate {
                 print(self.parse_response)
                 
                 print("RUNNNINGGGGGGGGGGG")
-                
-                self.Password.text = self.parse_response[2]
-                self.confirmPassword.text = self.parse_response[2]
-                
+                if(self.genPass == "") {
+                    self.Password.text = self.parse_response[2]
+                    self.confirmPassword.text = self.parse_response[2]
+                }
                 DispatchQueue.main.async {
                     self.AdditionalNote.text = self.parse_response[3]
                 }
@@ -96,6 +120,21 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //hide keyboard when user touch outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    //hide keyboard when user press return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        WebsiteName.resignFirstResponder()
+        UserName.resignFirstResponder()
+        Password.resignFirstResponder()
+        confirmPassword.resignFirstResponder()
+        AdditionalNote.resignFirstResponder()
+        return true
+    }
+
     
     //segue from signupview to emailverifyviews
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

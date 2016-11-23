@@ -17,6 +17,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
+
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "secuurebackground.jpg")?.draw(in: self.view.bounds)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.usernameText.delegate = self
         self.passwordText.delegate = self

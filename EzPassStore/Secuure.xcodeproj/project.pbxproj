@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		910103121DDD8DA9004F4B68 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910103111DDD8DA9004F4B68 /* InfoViewController.swift */; };
 		910103141DE2590E004F4B68 /* DataContainerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910103131DE2590E004F4B68 /* DataContainerSingleton.swift */; };
+		912744D71DE517E50030C78F /* secuurebackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912744D61DE517E50030C78F /* secuurebackground.jpg */; };
 		9187C03A1DAACB2400B1079B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C0391DAACB2400B1079B /* AppDelegate.swift */; };
 		9187C03C1DAACB2400B1079B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9187C03B1DAACB2400B1079B /* ViewController.swift */; };
 		9187C03F1DAACB2400B1079B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9187C03D1DAACB2400B1079B /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		910103111DDD8DA9004F4B68 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		910103131DE2590E004F4B68 /* DataContainerSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataContainerSingleton.swift; sourceTree = "<group>"; };
+		912744D61DE517E50030C78F /* secuurebackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = secuurebackground.jpg; path = ../../../../Desktop/secuurebackground.jpg; sourceTree = "<group>"; };
 		9187C0361DAACB2400B1079B /* Secuure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Secuure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9187C0391DAACB2400B1079B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9187C03B1DAACB2400B1079B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				910103131DE2590E004F4B68 /* DataContainerSingleton.swift */,
 				9187C0671DB2B9D500B1079B /* SignupViewController.swift */,
 				9187C0401DAACB2400B1079B /* Assets.xcassets */,
+				912744D61DE517E50030C78F /* secuurebackground.jpg */,
 				9187C0421DAACB2400B1079B /* LaunchScreen.storyboard */,
 				9187C0451DAACB2400B1079B /* Info.plist */,
 				B035492A1DC962FA00059FA0 /* secuure40px.png */,
@@ -282,6 +285,7 @@
 				9187C0441DAACB2400B1079B /* LaunchScreen.storyboard in Resources */,
 				9187C0411DAACB2400B1079B /* Assets.xcassets in Resources */,
 				B03549341DC962FA00059FA0 /* secuure80px.png in Resources */,
+				912744D71DE517E50030C78F /* secuurebackground.jpg in Resources */,
 				B03549311DC962FA00059FA0 /* secuure40px.png in Resources */,
 				B03549321DC962FA00059FA0 /* secuure58px.png in Resources */,
 				B03549351DC962FA00059FA0 /* secuure87px.png in Resources */,
