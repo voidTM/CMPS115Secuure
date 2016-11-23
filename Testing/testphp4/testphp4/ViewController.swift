@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 //        let postString = "arg_usr=&arg_pwd=&arg_edit_acc=&arg_edit_ws=&arg_edit_pwd=&arg_edit_note=" // edit_mysql.php
 //        let postString = "arg_usr=&arg_pwd=&arg_add_acc=&arg_add_ws=&arg_add_pwd=&arg_add_note=" // insert_mysql.php
 //        let postString = "arg_usr=&arg_pwd=&arg_read_acc=&arg_read_ws=" // read_mysql.php
-        let postString = "arg_usr=alex&arg_pwd=admin&arg_fname=Alex&arg_lname=Ou" // register_mysql.php
+        let postString = "arg_usr=FUKMEthissucks&arg_pwd=admin&arg_fname=Alex&arg_lname=Ou" // register_mysql.php
         
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

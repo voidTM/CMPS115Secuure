@@ -1,6 +1,6 @@
 <?php
     // Setup connection variables and user arguments
-    $hostname = "98.234.141.183";
+    $hostname = "192.168.0.107";
     $username = "cs115";
     $password = "insecuurity";
     $dbname = secuure;
