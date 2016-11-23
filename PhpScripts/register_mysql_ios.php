@@ -10,10 +10,10 @@
     $firstname = $_POST['arg_fname'];
     $lastname = $_POST['arg_lname'];
 
+    echo "User: $usr  Password: $pwd  FN: $firstname  LN: $lastname";
+    
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
-   
-    echo "User: $usr  Password: $pwd  FN: $firstname  LN: $lastname";
     
     // Check connection
     if (!$conn) {
