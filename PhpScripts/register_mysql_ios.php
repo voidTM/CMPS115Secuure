@@ -30,7 +30,6 @@
     mysqli_close($conn);
     
     
-    // Create new user account on database
     // Create connection
     $conn = mysqli_connect($hostname, $username, $password, $dbname);
     
@@ -39,7 +38,7 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
-    $sql = "CREATE USER '$usr'@'%' IDENTIFIED BY '$pwd'";
+    $sql = "CREATE USER '$usr'@'localhost' IDENTIFIED BY '$pwd'";
     
     if (mysqli_query($conn, $sql)) {
         echo "New user registered successfully" . "\r\n";
@@ -57,7 +56,27 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
-    $sql = "CREATE USER '$usr'@'localhost' IDENTIFIED BY '$pwd'";
+    // Grants users SELECT, INSERT, DELETE, and UPDATE privileges only on secuure database
+    $sql = "GRANT SELECT, INSERT, DELETE, UPDATE ON $dbname.* TO '$usr'@'localhost'";
+    
+    if (mysqli_query($conn, $sql)) {
+    } else {
+        echo "Error: " . $sql . " " . mysqli_error($conn);
+    }
+    
+    mysqli_close($conn);
+    
+    
+    // Create new user account on database
+    // Create connection
+    $conn = mysqli_connect($hostname, $username, $password, $dbname);
+    
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    
+    $sql = "CREATE USER '$usr'@'%' IDENTIFIED BY '$pwd'";
     
     if (mysqli_query($conn, $sql)) {
         echo "New user registered successfully" . "\r\n";
@@ -79,24 +98,6 @@
     
     // Grants users SELECT, INSERT, DELETE, and UPDATE privileges only on secuure database
     $sql = "GRANT SELECT, INSERT, DELETE, UPDATE ON $dbname.* TO '$usr'@'%'";
-    
-    if (mysqli_query($conn, $sql)) {
-    } else {
-        echo "Error: " . $sql . " " . mysqli_error($conn);
-    }
-    
-    mysqli_close($conn);
-    
-    // Create connection
-    $conn = mysqli_connect($hostname, $username, $password, $dbname);
-    
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    
-    // Grants users SELECT, INSERT, DELETE, and UPDATE privileges only on secuure database
-    $sql = "GRANT SELECT, INSERT, DELETE, UPDATE ON $dbname.* TO '$usr'@'localhost'";
     
     if (mysqli_query($conn, $sql)) {
     } else {
