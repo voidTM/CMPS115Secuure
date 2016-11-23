@@ -131,11 +131,11 @@ public class PasswordGenerator extends AppCompatActivity implements OnClickListe
 
             // Should call to create a new password with the specific specifications
             case R.id.imageButtonRefresh:
-                if ((cap == 1) || (numbs == 1)|| (sym == 1)) {
+                //if ((cap == 1) || (numbs == 1)|| (sym == 1)) {
                     generatePass(seekBarLength.getProgress()+8, cap, numbs, sym);
-                } else {
-                    generatePass(seekBarLength.getProgress()+8, 0, 0, 0);
-                }
+                //} else {
+                //    generatePass(seekBarLength.getProgress()+8, 0, 0, 0);
+                //}
                 break;
         }
     }
