@@ -1,0 +1,7 @@
+testphp4 Testing Documentation
+
+I used the testphp4 files to test all the php scripts and their functionality on the iOS platform.  This Xcode app simply consists of two buttons, one to execute scripts and the other to test the random password generator.
+
+When the top button is pressed, the URL string is set, and the arguments passed to the scripts is also assigned.  There are multiple assignments for these variables, one for each php script and one for each type of arguments that the corresponding script accepts.  The corresponding URL string and post string must be the only parts uncommented to properly work.  Upon testing the scripts this way, I would then manually look into the database, either by using PHPMyAdmin for localhost, and logging into the MySQL server for public access.  I would ensure that the correct output is produced into the database, or else I would then modify the scripts as necessary.
+
+When the bottom button is pressed it executes the code to generate a random password.  The method takes in an integer and three booleans.  The int is the length of the desired password to be generated, and the booleans correspond to capital letters, numbers, and special characters accordingly.  When the boolean flags are set, the corresponding characters are added to the pool of available characters in which the method pulls from when creating the random string.  The resulting string is printed out to the console for verification.    

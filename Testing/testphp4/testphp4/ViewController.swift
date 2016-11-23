@@ -12,22 +12,22 @@ class ViewController: UIViewController {
 
     @IBAction func buttonPressed(_ sender: UIButton) {
         var parse_response = [String]()
-        var request = URLRequest(url: URL(string: "http://98.234.141.183:8080/register_mysql_ios.php")!)
+//        var request = URLRequest(url: URL(string: "http://localhost/~Steven/register_mysql_ios.php")!)
 //        var request = URLRequest(url: URL(string: "http://localhost/~Steven/delete_mysql.php")!)
 //        var request = URLRequest(url: URL(string: "http://localhost/~Steven/edit_mysql.php")!)
-//        var request = URLRequest(url: URL(string: "http://98.234.141.183:8080/insert_mysql_ios.php")!)
+//        var request = URLRequest(url: URL(string: "http://localhost/~Steven/insert_mysql_ios.php")!)
  //         var request = URLRequest(url: URL(string: "http://localhost/~Steven/login_mysql_ios.php")!)
-//        var request = URLRequest(url: URL(string: "http://localhost/~Steven/read_accounts_mysql.php")!)
+        var request = URLRequest(url: URL(string: "http://localhost/~Steven/read_accounts_mysql_ios.php")!)
 //          var request = URLRequest(url: URL(string: "http://98.234.141.183:8080/read_mysql_ios.php")!)
 //        var request = URLRequest(url: URL(string: "http://localhost/~Steven/register_mysql.php")!)
         
         request.httpMethod = "POST"
-//        let postString = "arg_usr=&arg_pwd=" // login_mysql.php / read_accounts_mysql.php
+        let postString = "arg_usr=ALKJSDLKJFLSDKJFLKJSDF&arg_pwd=admin" // login_mysql.php / read_accounts_mysql.php
 //        let postString = "arg_usr=&arg_pwd=&arg_del_acc=&arg_del_ws=" // delete_mysql.php
 //        let postString = "arg_usr=&arg_pwd=&arg_edit_acc=&arg_edit_ws=&arg_edit_pwd=&arg_edit_note=" // edit_mysql.php
-//        let postString = "arg_usr=&arg_pwd=&arg_add_acc=&arg_add_ws=&arg_add_pwd=&arg_add_note=" // insert_mysql.php
+//        let postString = "arg_usr=ALKJSDLKJFLSDKJFLKJSDF&arg_pwd=admin&arg_add_acc=Account&arg_add_ws=website&arg_add_pwd=password&arg_add_note=Note" // insert_mysql.php
 //        let postString = "arg_usr=&arg_pwd=&arg_read_acc=&arg_read_ws=" // read_mysql.php
-        let postString = "arg_usr=FUKMEthissucks&arg_pwd=admin&arg_fname=Alex&arg_lname=Ou" // register_mysql.php
+ //       let postString = "arg_usr=ALKJSDLKJFLSDKJFLKJSDF&arg_pwd=admin&arg_fname=Alex&arg_lname=Ou" // register_mysql.php
         
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
