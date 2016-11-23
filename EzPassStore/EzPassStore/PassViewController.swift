@@ -10,6 +10,8 @@ import UIKit
 
 class PassViewController: UIViewController {
 
+    var transferGenPass = false
+    
     @IBOutlet weak var symbolSwitch: UISwitch!
     @IBOutlet weak var numSwitch: UISwitch!
     @IBOutlet weak var capSwitch: UISwitch!
@@ -19,6 +21,19 @@ class PassViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "secuurebackground.jpg")?.draw(in: self.view.bounds)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+       
+        
         // Do any additional setup after loading the view.
     }
 
@@ -29,21 +44,14 @@ class PassViewController: UIViewController {
     
     //segue from signupview to emailverifyviews
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showAddViewController" {
-            _ = segue.destination as! AddViewController
-            
+        if(transferGenPass) {
+            let destination = segue.destination as! AddViewController
+            destination.genPass = generatedPass.text!
+           
         }
         
     }
-    
-    //conditionals to making the segue
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if(identifier == "showAddViewController") {
-            //if all fields are filled, return true
-            return true;
-        }
-        return false
-    }
+
     
     @IBAction func slider(_ sender: AnyObject) {
         sliderLabel.text = String(Int(sliderOutlet.value))
@@ -52,11 +60,56 @@ class PassViewController: UIViewController {
     }
     
     @IBAction func okayButton(_ sender: AnyObject) {
+        transferGenPass = true
     }
     
     @IBAction func generateButton(_ sender: AnyObject) {
+        
+        let genPass = randomString(length: Int(sliderOutlet.value), flagletter: capSwitch.isOn, flagnum: numSwitch.isOn, flagspecial: symbolSwitch.isOn)
+        print(genPass)
+        generatedPass.text = genPass
     }
 
+    func randomString(length: Int, flagletter: Bool, flagnum: Bool, flagspecial: Bool) -> String {
+        
+        var letters : NSString = ""
+        
+        if(flagletter && !flagnum && !flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        }
+        else if(!flagletter && flagnum && !flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyz0123456789"
+        }
+        else if(!flagletter && !flagnum && flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyz!@#$%^*()"
+        }
+        else if(flagletter && flagnum && !flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        }
+        else if(flagletter && !flagnum && flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^*()"
+        }
+        else if(!flagletter && flagnum && flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()"
+        }
+        else if(flagletter && flagnum && flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^*()"
+        }else if(!flagletter && !flagnum && !flagspecial) {
+            letters = "abcdefghijklmnopqrstuvwxyz"
+        }
+        
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
     /*
     // MARK: - Navigation
 

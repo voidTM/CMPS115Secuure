@@ -20,6 +20,19 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "secuurebackground.jpg")?.draw(in: self.view.bounds)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+        
         //ignupText.text = username
         // Do any additional setup after loading the view.
         self.firstName.delegate = self

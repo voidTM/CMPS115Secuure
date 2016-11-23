@@ -25,6 +25,17 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "secuurebackground.jpg")?.draw(in: self.view.bounds)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+        
         if(DataContainerSingleton.sharedDataContainer.cellText == "New Account") {
             newAccount = true
         }
