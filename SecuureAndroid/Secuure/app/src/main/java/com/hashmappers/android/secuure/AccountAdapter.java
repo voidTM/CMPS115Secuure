@@ -55,6 +55,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountH
         public void onClick(View v) {
             Log.d("RecyclerView", "CLICK!" + acc.getUsername());
 
+            Global.resetAccount();
             Account editAccount = Global.getAcc();
             editAccount.set(acc);
             // should jump to editingAccounts from here

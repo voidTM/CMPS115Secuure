@@ -130,6 +130,7 @@ public class Login extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.addAccounts:
+                Global.resetAccount();
                 startActivity(new Intent(this, AddingAccounts.class));
                 break;
 

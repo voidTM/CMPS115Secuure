@@ -13,6 +13,7 @@ public class Global {
     private static AccountTable accounts = null;
     private static User usr = null; // Initialized after login
     private static Account acc = null;
+    private static String passGenValue = null;
 
     public static synchronized AccountTable getAccountT()
     {
@@ -34,12 +35,20 @@ public class Global {
         return acc;
     }
 
+    public static synchronized String getPassGenValue(){
+        if(passGenValue == null){
+            passGenValue = new String("");
+        }
+
+        return passGenValue;
+    }
     // resets and clears all values upon logging out
     public static synchronized void reset()
     {
         accounts = new AccountTable();
         usr = new User();
         acc = new Account();
+        passGenValue = new String("");
     }
 
     // Resets value of the account as needed.
@@ -47,4 +56,7 @@ public class Global {
         acc = new Account();
     }
 
+    public static synchronized void resetPassGenValue(){
+        passGenValue = new String("");
+    }
 }

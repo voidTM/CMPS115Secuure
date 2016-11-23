@@ -19,10 +19,10 @@ public class Account {
     // Constructor
 
     public Account() {
-        username = "username";
-        password = "password";
-        appName = "(NONE)";
-        note =  "(NONE)";
+        username = "";
+        password = "";
+        appName = "";
+        note =  "";
     }
     public Account(String userN, String pass, String appName, String note) {
         username = userN;
@@ -34,8 +34,8 @@ public class Account {
     public Account(String userN, String pass) {
         username = userN;
         password = pass;
-        appName = "(NONE)";
-        note =  "(NONE)";
+        appName = "";
+        note =  "";
     }
 
     public Account(Account copy){

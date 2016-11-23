@@ -32,8 +32,9 @@ import java.util.concurrent.BlockingQueue;
 
 public class WebService {
     // Attempt to access the web
-    public static String BASE_URL = "http://98.234.141.183:8080/";
-    //public static String BASE_URL = "http://10.0.2.2/";
+    //public static String BASE_URL = "http://98.234.141.183:8080/"; // server1 ip
+    //public static String BASE_URL = "http://" server2 ip
+    public static String BASE_URL = "http://10.0.2.2/";
     private static WebInterface service;
 
     /**

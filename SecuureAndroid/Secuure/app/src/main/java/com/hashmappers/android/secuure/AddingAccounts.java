@@ -29,6 +29,7 @@ import retrofit2.Response;
 public class AddingAccounts extends AppCompatActivity implements View.OnClickListener {
 
     Button addList;
+    Account acc;
     ImageButton imageButtonGP, imageButtonShowPass;
     EditText enterTitle, enterLogin, enterPassword, enterAdditionalNotes;
     private PopupWindow popupWindow;
@@ -42,7 +43,7 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_accounts);
-
+        acc = Global.getAcc();
         // Initialize the variables used
         enterTitle = (EditText) findViewById(R.id.enterTitle);
         enterLogin = (EditText) findViewById(R.id.enterLogin);
@@ -53,6 +54,13 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
         imageButtonShowPass = (ImageButton) findViewById(R.id.imageButtonShowPass);
         relativeAddAccount = (RelativeLayout) findViewById(R.id.relativeAddAccount);
         isClicked = false;
+
+        enterTitle.setText(acc.getAppName());
+        enterLogin.setText(acc.getUsername());
+        enterPassword.setText(acc.getPassword());
+        enterAdditionalNotes.setText(acc.getNote());
+
+
         addList.setOnClickListener(this);
         imageButtonGP.setOnClickListener(this);
         // Should show password if it is hidden
@@ -61,6 +69,10 @@ public class AddingAccounts extends AppCompatActivity implements View.OnClickLis
         // Adapter
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,titles);
         //titleList.setAdapter(adapter);
+
+        //Intent intent = getIntent();
+        //String genPass = intent.getExtras().getString("gPass");
+        //enterPassword.setText("gPass");
     }
 
     @Override
