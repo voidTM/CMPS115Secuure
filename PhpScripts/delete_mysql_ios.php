@@ -1,6 +1,6 @@
 <?php
     //Setup connection variables and user arguments
-    $hostname = "192.168.0.107";
+    $hostname = "98.234.141.183";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
     $dbname = secuure;
