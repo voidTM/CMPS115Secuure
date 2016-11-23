@@ -1,10 +1,10 @@
 <?php
     //Setup connection variables
-    $hostname = "192.168.0.107";
+    $hostname = "98.234.141.183";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
-    $dbname = secuure;
-    $usertable = data;
+    $dbname = "secuure";
+    $usertable = "data";
     $acc = $_POST['arg_del_acc'];
     $ws = $_POST['arg_del_ws'];
     $uid = 0;
