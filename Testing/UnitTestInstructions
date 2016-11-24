@@ -16,7 +16,15 @@ To perform this test having a server to host the php scripts is required.
 	It is also assumed that the php scripts are placed such that the patch
 	way is BASE_URL/script.php
 
+	There should also be a mysql server that the php script can connect to.
+	It is currently set to the remote mysql server. This server is not up
+	at all times and script will fail if it is not on.
+	Usual uptime for mysql server:  12pm-10pm
+
 The test can be ran through by launching the PhpUnitTest android app
 There will be six buttons displayed on the app.
 Each button will perform a test of one of the php scripts.
 Any reponses from the scripts are printed to the Android Studio run log.
+To edit the data used for the test run change the appropriate variables 
+at WebPhpTest
+
