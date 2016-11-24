@@ -1,6 +1,6 @@
 <?php
     //Setup connection variables
-    $hostname = "localhost";
+    $hostname = "98.234.141.183";
     $username = $_POST['arg_usr'];
     $password = $_POST['arg_pwd'];
     $dbname = "secuure";
@@ -13,7 +13,7 @@
 
     // Fetch user id
     //Connect to the database
-    $connection = mysql_connect($hostname, $username, $password, 3306);
+    $connection = mysql_connect($hostname, $username, $password);
     mysql_select_db($dbname, $connection);
 
     $query = "SELECT id FROM users WHERE username='$username'";

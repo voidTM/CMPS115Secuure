@@ -1,6 +1,6 @@
 <?php
     // Setup connection variables and user arguments
-    $hostname = "localhost";
+    $hostname = "98.234.141.183";
     $username = "cs115";
     $password = "insecuurity";
     $dbname = "secuure";
@@ -10,7 +10,7 @@
     $firstname = $_POST['arg_fname'];
     $lastname = $_POST['arg_lname'];
     // Create connection
-    $conn = mysqli_connect($hostname, $username, $password, $dbname, 3306);
+    $conn = mysqli_connect($hostname, $username, $password, $dbname);
    
     // Check connection
     if (!$conn) {
@@ -23,6 +23,7 @@
     } else {
         echo "Error: " . $sql . " " . mysqli_error($conn);
     }
+    mysqli_close($conn);
     
     
     // Create new user account on database
