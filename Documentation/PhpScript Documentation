@@ -1,0 +1,42 @@
+PhpScript Documentation
+
+The php scripts act as an intermediary between the MySql server and the Android application.
+
+The scripts will recieve and send information between the Android application and the MySQl server.
+
+To use the php scripts with the Android App they need to be hosted on a server to be called from by the app.
+
+While the Android app uses the same base php scripts with the iOS app as described below requires slightly different
+output format as such there are two versions of any base php script that returns a value to the client. 
+iOS = _ios.php
+Android = _android.php
+
+create_db_mysql.php
+Parameters: None
+Returns: Newly created secuure database which contains user and data tables.
+	Creates the necessary database and tables for Secuure app.  Specifically uses root privilege on the MySQL server to log in and create the secuure database which contains the user and data tables.  The user table stores a private unique id number for each user, their username, first name, and last name.  The user table is also created with a constraint which ensures unique usernames.  The data table is created with an id field which references the unique id number given to a user in the user table, account, website, password, and notes fields.  create_db_mysql.php is never executed by the end user, only used to initially set up the database and tables.
+
+edit_mysql.php
+Parameters: arg_usr, arg_pwd, arg_edit_acc, arg_edit_ws, arg_edit_pwd, arg_edit_note
+Returns: Edits the password and/or notes field within the data table.
+	Edits the password and/or notes field within the data table given user provided account and website arguments.  Uses the user’s provided username to identify their unique id number stored in the user table and uses this along with the provided account and website to select the specific entry in the data table to edit.  Changes the password and notes field to the user specified values.  Returns either a success message or unsuccessful message depending if the entry was edited or not.
+
+insert_mysql.php 
+Parameters: arg_usr, arg_pwd, arg_add_acc, arg_add_ws, arg_add_pwd, arg_add_note
+Returns: Successful message or not depending if insert query worked.
+	Inserts a new entry into the data table given the user provided account, website, password, and notes.  Uses the user provided username to identify their unique id number stored in the user table and stores this in the new entry as well.  Returns successful message or unsuccessful message depending if the entry was correctly inserted or not into the database.
+
+login_mysql.php
+Parameters: arg_usr, arg_pwd
+Returns: Successful message or not depending if the login credentials are valid.
+	Tests to see if the given user login credentials are valid to login to the MySQL server.  If valid, returns login success message, else returns access denied message.
+
+read_mysql.php
+Parameters: arg_usr, arg_pwd
+Returns: Username and website string for each entry in the data table for a specific user.
+	Connects to the database and uses the user’s provided username to identify their unique id number stored in the user table.  Then it uses this id number to select all entries from the data table that also has that specific id number and returns a string containing all the account/website pairs for that user.  This will be parsed on the client side and used to display the table of accounts.
+	
+register_mysql.php
+Parameters: arg_usr, arg_pwd, arg_fname, arg_lname
+Returns: Success or unsuccessful message if a new user account with appropriate privileges has been correctly added to the MySQL database.
+	Uses the provided username, first name, and last name to create a new entry in the user table.  Also uses the username and password arguments to create a new user account on the MySQL database.  After user account is successfully added, it grants that user SELECT, INSERT, DELETE, and UPDATE privileges only on the secuure database.  If done correctly returns a success message, else returns an error message.  
