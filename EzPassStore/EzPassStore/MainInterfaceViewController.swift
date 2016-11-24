@@ -21,6 +21,7 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //init view properties
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -36,12 +37,15 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
         self.tableView.backgroundView = imageView
 
         
+        //refresh UITable each time we segue to this view
         func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(false)
             print("RUNNING VIEWDIDAPPEAR")
             tableView.reloadData()
         }
         
+        
+        //call server to get account info from DB to display in UITable
         print("CONNECTING FROM VIEWDIDLOAD MAIN********************************************")
 
         let user = DataContainerSingleton.sharedDataContainer.userString! as String
@@ -96,6 +100,8 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
         tableView.reloadData()
     }
     
+    
+    //set up the UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("********* TABLE VIEW NUM ROW IS RUNNING")
         return parse_response.count;
@@ -151,18 +157,18 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
         return false
     }
 
+    //add new row in table
     @IBAction func addAccountButton(_ sender: AnyObject) {
         parse_response.append("New Account")
         let insertIndexPath = NSIndexPath(row: parse_response.count - 1, section: 0)
         tableView.insertRows(at: [insertIndexPath as IndexPath], with: .automatic)
     }
     
-    @IBAction func settingButton(_ sender: AnyObject) {
-    }
 
     @IBAction func signoutButton(_ sender: AnyObject) {
     }
     
+    //func to parse server response
     func parseOutput(response: String) -> Array<String>{
         var strArray = response.components(separatedBy: "|")
         _ = strArray.removeLast()
@@ -173,6 +179,8 @@ class MainInterfaceViewController: UIViewController, UITableViewDataSource, UITa
     
 }
 
+
+//custom class for the tableviewcell
 class myCell: UITableViewCell
 {
     var viewController: MainInterfaceViewController?
@@ -196,6 +204,7 @@ class myCell: UITableViewCell
         return label
     }()
     
+    // make edit button
     let updateButton:UIButton = {
         let button = UIButton(type: .system)
         //make button smaller but doesnt work?

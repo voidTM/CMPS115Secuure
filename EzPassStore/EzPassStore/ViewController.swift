@@ -15,9 +15,12 @@ var responsePhp = "";
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //init properties
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
 
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -29,6 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.view.backgroundColor = UIColor(patternImage: image)
         
+            
         // Do any additional setup after loading the view, typically from a nib.
         self.usernameText.delegate = self
         self.passwordText.delegate = self
@@ -50,7 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
+    //ui alert pop up for wrong credentials
     func invalidLogin() {
         let signupAlertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
@@ -118,6 +122,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //func to check if server authentication is successful
     func authenticate() -> Bool {
         let emess = "{\"login\":true}"
         let range = responsePhp.range(of:emess)

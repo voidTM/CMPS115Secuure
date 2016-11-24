@@ -1,0 +1,29 @@
+iOS Front End Documentation
+
+*All button events described below that require user credentials assume valid credentials. If credentials are not valid, an alert will pop up stating the error. 
+
+ViewController:
+This is the login view. In here, users can type in their Secuure username and passwords.
+The “Sign Up” button brings the user to the SignUpViewController. The “Login” 
+brings the user to MainIntViewController.
+
+SignUpViewController:
+This is the sign up/register page for Secuure. Here, users provide their first name, last
+name, username, and password to register. The “Sign up” button will register the user’s account into the database and bring the user to EmailVerifyViewController, and the “Back” button returns the user to ViewController.
+
+EmailVerifyViewController:
+If the user successfully registered a Secuure account, this page tells the user that registration is successfully. The page has a single button “Return to login page” which brings him back to ViewController.
+
+MainIntViewController:
+After the user successfully log into the app, this view appears. The view has three main 
+components: a “Sign Out” button, a UITable, and a “+” button. Within the UITable are cells(rows), where each cell has a text and an “Edit” button. The text displays the user’s stored website and the corresponding username in the format <username>_<website>, ie. MyUsername_Facebook.
+Moving to outside the UITable, pressing the “Sign Out” button will bring the user back to ViewController. Pressing the “+” button will insert a new cell(row) in the UITable, with the text labeled “New Account”. Tapping on the cell itself will bring the user to InfoViewController. Tapping on the “Edit” button in the cells will bring the user to AddViewController.
+
+AddViewController:
+This is the page where users can add new accounts to their Secuure database. Here, the user can enter the username, password, and website for the account they wish to store into Secuure. The “G” button brings users to PassViewController. The “Back” button brings users back to MainIntViewController. Lastly, the “Save” button adds the account into the Secuure database and returns users to MainIntViewController.
+
+InfoViewController:
+This view contains all the info for the cell that the user tapped in MainIntViewController. It shows the username, password, website, as well as additional notes for the account. The “Back” button returns to MainIntViewController. The “Delete” button removes the account from the Secuure database, and then returns to MainIntViewController.
+
+PassViewController
+This is the password generator view. There is a slider to specify password length, and three switches to specify the presence of caps, numbers, or symbols in the password. The “Generate” button generates the password and displays it at the bottom of the view. The “Cancel” button returns to AddViewController. The “Okay” button returns to AddViewController and sets the password to be the generated password.

@@ -21,7 +21,7 @@ class PassViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        //init properties
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -42,7 +42,7 @@ class PassViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //segue from signupview to emailverifyviews
+    //segue from signupview to emailverifyviews and pass data
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(transferGenPass) {
             let destination = segue.destination as! AddViewController
@@ -70,6 +70,7 @@ class PassViewController: UIViewController {
         generatedPass.text = genPass
     }
 
+    //pass generator function
     func randomString(length: Int, flagletter: Bool, flagnum: Bool, flagspecial: Bool) -> String {
         
         var letters : NSString = ""
@@ -110,14 +111,5 @@ class PassViewController: UIViewController {
         
         return randomString
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

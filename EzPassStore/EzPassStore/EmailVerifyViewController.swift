@@ -13,6 +13,7 @@ class EmailVerifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //init view properties
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -39,16 +40,4 @@ class EmailVerifyViewController: UIViewController {
             
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

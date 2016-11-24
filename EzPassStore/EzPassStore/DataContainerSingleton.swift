@@ -19,6 +19,8 @@ struct DefaultsKeys
     static let userString  = "userString"
     static let passString  = "passString"
     static let cellText  = "cellText"
+    static let website = "websiteString"
+    static let addUser = "addUserString"
 }
 
 /**
@@ -27,18 +29,19 @@ struct DefaultsKeys
  It observes the system UIApplicationDidEnterBackgroundNotification and saves its properties to NSUserDefaults before
  entering the background.
  
- Use the syntax `DataContainerSingleton.sharedDataContainer` to reference the shared data container singleton
- */
+*/
 
 class DataContainerSingleton
 {
     static let sharedDataContainer = DataContainerSingleton()
     
     //------------------------------------------------------------
-    //Add properties here that you want to share accross your app
+    //Properties to share across app
     var userString: String?
     var passString: String?
     var cellText: String?
+    var website: String?
+    var addUser: String?
     //------------------------------------------------------------
     
     var goToBackgroundObserver: AnyObject?
@@ -46,15 +49,16 @@ class DataContainerSingleton
     init()
     {
         //-----------------------------------------------------------------------------
-        //This code reads the singleton's properties from NSUserDefaults.
-        //edit this code to load your custom properties
+        //sets default string value
         userString = ""
         passString = ""
         cellText = ""
+        website = ""
+        addUser = ""
         //-----------------------------------------------------------------------------
         
         //Add an obsever for the UIApplicationDidEnterBackgroundNotification.
-        //When the app goes to the background, the code block saves our properties to NSUserDefaults.
+        //When the app goes to the background, the code block saves properties to NSUserDefaults.
         goToBackgroundObserver = NotificationCenter.default.addObserver(
             forName: NSNotification.Name.UIApplicationDidEnterBackground,
             object: nil,
@@ -63,14 +67,15 @@ class DataContainerSingleton
             (note: Notification) -> Void in
             let defaults = UserDefaults.standard
             //-----------------------------------------------------------------------------
-            //This code saves the singleton's properties to NSUserDefaults.
-            //edit this code to save your custom properties
+            //saves properties
             defaults.set( self.userString, forKey: DefaultsKeys.userString)
             defaults.set( self.passString, forKey: DefaultsKeys.passString)
             defaults.set( self.cellText, forKey: DefaultsKeys.cellText)
+             defaults.set( self.website, forKey: DefaultsKeys.website)
+             defaults.set( self.addUser, forKey: DefaultsKeys.addUser)
             //-----------------------------------------------------------------------------
             
-            //Tell NSUserDefaults to save to disk now.
+            //save
             defaults.synchronize()
         }
     }

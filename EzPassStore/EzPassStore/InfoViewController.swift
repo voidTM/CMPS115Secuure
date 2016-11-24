@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class InfoViewController: UIViewController {
 
@@ -25,6 +26,7 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set background image and init var properties
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -36,11 +38,32 @@ class InfoViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(patternImage: image)
         
+        displayWebsite.textColor = UIColor.white
+        displayUsername.textColor = UIColor.white
+        displayPassword.textColor = UIColor.white
+        displayNotes.textColor = UIColor.white
+    
+        displayWebsite.layer.borderWidth = 1;
+        displayWebsite.layer.borderColor = UIColor.white.cgColor
+        
+        displayUsername.layer.borderWidth = 1;
+        displayUsername.layer.borderColor = UIColor.white.cgColor
+        
+        displayPassword.layer.borderWidth = 1;
+        displayPassword.layer.borderColor = UIColor.white.cgColor
+        
+        displayNotes.layer.borderWidth = 1;
+        displayNotes.layer.borderColor = UIColor.white.cgColor
+        
+        //check if its new account(add) or existing account(edit)
         if(DataContainerSingleton.sharedDataContainer.cellText == "New Account") {
             newAccount = true
         }
+        
+        //if new account, set website to New Account
         if(newAccount) {
             displayWebsite.text = "New Account"
+        //else connect to web server and retrieve account info from DB
         }else if(!newAccount) {
         let user = DataContainerSingleton.sharedDataContainer.userString! as String
         let pass = DataContainerSingleton.sharedDataContainer.passString! as String
@@ -144,23 +167,16 @@ class InfoViewController: UIViewController {
          self.performSegue(withIdentifier: "showMainIntViewController", sender: self)
     }
     
+    //func to parse resposne from server
     func parseOutput(response: String) -> Array<String>{
         let strArray = response.components(separatedBy: "|")
         return strArray
     }
     
+    //func to parse response from server
     func parseUnderscore(response: String) -> Array<String>{
         let strArray = response.components(separatedBy: "_")
         return strArray
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

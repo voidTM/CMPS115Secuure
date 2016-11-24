@@ -24,6 +24,7 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //init view properties
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -41,17 +42,29 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
         self.confirmPassword.delegate = self
         self.AdditionalNote.delegate = self
         
+        //set the website and username after returning from password gen
+        if(DataContainerSingleton.sharedDataContainer.website != ""){
+            WebsiteName.text = DataContainerSingleton.sharedDataContainer.website
+            UserName.text = DataContainerSingleton.sharedDataContainer.addUser
+            
+            DataContainerSingleton.sharedDataContainer.website = ""
+            DataContainerSingleton.sharedDataContainer.addUser = ""
+        }
+        
         if(genPass != "") {
             self.Password.text = genPass
             self.confirmPassword.text = genPass
         }
         
+        //check if is in edit mode
         if(DataContainerSingleton.sharedDataContainer.cellText == "New Account") {
             isEdit = false
         }
 
+        //if in edit mode
         if(isEdit) {
             
+            //call server to get account info from DB and display it. DO NOT allow users to edit website or username
             var accWebArray = [String]()
             
             print("CELL TEXT IS******"+DataContainerSingleton.sharedDataContainer.cellText!)
@@ -160,6 +173,11 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
         return false
     }
     
+    //save website and username when segue to password generator. Fields are used when returning to this view after generating the password
+    @IBAction func genPass(_ sender: Any) {
+        DataContainerSingleton.sharedDataContainer.website = WebsiteName.text!
+        DataContainerSingleton.sharedDataContainer.addUser = UserName.text!
+    }
     @IBAction func backButton(_ sender: Any) {
     }
     
@@ -167,13 +185,14 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
         if(!fieldIsEmpty()) {
             
             
-            
+            //call server and add account to DB with the neccesary info
             let user = DataContainerSingleton.sharedDataContainer.userString! as String
             let pass = DataContainerSingleton.sharedDataContainer.passString! as String
             
             
             if(Password.text != confirmPassword.text) {
                 invalidLogin()
+            //call edit script if its in edit mode
             }else if(isEdit) {
                 
                 var serverResp = 0
@@ -209,6 +228,7 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
                     //50 Milliseconds
                     usleep(50000)
                 }
+            //call the add script if its in add mode
             }else{
             var serverResp = 0
             /***** CONNECT TO DB AND SEND DATA *****/
@@ -253,11 +273,13 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
         return true;
     }
     
+    //func to parse server response
     func parseUnderscore(response: String) -> Array<String>{
         let strArray = response.components(separatedBy: "_")
         return strArray
     }
     
+    //UIAlert pop up if credentials are wrong
     func invalidLogin() {
         let signupAlertController = UIAlertController(title: "Process Failed", message: "Passwords do not match", preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil)
@@ -265,20 +287,12 @@ class AddViewController: UIViewController, UITextFieldDelegate ,UITextViewDelega
         self.present(signupAlertController, animated: true, completion: nil)
     }
     
+    //func to parse server response
     func parseOutput(response: String) -> Array<String>{
         let strArray = response.components(separatedBy: "|")
         return strArray
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

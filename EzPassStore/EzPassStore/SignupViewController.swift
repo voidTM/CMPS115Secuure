@@ -21,6 +21,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //init view properties
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named:"secuurebackground.jpg")!)
         
@@ -91,6 +92,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUp(_ sender: AnyObject) {
         //are all the fields filled? if so initialize
+        
         if(!fieldIsEmpty()) {
             if(password.text == cpassword.text) {
             /**** pass to db ******/
@@ -113,6 +115,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                     print("responseString: \(responseString)")
                 }
                 task.resume()
+            //credentials are not valid, UIAlert pop up
             }else {
                 //uialert for unmatching password
                 let signupAlertController = UIAlertController(title: "Unmatching password", message: "Please enter matching passwords", preferredStyle: UIAlertControllerStyle.alert)
@@ -137,15 +140,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
         return true;
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }
